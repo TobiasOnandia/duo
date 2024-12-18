@@ -1,6 +1,5 @@
 import Image from "next/image";
 import helmet from "@/public/gorra.jpeg";
-import { AddIcon } from "./Icons";
 
 interface ProductProps {
   name: string;

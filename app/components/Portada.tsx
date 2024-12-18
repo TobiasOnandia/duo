@@ -4,14 +4,11 @@ export function HeroSection() {
   return (
     <div className="relative h-[calc(100vh-4rem)] md:h-[calc(100vh-8rem)] bg-gray-100">
       <div 
-        className="absolute inset-0 bg-cover bg-center"
-        style={{
-          backgroundImage: "url('/placeholder.svg?height=1080&width=1920')"
-        }}
+        className="absolute inset-0 bg-cover bg-center portada"
+        
       >
         <div className="absolute inset-0 bg-black bg-opacity-30" />
       </div>
-      
       <div className="relative h-full flex flex-col items-center justify-center px-4 pt-16">
         <h1 className="text-white text-4xl md:text-6xl lg:text-8xl font-bold mb-8 text-center">Shop</h1>
         <div className="w-full max-w-md md:max-w-2xl">
@@ -28,7 +25,7 @@ export function HeroSection() {
             </div>
           </div>
           <p className="text-white text-center mt-4 text-sm md:text-lg">
-            Give All You Need
+            Todo lo que necesitas
           </p>
         </div>
       </div>

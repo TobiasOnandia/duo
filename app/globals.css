@@ -49,3 +49,10 @@ body {
   background: var(--background);
   font-family: "Montserrat", "Poppins", sans-serif;
 }
+
+.portada{
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-image: url("../public/background.webp");
+}

@@ -3,6 +3,9 @@
 @theme {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-accent: var(--accent);
+  --color-secondary: var(--secondary);
+  --color-primary: var(--primary);
 }
 
 /*
@@ -26,12 +29,16 @@
 :root {
   --background: #ffffff;
   --foreground: #000000;
+  --accent: #432818;
+  --secondary: #403D39;
+  --primary: #CCC5B9;
+
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #ffffff;
-    --foreground: #000000;
+    --background: #FFFCF2;
+    --foreground: #252422;
   }
 }
 

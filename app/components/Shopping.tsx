@@ -69,10 +69,6 @@ export default function ShoppingCart() {
     setProducts(products.filter(p => p.id !== id))
   }
 
-  const toggleWishlist = (id: string) => {
-    // Implement wishlist functionality
-    console.log("Toggle wishlist for product:", id)
-  }
 
   const calculateTotals = (): CartTotals => {
     const subtotal = products.reduce((sum, p) => sum + (p.price * p.quantity), 0)
@@ -87,23 +83,22 @@ export default function ShoppingCart() {
   }
 
   return (
-    <div className="max-w-7xl mx-auto p-6">
+    <div className="max-w-7xl mx-auto p-6 mt-16">
       <div className="grid lg:grid-cols-2 gap-12">
-        <div>
-          <h1 className="text-3xl font-medium mb-6">Your Product List</h1>
-          <div className="space-y-6">
+        <div className="border p-4 rounded">
+          <h1 className="text-3xl font-medium mb-6">Tus productos</h1>
+          <div className="space-y-6 overflow-y-scroll">
             {products.map(product => (
               <CartItem
                 key={product.id}
                 product={product}
                 onUpdateQuantity={updateQuantity}
                 onRemove={removeProduct}
-                onToggleWishlist={toggleWishlist}
               />
             ))}
           </div>
         </div>
-        <div>
+        <div className="border p-4 rounded">
           <OrderSummary totals={calculateTotals()} />
         </div>
       </div>

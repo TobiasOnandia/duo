@@ -1,7 +1,4 @@
 
-import Image from "next/image"
-
-
 export interface CartTotals {
     subtotal: number
     shipping: number
@@ -17,39 +14,28 @@ interface OrderSummaryProps {
 export function OrderSummary({ totals }: OrderSummaryProps) {
   return (
     <div className="space-y-6">
-      <h2 className="text-3xl font-medium">Order Summary</h2>
+      <h2 className="text-3xl font-medium">Orden</h2>
       <div className="space-y-4">
         <div className="flex justify-between">
           <span>Subtotal</span>
           <span>${totals.subtotal}</span>
         </div>
         <div className="flex justify-between">
-          <span>Standard Shipping</span>
+          <span>Envio</span>
           <span>${totals.shipping}</span>
-        </div>
-        <div className="flex justify-between">
-          <span>Tax</span>
-          <span>${totals.tax}</span>
-        </div>
-        <div className="text-sm text-gray-500">
-          Applicable taxes will be calculated at checkout
         </div>
         <div className="flex justify-between text-xl font-medium pt-4 border-t">
           <span>Total</span>
           <span>${totals.total}</span>
         </div>
       </div>
-      <button className="w-full" >
-        Checkout
+      <button className="w-full bg-neutral-800 text-neutral-100 py-2 rounded text-center" >
+        Comprar
       </button>
-      <button className="w-full" >
-        <div className="relative w-20 h-5">
-          <Image src="/paypal.svg" alt="PayPal" fill className="object-contain" />
-        </div>
-      </button>
-      <div className="space-y-2">
-        <h3 className="text-xl font-medium">Promo Code</h3>
-        <input placeholder="Enter your promo code" />
+     
+      <div className="space-y-2 ">
+        <h3 className="text-xl font-medium">Codigo de promocion</h3>
+        <input placeholder="Enter your promo code" className="border border-neutral-200 w-full py-2 px-2 rounded"/>
       </div>
     </div>
   )

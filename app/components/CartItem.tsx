@@ -1,4 +1,5 @@
 import Image from "next/image"
+import { AddIcon, MinusIcon, X } from "./Icons"
 
 export interface Product {
     id: string
@@ -10,7 +11,7 @@ export interface Product {
     support: string
     quantity: number
   }
-  
+
 interface CartItemProps {
   product: Product
   onUpdateQuantity: (id: string, quantity: number) => void
@@ -37,14 +38,20 @@ export function CartItem({ product, onUpdateQuantity, onRemove, onToggleWishlist
         <div className="flex items-center gap-2 mt-2">
           <button
             onClick={() => onUpdateQuantity(product.id, Math.max(0, product.quantity - 1))}
+            className="cursor-pointer"
+
           >
+            <MinusIcon />
           </button>
           <span className="w-8 text-center">{product.quantity}</span>
           <button
+            className="cursor-pointer"
             
             
             onClick={() => onUpdateQuantity(product.id, product.quantity + 1)}
           >
+            <AddIcon />
+
           </button>
         </div>
       </div>
@@ -52,14 +59,10 @@ export function CartItem({ product, onUpdateQuantity, onRemove, onToggleWishlist
         <p className="text-xl">${product.price}</p>
         <div className="flex gap-2 justify-end">
           <button
-            
-            
-            onClick={() => onToggleWishlist(product.id)}
-          >
-          </button>
-          <button
+            className="cursor-pointer"
             onClick={() => onRemove(product.id)}
           >
+            <X />
           </button>
         </div>
       </div>

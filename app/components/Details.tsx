@@ -1,99 +1,160 @@
+'use client'
+
+import { useState } from 'react'
+import helmet from "@/public/gorra.jpeg"
 import Image from "next/image"
 
+interface RelatedProduct {
+  id: string
+  name: string
+  price: string
+  image: string
+}
 
-export const Details = () => {
-    return(
-        <main >
-            <div className="flex w-full h-full py-4 text-neutral-800"> 
+const relatedProducts: RelatedProduct[] = [
+  {
+    id: '1',
+    name: 'Adidas x Jolt',
+    price: '$349.00',
+    image: '/placeholder.svg?height=200&width=200',
+  },
+  {
+    id: '2',
+    name: 'P 5 Cap',
+    price: '$49.00',
+    image: '/placeholder.svg?height=200&width=200',
+  },
+  {
+    id: '3',
+    name: 'OS Beanie',
+    price: '$20.00',
+    image: '/placeholder.svg?height=200&width=200',
+  },
+  {
+    id: '4',
+    name: 'NH X Hekknox Folding Tote',
+    price: '$39.90',
+    image: '/placeholder.svg?height=200&width=200',
+  },
+]
 
-             <ul className="flex flex-col h-full flex-[0.1] gap-4 px-8 ">
-                        <li>
-                            <Image src="/gorra.jpeg" alt="gorra" width={165} height={165} className="rounded-lg"/>
-                        </li>
-                        <li>
-                            <Image src="/gorra.jpeg" alt="gorra" width={165} height={165} className="rounded-lg"/>
-                        </li>
-                        <li>
-                            <Image src="/gorra.jpeg" alt="gorra" width={165} height={165} className="rounded-lg"/>
-                        </li>
-                        <li>
-                            <Image src="/gorra.jpeg" alt="gorra" width={165} height={165} className="rounded-lg"/>
-                        </li>
-            </ul>
+export  function Details() {
+  const [selectedColor, setSelectedColor] = useState('black')
+  const [selectedSize, setSelectedSize] = useState('M')
 
-            <section className="flex-[0.5] ">
-            <Image src="/gorra.jpeg" alt="gorra" width={660} height={660} className="rounded-lg"/>
-            
-            </section>
+  return (
+    <main className="container mx-auto px-4 py-8 mt-16">
+      <div className="grid md:grid-cols-2 gap-8">
+        {/* Product Images */}
+        <section className="space-y-4">
+          <figure className="aspect-square relative overflow-hidden rounded-lg bg-gray-100">
+            <Image
+              src={helmet}
+              alt="Boa Fleece Jacket main view"
+              className="object-cover"
+              fill
+              priority
+            />
+          </figure>
+          <ul className="grid grid-cols-4 gap-4">
+            {[...Array(4)].map((_, i) => (
+              <li key={i} className="aspect-square relative overflow-hidden rounded-lg bg-gray-100">
+                <Image
+                  src="/placeholder.svg?height=150&width=150"
+                  alt={`Boa Fleece Jacket view ${i + 1}`}
+                  className="object-cover"
+                  fill
+                />
+              </li>
+            ))}
+          </ul>
+        </section>
 
+        {/* Product Info */}
+        <section className="space-y-6 flex flex-col ">
+          <article>
+            <h1 className="text-3xl font-bold">Boa Fleece Jacket</h1>
+            <div className="flex items-baseline gap-2 mt-2">
+              <span className="text-2xl font-bold">$122.00</span>
+              <span className="text-gray-500 line-through">$129.00</span>
+              <span className="bg-black text-white text-sm px-2 py-1 rounded">SALE</span>
+            </div>
+            <div className="mt-4 prose prose-gray max-w-none">
+              <p>
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Magni ducimus aut explicabo quas, dolorem exercitationem, facilis dolor dicta amet officiis doloremque deserunt itaque error velit inventore perferendis, veritatis a. Impedit?
+              </p>
+            </div>
+          </article>
 
-            <section className="flex-[0.6] h-full ml-4   flex flex-col gap-4">
-                <h2 className="text-3xl font-semibold">
-                    Gorra
-                </h2>
-                <p className="text-5xl font-bold">$ 120</p>
-                <span className="text-lg font-light text-gray-400">Descripcion</span> 
-                
-                <p className="max-w-xl text-lg w-full text-balance">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda asperiores, nisi quis delectus quisquam perspiciatis dolorem, facilis iste sunt ipsa, inventore quidem necessitatibus itaque eius? Recusandae deserunt molestias amet alias.
-                </p>
-
-
-                <span className="text-lg font-light text-gray-400">Colores Disponibles</span> 
-
-                <ul className="flex items-center gap-2 ">
-                    <li className="flex items-center gap-2 p-2 w-8 h-8 rounded bg-red-300  ">    
-                    </li>
-                    <li className="flex items-center gap-2  p-2 w-8 h-8 rounded bg-blue-300">
-                    </li>
-                    <li className="flex items-center gap-2 p-2 w-8 h-8 rounded bg-green-300 ">
-                    </li>
-                </ul>
-
-                <span className="text-lg font-light text-gray-400">Tamano</span> 
-
-                <ul className="flex *:items-center *:flex *:justify-center gap-2 *:border *:border-gray-400  *:cursor-pointer *:p-2 *:w-8 *:h-8  *:rounded ">
-                    <li>
-                        S
-                    </li>
-                    <li>
-                        M
-                    </li>
-                    <li>
-                        L
-                    </li>
-                    <li>
-                        XL
-                    </li>
-                </ul>
-
-                <span className="text-lg font-light text-gray-400">Stock</span> 
-                <div className="flex items-center gap-2">
-                <button> - </button>
-                <p className="text-lg ">
-                    {12}
-                </p>
-                <button>+</button>
-                </div>
-
-
-                <button className="px-4 py-2 bg-violet-600 w-fit rounded text-neutral-100 font-semibold">Comprar Ahora</button>
-            </section>
-
+          <div className="space-y-4">
+            <div>
+              <h3 className="font-medium mb-2">Colores disponibles</h3>
+              <div className="flex gap-2">
+                {['black', 'blue', 'green'].map((color) => (
+                  <button
+                    key={color}
+                    className={`w-8 h-8 rounded border-2 ${
+                      selectedColor === color ? 'border-primary' : 'border-transparent'
+                    }`}
+                    style={{ backgroundColor: color }}
+                    onClick={() => setSelectedColor(color)}
+                    aria-label={`Select ${color} color`}
+                  />
+                ))}
+              </div>
             </div>
 
+            <div>
+              <h3 className="font-medium mb-2">Tamaño</h3>
+              <div className="flex gap-2">
+                {['S', 'M', 'L', 'XL'].map((size) => (
+                  <button
+                    key={size}
+                    className={`w-10 h-10 rounded cursor-pointer ${
+                      selectedSize === size
+                        ? 'bg-neutral-500 text-white'
+                        : 'border-gray-300 hover:border-gray-400'
+                    }`}
+                    onClick={() => setSelectedSize(size)}
+                  >
+                    {size}
+                  </button>
+                ))}
+              </div>
+            </div>
+          </div>
 
-            <section className="px-8 text-neutral-800">
-                <h2 className="text-3xl  font-semibold">
-                    Caracteristicas del producto
-                </h2>
-                <p>
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quos illo perspiciatis architecto expedita voluptas magnam nisi sequi consequatur ea porro dignissimos quas, veritatis repudiandae? Neque temporibus veritatis enim impedit iure!
-            </p>
-            </section>
+          <div className="flex gap-4">
+            <button className="flex-1 bg-neutral-500 text-neutral-100 py-2 rounded cursor-pointer hover:scale-105 transition-transform">Agregar al carrito</button>
+            <button className="flex-1 bg-neutral-800 text-neutral-100 py-2 rounded cursor-pointer hover:scale-105 transition-transform">Comprar</button>
+          </div>
+        </section>
+      </div>
 
-    
-
-        </main>
-    )
+      {/* Related Products */}
+      <footer className="mt-12">
+        <h2 className="text-2xl font-bold mb-6">Otros usuarios tambien vieron</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+          {relatedProducts.map((product) => (
+            <div key={product.id} className="group relative">
+              <div className="aspect-square relative overflow-hidden rounded-lg">
+                <Image
+                  src={product.image}
+                  alt={product.name}
+                  className="object-cover group-hover:scale-105 transition-transform"
+                  fill
+                />
+           
+              </div>
+              <div className="p-4">
+                <h3 className="font-medium">{product.name}</h3>
+                <p className="text-sm text-gray-600">{product.price}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </footer>
+    </main>
+  )
 }
+

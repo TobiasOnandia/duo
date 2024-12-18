@@ -11,7 +11,7 @@ export const Category = [
 
 export const Categories = () => {
     return(
-        <aside className="flex-[0.3] h-full bg-white   px-4">
+        <aside className="flex-[0.3] px-4">
         <h3 className="text-md text-gray-400 font-semibold  py-4">Categorías</h3>
         <ul className="flex flex-col gap-4 ">
           {Category.map((category, index) => (
@@ -24,15 +24,17 @@ export const Categories = () => {
           ))}
         </ul>
 
-         <h3 className="text-md text-gray-400 font-semibold  py-4">Precio</h3>
-        <div className="flex items-center gap-2">
-         <span>
+         <h3 className="text-md text-gray-400 font-semibold  pt-4">Precio</h3>
+        <div className="">
+         <input type="range" className="w-fit h-2 rounded-lg bg-violet-600 p-0 appearance-none cursor-pointer" min="0" max="100" step="1" />
+          <div className="flex items-center justify-between">
+          <span>
           0
          </span>
-         <input type="range" className="w-fit h-2 rounded-lg bg-violet-600 p-0 appearance-none cursor-pointer" min="0" max="100" step="1" />
           <span>
             100
           </span>
+          </div>
         </div>
       </aside>
     )

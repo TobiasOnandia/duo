@@ -1,41 +1,83 @@
-export const Category = [
-    "Remeras",
-    "Pantalones",
-    "Zapatos",
-    "Camisetas",
-    "Botas",
-    "Mochilas",
-  ];
-  
-
+'use client'
+import { ArrowBottom, SearchIcon } from "./Icons";
+import { useState } from "react";
+const categories = [
+  "Remeras",
+  "Pantalones",
+  "Zapatos",
+  "Camisetas",
+  "Botas",
+  "Mochilas",
+];
 
 export const Categories = () => {
-    return(
-        <aside className="flex-[0.3] px-4">
-        <h3 className="text-md text-gray-400 font-semibold  py-4">Categorías</h3>
-        <ul className="flex flex-col gap-4 ">
-          {Category.map((category, index) => (
-            <li
-              key={index}
-              className="flex items-center gap-4 hover py-1 px-4 cursor-pointer rounded w-full border-l-4 border-violet-600 hover:bg-violet-200 "
-            >
-              <span>{category}</span>
-            </li>
-          ))}
-        </ul>
+  const [isOpen, setIsOpen] = useState(false);
 
-         <h3 className="text-md text-gray-400 font-semibold  pt-4">Precio</h3>
-        <div className="">
-         <input type="range" className="w-fit h-2 rounded-lg bg-violet-600 p-0 appearance-none cursor-pointer" min="0" max="100" step="1" />
-          <div className="flex items-center justify-between">
-          <span>
-          0
-         </span>
-          <span>
-            100
-          </span>
-          </div>
-        </div>
-      </aside>
-    )
-}
+  return (
+    <section className="mt-2 flex items-center justify-between    ">
+      <article className="xl:flex items-center *:border-gray-400 *:py-1 *:px-3 gap-2 hidden ">
+        {categories.map((category, index) => (
+          <label
+            key={index}
+            htmlFor={category}
+            className="flex items-center gap-2 has-[:checked]:bg-neutral-700 has-[:checked]:text-background hover:text-background cursor-pointer hover:bg-neutral-700 rounded-full font-medium  active:bg-neutral-700"
+          >
+            {category}
+            <input
+              type="radio"
+              name="category"
+              id={category}
+              className="hidden"
+              defaultChecked={index === 0}
+            />
+          </label>
+        ))}
+      </article>
+
+      <section className="xl:hidden block">
+      <ul className="text-lg px-4 rounded-full">
+        <li
+          className="flex items-center gap-2 cursor-pointer relative"
+          onClick={() => setIsOpen(!isOpen)}
+        >
+          Categorías
+          <ArrowBottom />
+          {isOpen && (
+            <div className="absolute bg-white w-[250px] flex gap-2 flex-col p-4 rounded-lg top-8 left-0 shadow-lg">
+              {categories.map((category, index) => (
+                <label
+                key={index}
+                htmlFor={category}
+                className="flex items-center gap-2 has-[:checked]:bg-neutral-700 has-[:checked]:text-background hover:text-background cursor-pointer hover:bg-neutral-700 rounded-md  text-md px-2 py-1 active:bg-neutral-700"
+              >
+                {category}
+                <input
+                  type="radio"
+                  name="category"
+                  id={category}
+                  className="hidden"
+                  defaultChecked={index === 0}
+                />
+              </label>
+              ))}
+            </div>
+          )}
+        </li>
+      </ul>
+    </section>
+
+
+      <label htmlFor="search" className="relative flex items-center ">
+        <span className="absolute left-2">
+          <SearchIcon />
+        </span>
+        <input
+          type="search"
+          name=""
+          id="search"
+          className="py-1 border px-8 rounded border-gray-400 "
+        />
+      </label>
+    </section>
+  );
+};

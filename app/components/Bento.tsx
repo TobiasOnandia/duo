@@ -1,11 +1,12 @@
 import Image from "next/image"
 import helmet from "@/public/gorra.jpeg"
 import short from "@/public/short.jpeg"
+import tshirt from "@/public/tshirt.jpeg"
 
 const categories = [
-  { name: "Camisetas", color: "bg-blue-500", image: short },
-  { name: "Zapatos",  color: "bg-red-500", image: helmet },
-  { name: "Calcetines", color: "bg-pink-500", image: short },
+  { name: "Pantalones", color: "bg-blue-500", image: short },
+  { name: "Gorras",  color: "bg-red-500", image: helmet },
+  { name: "Remeras", color: "bg-pink-500", image: tshirt },
 ]
 
 export const Bento = () => {
@@ -19,7 +20,7 @@ export const Bento = () => {
            `} 
         >
           <article className="relative w-full h-full flex items-center justify-center">
-            <div className="relative w-full pb-[100%]">
+            <div className="relative w-full pb-[100%] hover:scale-105 transition-transform duration-300">
               <Image 
                 src={category.image} 
                 alt={category.name} 

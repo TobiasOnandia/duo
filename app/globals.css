@@ -29,20 +29,17 @@
 :root {
   --background: #ffffff;
   --foreground: #000000;
-  --accent: #432818;
-  --secondary: #403D39;
-  --primary: #CCC5B9;
-
+  --accent: #404040;
+  --secondary: #403d39;
+  --primary: #ccc5b9;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #FFFCF2;
+    --background: #fffcf2;
     --foreground: #252422;
   }
 }
-
-
 
 body {
   color: var(--foreground);
@@ -50,7 +47,7 @@ body {
   font-family: "Montserrat", "Poppins", sans-serif;
 }
 
-.portada{
+.portada {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

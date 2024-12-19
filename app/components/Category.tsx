@@ -20,7 +20,7 @@ export const Categories = () => {
           <label
             key={index}
             htmlFor={category}
-            className="flex items-center gap-2 has-[:checked]:bg-neutral-700 has-[:checked]:text-background hover:text-background cursor-pointer hover:bg-neutral-700 rounded-full font-medium  active:bg-neutral-700"
+            className="flex items-center gap-2 has-[:checked]:bg-accent has-[:checked]:text-background hover:text-background cursor-pointer hover:bg-accent rounded-full font-medium  active:bg-accent"
           >
             {category}
             <input
@@ -33,7 +33,7 @@ export const Categories = () => {
           </label>
         ))}
       </article>
-
+        {/* Mobile */}
       <section className="xl:hidden block">
       <ul className="text-lg px-4 rounded-full">
         <li
@@ -48,7 +48,7 @@ export const Categories = () => {
                 <label
                 key={index}
                 htmlFor={category}
-                className="flex items-center gap-2 has-[:checked]:bg-neutral-700 has-[:checked]:text-background hover:text-background cursor-pointer hover:bg-neutral-700 rounded-md  text-md px-2 py-1 active:bg-neutral-700"
+                className="flex items-center gap-2 has-[:checked]:bg-accent has-[:checked]:text-background hover:text-background cursor-pointer hover:bg-accent rounded-md  text-md px-2 py-1 active:bg-accent"
               >
                 {category}
                 <input

@@ -1,43 +1,20 @@
-
-export interface CartTotals {
-    subtotal: number
-    shipping: number
-    tax: number
-    total: number
-  }
-  
-
-interface OrderSummaryProps {
-  totals: CartTotals
-}
-
-export function OrderSummary({ totals }: OrderSummaryProps) {
+export const OrderSummary = () => {
   return (
-    <div className="space-y-6">
-      <h2 className="text-3xl font-medium">Orden</h2>
-      <div className="space-y-4">
-        <div className="flex justify-between">
-          <span>Subtotal</span>
-          <span>${totals.subtotal}</span>
-        </div>
-        <div className="flex justify-between">
-          <span>Envio</span>
-          <span>${totals.shipping}</span>
-        </div>
-        <div className="flex justify-between text-xl font-medium pt-4 border-t">
-          <span>Total</span>
-          <span>${totals.total}</span>
-        </div>
-      </div>
-      <button className="w-full bg-neutral-800 text-neutral-100 py-2 rounded text-center" >
-        Comprar
-      </button>
-     
-      <div className="space-y-2 ">
-        <h3 className="text-xl font-medium">Codigo de promocion</h3>
-        <input placeholder="Enter your promo code" className="border border-neutral-200 w-full py-2 px-2 rounded"/>
-      </div>
-    </div>
-  )
-}
-
+    <section className="flex flex-col  h-fit items-center justify-between rounded border p-4 py-4 flex-[0.3]">
+        <p className="text-lg flex justify-between items-center w-full">Subtotal
+            <span>
+                 $100
+            </span>
+        </p>
+        <p className="text-lg flex justify-between items-center py-4 w-full">Envio
+         <span>$ 1000</span>
+        </p>
+        <p className="text-lg flex justify-between border-dashed  items-center border-t-2 py-4 w-full">Total
+         <span>$ 2500</span>
+        </p>
+        <button className="bg-secondary text-primary w-full cursor-pointer py-2 rounded">
+            Comprar Ahora
+        </button>
+    </section>
+  );
+};

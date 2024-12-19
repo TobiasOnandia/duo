@@ -11,7 +11,7 @@ const categories = [
 
 export const Bento = () => {
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 ">
       {categories.map((category, index) => (
         <section 
           key={index} 
@@ -29,7 +29,7 @@ export const Bento = () => {
                 className="rounded-lg"
               />
             </div>
-            <h3 className="absolute z-100 backdrop-blur w-full font-bold text-center p-4 text-4xl">{category.name}</h3>
+            <h3 className="absolute z-100 backdrop-blur text-background w-full font-bold text-center p-4 text-4xl">{category.name}</h3>
           </article>
         </section>
       ))}

@@ -1,6 +1,5 @@
 import Image from "next/image"
 import { AddIcon, MinusIcon, X } from "./Icons"
-
 export interface Product {
     id: string
     name: string

@@ -1,6 +1,6 @@
 export const Footer = () => {
     return(
-        <footer className="flex items-center justify-between py-4 px-8  bg-neutral-900 text-white">
+        <footer className="flex items-center mt-12 justify-between py-4 px-8  bg-neutral-900 text-white">
             <p className="text-sm">
                 &copy; 2023 Duo. Todos los derechos reservados.
             </p>

@@ -1,6 +1,5 @@
 import { Bento } from "./Bento";
 import { Categories } from "./Category";
-import { ArrowLeft, ArrowRight } from "./Icons";
 import { Product } from "./Product";
 
 export const Main = () => {
@@ -40,8 +39,8 @@ export const Main = () => {
         </button>
       </section> */}
 
-
       <Bento />
+
 
     </main>
   );

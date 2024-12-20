@@ -1,7 +1,6 @@
 'use client'
 
 import { useState } from 'react';
-import Image from 'next/image';
 import { GoogleIcon } from './Icons';
 
 export const Login = () => {
@@ -9,7 +8,7 @@ export const Login = () => {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setError('');
     // Lógica para iniciar sesión con correo y contraseña
@@ -21,7 +20,7 @@ export const Login = () => {
       // Lógica para iniciar sesión con Google (e.g., Supabase, Firebase)
       console.log('Iniciando sesión con Google...');
     } catch (err) {
-      setError('Error al iniciar sesión con Google. Por favor, inténtalo nuevamente.');
+      setError(`Error al iniciar sesión con Google. Por favor, inténtalo nuevamente. ${err}`);
     }
   };
 

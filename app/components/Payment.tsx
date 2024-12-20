@@ -1,6 +1,5 @@
 "use client";
 import { AddressUser } from "./AdressUser";
-import { CardCheckout } from "./CardCheckout";
 import { AddIcon, MinusIcon, TrashIcon } from "./Icons";
 import { PaymentOptions } from "./PaymentOptions";
 import Image from "next/image";

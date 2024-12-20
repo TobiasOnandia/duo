@@ -3,33 +3,32 @@ import { SearchIcon } from "./Icons";
 export function HeroSection() {
   return (
     <div className="relative h-[calc(100vh-4rem)] md:h-[calc(100vh-8rem)] bg-gray-100">
-      <div 
-        className="absolute inset-0 bg-cover bg-center portada"
-        
-      >
-        <div className="absolute inset-0 bg-black bg-opacity-30" />
+      <div className="absolute inset-0 bg-cover bg-center portada">
       </div>
-      <div className="relative h-full flex flex-col items-center justify-center px-4 pt-16">
-        <h1 className="text-white text-4xl md:text-6xl lg:text-8xl font-bold mb-8 text-center">Shop</h1>
+      <div className="relative h-full flex flex-col items-center justify-center px-4 pt-16 text-center">
+        <h1 className="text-white text-4xl md:text-6xl lg:text-8xl font-bold mb-6">
+          Shop
+        </h1>
+        <p className="text-white text-lg md:text-xl mb-4">
+          Encuentra todo lo que necesitas
+        </p>
         <div className="w-full max-w-md md:max-w-2xl">
-          <div className="bg-white rounded-lg shadow-lg p-2 md:p-4">
-            <div className="flex items-center">
-              <input
-                type="text"
-                placeholder="Search on Stuffsus"
-                className="flex-1 border-0 focus:ring-0 focus:outline-none text-sm md:text-base"
-              />
-              <button className="p-2 text-gray-600 hover:text-gray-900">
-                <SearchIcon />
-              </button>
-            </div>
+          <div className="bg-white rounded-lg shadow-lg p-2 md:p-4 flex items-center">
+            <input
+              type="text"
+              placeholder="Buscar en Stuffsus"
+              className="flex-1 border-0 focus:ring-0 focus:outline-none text-sm md:text-base p-2 rounded-l-md"
+              aria-label="Buscar en Stuffsus"
+            />
+            <button className="p-2 bg-gray-200 rounded-r-md hover:bg-gray-300 transition-colors">
+              <SearchIcon  />
+            </button>
           </div>
-          <p className="text-white text-center mt-4 text-sm md:text-lg">
-            Todo lo que necesitas
-          </p>
         </div>
+        <p className="text-white mt-4 text-sm md:text-lg">
+          Todo lo que necesitas en un solo lugar
+        </p>
       </div>
     </div>
-  )
+  );
 }
-

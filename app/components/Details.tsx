@@ -4,7 +4,7 @@ import { useState } from 'react'
 import helmet from "@/public/gorra.jpeg"
 import Image from "next/image"
 import { AddIcon, MinusIcon } from './Icons'
-import { Recomend, Recommend } from './Recommend'
+import {  Recommend } from './Recommend'
 
 
 export  function Details() {

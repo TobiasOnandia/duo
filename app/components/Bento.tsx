@@ -11,29 +11,30 @@ const categories = [
 
 export const Bento = () => {
   return (
-    <section className="grid grid-cols-1 sm:grid-cols-2 bg-[#fdfdfd] p-4 rounded-3xl border border-primary shadow md:grid-cols-3 gap-4 mt-14 w-[95%] md:w-4/5 mx-auto">
+    <section className="grid grid-cols-1 sm:grid-cols-2  bg-[#f8f8f8] p-6 rounded-3xl border border-gray-200 shadow-lg md:grid-cols-3 gap-6 mt-14 w-[95%] md:w-4/5 mx-auto">
       {categories.map((category, index) => (
         <section 
           key={index} 
           className={`${index === 0 ? 'md:col-span-2 md:row-span-2' : ''} 
-          rounded-lg overflow-hidden 
+          rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300
            `} 
         >
-          <article className="relative w-full h-full flex items-center justify-center">
-            <figure className="relative w-full pb-[100%] hover:scale-105 transition-transform duration-300 cursor-pointer">
+          <article className="relative w-full h-full flex items-center justify-center group">
+            <figure className="relative w-full pb-[100%] transition-transform duration-300 group-hover:scale-105 cursor-pointer">
               <Image 
                 src={category.image} 
                 alt={category.name} 
                 layout="fill"
                 objectFit="cover"
-                className="rounded-lg"
+                className="rounded-xl"
               />
             </figure>
-            <h3 className="absolute z-100 backdrop-blur text-background w-full font-bold text-center p-4 text-4xl">{category.name}</h3>
+            <h3 className="absolute z-10 bg-black/50  text-white font-semibold text-center px-4 py-2 rounded-lg text-2xl sm:text-3xl md:text-4xl group-hover:bg-black/70 transition-all">
+              {category.name}
+            </h3>
           </article>
         </section>
       ))}
     </section>
   )
 }
-

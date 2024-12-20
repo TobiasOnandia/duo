@@ -1,20 +1,21 @@
 export const OrderSummary = () => {
   return (
-    <section className="flex flex-col  h-fit items-center justify-between rounded border p-4 py-4 flex-[0.3]">
-        <p className="text-lg flex justify-between items-center w-full">Subtotal
-            <span>
-                 $100
-            </span>
-        </p>
-        <p className="text-lg flex justify-between items-center py-4 w-full">Envio
-         <span>$ 1000</span>
-        </p>
-        <p className="text-lg flex justify-between border-dashed  items-center border-t-2 py-4 w-full">Total
-         <span>$ 2500</span>
-        </p>
-        <button className="bg-secondary text-primary w-full cursor-pointer py-2 rounded">
-            Comprar Ahora
-        </button>
+    <section className="h-full rounded-lg border border-gray-300 p-6 flex flex-[0.3] flex-col gap-6 bg-white shadow-md">
+      <div className="flex justify-between items-center text-lg">
+        <p className="font-medium text-gray-700">Subtotal:</p>
+        <span className="font-semibold text-gray-900">$100</span>
+      </div>
+      <div className="flex justify-between items-center text-lg">
+        <p className="font-medium text-gray-700">Envío:</p>
+        <span className="font-semibold text-gray-900">$1000</span>
+      </div>
+      <div className="flex justify-between items-center border-t-2 border-dashed border-gray-300 pt-4 text-xl">
+        <p className="font-semibold text-gray-800">Total:</p>
+        <span className="font-bold text-gray-900">$2500</span>
+      </div>
+      <button className="w-full py-3 text-lg font-bold text-white bg-neutral-900 rounded-lg hover:bg-neutral-700 focus:ring-2 focus:ring-neutral-500 focus:outline-none transition-colors">
+        Comprar Ahora
+      </button>
     </section>
   );
 };

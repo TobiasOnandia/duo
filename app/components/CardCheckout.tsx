@@ -11,7 +11,7 @@ export const CardCheckout = () => {
       <article className="flex items-start h-full justify-between w-full gap-4 ">
         <header className="ml-4">
           <h2>Gorra</h2>
-          <p className="text-primary font-medium">
+          <p className="text-primary font-bold">
             <span>Green</span> | <span>M</span>
           </p>
         </header>

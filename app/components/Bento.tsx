@@ -11,7 +11,7 @@ const categories = [
 
 export const Bento = () => {
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 ">
+    <section className="grid grid-cols-1 sm:grid-cols-2 bg-[#fdfdfd] p-4 rounded-3xl border border-primary shadow md:grid-cols-3 gap-4 mt-14 w-[95%] md:w-4/5 mx-auto">
       {categories.map((category, index) => (
         <section 
           key={index} 
@@ -20,7 +20,7 @@ export const Bento = () => {
            `} 
         >
           <article className="relative w-full h-full flex items-center justify-center">
-            <div className="relative w-full pb-[100%] hover:scale-105 transition-transform duration-300">
+            <figure className="relative w-full pb-[100%] hover:scale-105 transition-transform duration-300 cursor-pointer">
               <Image 
                 src={category.image} 
                 alt={category.name} 
@@ -28,12 +28,12 @@ export const Bento = () => {
                 objectFit="cover"
                 className="rounded-lg"
               />
-            </div>
+            </figure>
             <h3 className="absolute z-100 backdrop-blur text-background w-full font-bold text-center p-4 text-4xl">{category.name}</h3>
           </article>
         </section>
       ))}
-    </div>
+    </section>
   )
 }
 

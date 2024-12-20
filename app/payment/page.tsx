@@ -1,7 +1,9 @@
-import { PaymentOptions } from "../components/Payment";
+import { Payment } from "../components/Payment";
 
 export default function Page() {
     return(
-        <PaymentOptions />
+        <>
+        <Payment />
+        </>
     )
 }

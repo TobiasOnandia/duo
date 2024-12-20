@@ -40,10 +40,10 @@ export const Recommend = () => {
     return(
         <footer className="mt-12">
         <h2 className="text-2xl font-bold mb-6">Otros usuarios tambien vieron</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
           {relatedProducts.map((product) => (
-            <div key={product.id} className="group relative">
-              <div className="aspect-square relative overflow-hidden rounded-lg">
+            <article key={product.id} className="group relative">
+              <figure className="aspect-square relative overflow-hidden rounded-lg cursor-pointer">
                 <Image
                   src={short}
                   alt={product.name}
@@ -51,13 +51,13 @@ export const Recommend = () => {
                   fill
                 />
            
-              </div>
+              </figure>
               <div className="p-4">
                 <h3 className="font-medium">{product.name}</h3>
                 <p className="text-sm text-gray-600">{product.price}</p>
               </div>
-            </div>
+            </article>
           ))}
-        </div>
+        </section>
       </footer>
     )}

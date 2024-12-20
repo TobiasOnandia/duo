@@ -1,13 +1,14 @@
 import { Main } from "@/app/components/Main";
-import { Footer } from "./components/Footer";
 import { HeroSection } from "./components/Portada";
+import { Bento } from "./components/Bento";
 
 export default function Home() {
   return (
     <>
       <HeroSection />
       <Main />
-      <Footer />
+      <Bento />
+    
     </>
   );
 }

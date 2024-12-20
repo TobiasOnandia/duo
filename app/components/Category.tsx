@@ -2,6 +2,7 @@
 import { ArrowBottom, SearchIcon } from "./Icons";
 import { useState } from "react";
 const categories = [
+  "Todos",
   "Remeras",
   "Pantalones",
   "Zapatos",

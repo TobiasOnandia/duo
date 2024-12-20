@@ -29,7 +29,7 @@ export const Bento = () => {
                 className="rounded-xl"
               />
             </figure>
-            <h3 className="absolute z-10  backdrop-brightness-40 h-full w-full text-white font-semibold text-center px-4 py-2 rounded-lg text-2xl sm:text-3xl md:text-4xl group-hover:bg-black/20 transition-all">
+            <h3 className="absolute z-10 flex items-center justify-center backdrop-brightness-40 h-full w-full text-white font-semibold text-center px-4 py-2 rounded-lg text-2xl sm:text-3xl md:text-4xl group-hover:bg-black/20 transition-all">
               {category.name}
             </h3>
           </article>

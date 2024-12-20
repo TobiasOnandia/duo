@@ -45,6 +45,9 @@ body {
   color: var(--back);
   background: var(--background);
   font-family: "Montserrat", "Poppins", sans-serif;
+    background-image: radial-gradient(circle, #e0e0e0 1px, transparent 1px);
+    background-size: 10px 10px; /* Ajusta el tamaño de los puntos */
+  
 }
 
 .portada {

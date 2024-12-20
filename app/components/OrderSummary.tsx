@@ -1,6 +1,6 @@
 export const OrderSummary = () => {
   return (
-    <section className="h-full rounded-lg border border-gray-300 p-6 flex flex-[0.3] flex-col gap-6 bg-white shadow-md">
+    <section className=" rounded-lg border border-gray-300 p-6 flex flex-[0.3] flex-col gap-6 bg-white shadow-md">
       <div className="flex justify-between items-center text-lg">
         <p className="font-medium text-gray-700">Subtotal:</p>
         <span className="font-semibold text-gray-900">$100</span>
@@ -13,7 +13,7 @@ export const OrderSummary = () => {
         <p className="font-semibold text-gray-800">Total:</p>
         <span className="font-bold text-gray-900">$2500</span>
       </div>
-      <button className="w-full py-3 text-lg font-bold text-white bg-neutral-900 rounded-lg hover:bg-neutral-700 focus:ring-2 focus:ring-neutral-500 focus:outline-none transition-colors">
+      <button className="w-full py-3 text-lg cursor-pointer font-bold text-white bg-neutral-900 rounded-lg hover:bg-neutral-700 focus:ring-2 focus:ring-neutral-500 focus:outline-none transition-colors">
         Comprar Ahora
       </button>
     </section>

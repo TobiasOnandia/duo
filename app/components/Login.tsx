@@ -1,6 +1,8 @@
 'use client'
 
 import { useState } from 'react';
+import Image from 'next/image';
+import { GoogleIcon } from './Icons';
 
 export const Login = () => {
   const [email, setEmail] = useState('');
@@ -10,16 +12,27 @@ export const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
+    // Lógica para iniciar sesión con correo y contraseña
+  };
+
+  const handleGoogleLogin = async () => {
+    try {
+      setError('');
+      // Lógica para iniciar sesión con Google (e.g., Supabase, Firebase)
+      console.log('Iniciando sesión con Google...');
+    } catch (err) {
+      setError('Error al iniciar sesión con Google. Por favor, inténtalo nuevamente.');
+    }
   };
 
   return (
-    <main className="h-screen flex items-center justify-center  py-8 ">
-      <div className="flex flex-col items-center bg-white p-9 rounded">
+    <main className="h-screen flex items-center justify-center py-8 ">
+      <div className="flex flex-col items-center bg-white p-9 rounded shadow-lg border border-primary">
         <h1 className="text-3xl font-bold mb-4">Iniciar Sesión</h1>
         {error && <p className="text-red-500 mb-4">{error}</p>}
         
         <form onSubmit={handleSubmit} className="w-full max-w-sm space-y-4">
-          <div>
+          <fieldset>
             <label htmlFor="email" className="block text-sm font-medium text-gray-700">
               Correo Electrónico
             </label>
@@ -32,9 +45,9 @@ export const Login = () => {
               className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50"
               placeholder="ejemplo@correo.com"
             />
-          </div>
+          </fieldset>
 
-          <div>
+          <fieldset>
             <label htmlFor="password" className="block text-sm font-medium text-gray-700">
               Contraseña
             </label>
@@ -44,12 +57,12 @@ export const Login = () => {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
-              className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50"
+              className="mt-1 block w-full p-2 border border-neutral-400 rounded-md shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50"
               placeholder="******"
             />
-          </div>
+          </fieldset>
 
-          <div className="flex items-center justify-between">
+          <fieldset className="flex items-center justify-between">
             <div className="flex items-center">
               <input
                 type="checkbox"
@@ -61,22 +74,34 @@ export const Login = () => {
               </label>
             </div>
             <div className="text-sm">
-              <a href="#" className="font-medium text-primary hover:text-primary-dark">
+              <a href="#" className="font-medium text-neutral-800 ml-2 hover:text-primary-dark">
                 ¿Olvidaste tu contraseña?
               </a>
             </div>
-          </div>
+          </fieldset>
 
           <button
             type="submit"
-            className="w-full py-2 bg-primary text-white rounded-md hover:bg-primary-dark transition-colors"
+            className="w-full py-2 bg-neutral-800 disabled:bg-neutral-300 text-white rounded-md hover:bg-primary-dark transition-colors"
           >
             Iniciar Sesión
           </button>
         </form>
 
+        <div className="w-full mt-4 flex items-center  relative justify-center">
+          <button
+            onClick={handleGoogleLogin}
+            className="flex items-center gap-2 justify-center w-full py-2 bg-white border border-gray-300 rounded-md shadow-sm hover:shadow-md hover:bg-gray-100 transition-all"
+            >
+             <GoogleIcon />
+            <span className="text-sm font-medium text-gray-700">Iniciar sesión con Google</span>
+          </button>
+        </div>
+
         <div className="mt-4">
-          <p className="text-sm text-gray-600">¿No tienes una cuenta? <a href="/register" className="text-primary hover:underline">Regístrate aquí</a></p>
+          <p className="text-sm text-gray-600">
+            ¿No tienes una cuenta? <a href="/register" className="text-neutral-800 hover:underline">Regístrate aquí</a>
+          </p>
         </div>
       </div>
     </main>

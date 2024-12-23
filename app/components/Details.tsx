@@ -5,6 +5,7 @@ import helmet from "@/public/gorra.jpeg"
 import Image from "next/image"
 import { AddIcon, MinusIcon } from './Icons'
 import {  Recommend } from './Recommend'
+import Link from 'next/link'
 
 
 export  function Details() {
@@ -19,7 +20,7 @@ export  function Details() {
     {[...Array(4)].map((_, i) => (
       <figure
         key={i}
-        className="aspect-square relative overflow-hidden rounded-lg bg-gray-100 flex-grow"
+        className="aspect-square relative cursor-pointer overflow-hidden rounded-lg bg-gray-100 flex-grow"
       >
         <Image
           src={helmet}
@@ -73,7 +74,7 @@ export  function Details() {
           {["black", "blue", "green"].map((color) => (
             <button
               key={color}
-              className={`w-8 h-8 rounded border-2 ${
+              className={`w-8 h-8 rounded border-2 cursor-pointer ${
                 selectedColor === color ? "border-primary" : "border-transparent"
               }`}
               style={{ backgroundColor: color }}
@@ -116,9 +117,9 @@ export  function Details() {
       <button className="flex-1 bg-neutral-500 text-neutral-100 py-2 rounded cursor-pointer hover:scale-105 transition-transform">
         Agregar al carrito
       </button>
-      <button className="flex-1 bg-neutral-800 text-neutral-100 py-2 rounded cursor-pointer hover:scale-105 transition-transform">
+      <Link href={"/checkout"} className="flex-1 bg-neutral-800 text-neutral-100 py-2 text-center rounded cursor-pointer hover:scale-105 transition-transform">
         Comprar
-      </button>
+      </Link>
     </div>
     
   </section>

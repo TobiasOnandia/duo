@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export const OrderSummary = () => {
   return (
     <section className=" rounded-lg border border-gray-300 p-6 flex flex-[0.3] flex-col gap-6 bg-white shadow-md">
@@ -13,9 +15,9 @@ export const OrderSummary = () => {
         <p className="font-semibold text-gray-800">Total:</p>
         <span className="font-bold text-gray-900">$2500</span>
       </div>
-      <button className="w-full py-3 text-lg cursor-pointer font-bold text-white bg-neutral-900 rounded-lg hover:bg-neutral-700 focus:ring-2 focus:ring-neutral-500 focus:outline-none transition-colors">
+      <Link href={"/payment"} className="w-full text-center py-3 text-lg cursor-pointer font-bold text-white bg-neutral-900 rounded-lg hover:bg-neutral-700 focus:ring-2 focus:ring-neutral-500 focus:outline-none transition-colors">
         Comprar Ahora
-      </button>
+      </Link>
     </section>
   );
 };

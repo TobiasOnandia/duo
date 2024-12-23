@@ -1,5 +1,6 @@
 import Image, { StaticImageData } from "next/image";
 import helmet from "@/public/gorra.jpeg";
+import Link from "next/link";
 
 interface ProductProps {
   name: string;
@@ -22,12 +23,12 @@ const ProductCard = ({ name, price, description, image }: ProductProps) => (
       </header>
       <p className="line-clamp-2 text-gray-600">{description}</p>
       <footer className="flex items-center justify-between gap-2">
-        <button className="px-4 py-2 rounded w-full transition-transform border border-gray-300 bg-gray-100 cursor-pointer hover:bg-gray-200">
+        <Link href={"/item"} className="px-4 text-center py-2 rounded w-full transition-transform border border-gray-300 bg-gray-100 cursor-pointer hover:bg-gray-200">
           Ver detalle
-        </button>
-        <button className="px-4 py-2 rounded w-full cursor-pointer transition-colors bg-neutral-600 text-white hover:bg-neutral-700">
+        </Link>
+        <Link href={"/checkout"} className="px-4 text-center py-2 rounded w-full cursor-pointer transition-colors bg-neutral-600 text-white hover:bg-neutral-700">
           Comprar
-        </button>
+        </Link>
       </footer>
     </div>
   </article>

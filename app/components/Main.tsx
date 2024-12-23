@@ -14,32 +14,6 @@ export const Main = () => {
       </section>
 
 
-
-
-
-      {/* <section className="flex gap-4 items-center justify-between border-t py-4 ">
-        <button className="flex items-center gap-2">
-          <ArrowLeft />
-          Anterior
-        </button>
-
-        <ul className="flex gap-4 *:bg-neutral-200 *:py-1  *:px-4 *:rounded">
-          <li>1</li>
-          <li>2</li>
-          <li>3</li>
-          <li>7</li>
-          <li>8</li>
-          <li>9</li>
-          <li>10</li>
-        </ul>
-        <button className="flex items-center gap-2 ">
-          Siguiente
-          <ArrowRight />
-        </button>
-      </section> */}
-
-
-
     </main>
   );
 };

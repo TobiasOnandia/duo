@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { GoogleIcon } from './Icons';
+import Link from 'next/link';
 
 export const Login = () => {
   const [email, setEmail] = useState('');
@@ -73,7 +74,7 @@ export const Login = () => {
               </label>
             </div>
             <div className="text-sm">
-              <a href="#" className="font-medium text-neutral-800 ml-2 hover:text-primary-dark">
+              <a href="#" className="font-medium cursor-pointer  text-neutral-800 ml-2 hover:text-primary-dark">
                 ¿Olvidaste tu contraseña?
               </a>
             </div>
@@ -81,7 +82,7 @@ export const Login = () => {
 
           <button
             type="submit"
-            className="w-full py-2 bg-neutral-800 disabled:bg-neutral-300 text-white rounded-md hover:bg-primary-dark transition-colors"
+            className="w-full py-2  cursor-pointer  bg-neutral-800 disabled:bg-neutral-300 text-white rounded-md hover:bg-primary-dark transition-colors"
           >
             Iniciar Sesión
           </button>
@@ -90,16 +91,16 @@ export const Login = () => {
         <div className="w-full mt-4 flex items-center  relative justify-center">
           <button
             onClick={handleGoogleLogin}
-            className="flex items-center gap-2 justify-center w-full py-2 bg-white border border-gray-300 rounded-md shadow-sm hover:shadow-md hover:bg-gray-100 transition-all"
+            className="flex items-center gap-2 justify-center cursor-pointer w-full py-2 bg-white border border-gray-300 rounded-md shadow-sm hover:shadow-md hover:bg-gray-100 transition-all"
             >
              <GoogleIcon />
-            <span className="text-sm font-medium text-gray-700">Iniciar sesión con Google</span>
+            <span className="text-sm font-medium text-gray-700 ">Iniciar sesión con Google</span>
           </button>
         </div>
 
         <div className="mt-4">
           <p className="text-sm text-gray-600">
-            ¿No tienes una cuenta? <a href="/register" className="text-neutral-800 hover:underline">Regístrate aquí</a>
+          <Link href="/signup" >¿No tienes una cuenta? <span className="text-neutral-800 cursor-pointer hover:underline"> Regístrate aquí </span></Link>
           </p>
         </div>
       </div>

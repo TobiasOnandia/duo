@@ -28,7 +28,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans} ${geistMono} antialiased `}
+        className={`${geistSans} ${geistMono} antialiased min-h-screen flex flex-col `}
       >
         <Header />
         {children}

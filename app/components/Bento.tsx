@@ -19,7 +19,7 @@ export const Bento = () => {
           rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300
            `} 
         >
-          <article className="relative w-full h-full flex items-center justify-center group">
+          <article className="relative cursor-pointer w-full h-full flex items-center justify-center group">
             <figure className="relative w-full pb-[100%] transition-transform duration-300 group-hover:scale-105 cursor-pointer">
               <Image 
                 src={category.image} 
@@ -29,7 +29,7 @@ export const Bento = () => {
                 className="rounded-xl"
               />
             </figure>
-            <h3 className="absolute z-10 flex items-center justify-center backdrop-brightness-40 h-full w-full text-white font-semibold text-center px-4 py-2 rounded-lg text-2xl sm:text-3xl md:text-4xl group-hover:bg-black/20 transition-all">
+            <h3 className="absolute z-10 flex items-center justify-center backdrop-brightness-40 h-full w-full text-white font-semibold text-center px-4 py-2 rounded-lg text-2xl sm:text-3xl md:text-4xl group-hover:backdrop-brightness-80  transition-all">
               {category.name}
             </h3>
           </article>

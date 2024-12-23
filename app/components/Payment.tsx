@@ -7,7 +7,7 @@ import Helmet from "@/public/gorra.jpeg";
 
 export const Payment = () => {
   return (
-    <main className="w-[95%] h-full p-4 rounded-2xl border border-primary mt-24 md:w-4/5 mx-auto bg-white shadow-lg">
+    <main className="w-[95%] h-full p-4 rounded-2xl border border-primary mb-10 mt-24 md:w-4/5 mx-auto bg-white shadow-lg">
       <section className="flex flex-col lg:flex-row">
         <div className="flex-1 px-4">
           <h2 className="text-lg mb-4 font-bold">Selecciona tu forma de pago</h2>
@@ -25,7 +25,7 @@ export const Payment = () => {
                 <header>
                   <div className="flex items-center justify-between">
                   <h2 className="text-lg font-semibold">Gorra</h2>
-                  <button className="flex items-center ml-4 text-sm text-red-600 hover:text-red-800">
+                  <button className="flex items-center ml-4 text-sm cursor-pointer text-red-600 hover:text-red-800">
                     Eliminar <TrashIcon  />
                   </button>
                   </div>

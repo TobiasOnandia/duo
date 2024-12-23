@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export const OrderSummary = () => {
   return (
-    <section className=" rounded-lg border border-gray-300 p-6 flex flex-[0.3] flex-col gap-6 bg-white shadow-md">
+    <section className="rounded-lg border h-fit border-gray-300 p-6 flex flex-[0.3] flex-col gap-6 bg-white shadow-md">
       <div className="flex justify-between items-center text-lg">
         <p className="font-medium text-gray-700">Subtotal:</p>
         <span className="font-semibold text-gray-900">$100</span>

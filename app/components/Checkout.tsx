@@ -20,7 +20,7 @@ export const Checkout = () => {
 
           {/* Etiquetas */}
           <section className="flex items-center gap-4 py-4 border-b border-gray-300">
-            <div className="w-24"></div>
+            <div className="w-24 hidden sm:block"></div>
             <div className="flex w-full justify-between px-4 ml-4 text-gray-500 font-semibold">
               <p>Producto</p>
               <p>Cantidad</p>

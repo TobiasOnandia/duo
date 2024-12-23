@@ -16,7 +16,8 @@ export  function Details() {
     <main className="container mx-auto px-4 py-8 mt-16">
  <div className="flex container gap-8">
   {/* Imagenes laterales */}
-  <section className="flex flex-col container h-full w-[345px] gap-4 justify-between space-y-4 md:space-y-0">
+
+    <section className="flex flex-col container h-full w-[345px] gap-4 justify-between space-y-4 md:space-y-0">
     {[...Array(4)].map((_, i) => (
       <figure
         key={i}
@@ -45,6 +46,7 @@ export  function Details() {
       />
     </figure>
   </section>
+
 
   {/* Información del producto */}
   <section className="flex flex-col justify-between ">
@@ -102,7 +104,7 @@ export  function Details() {
         </div>
     </div>
     <h4 className="font-medium ">Stock</h4>
-    <div className="flex items-center gap-2">
+    <div className="flex items-center pb-4 gap-2">
       <button className="cursor-pointer bg-neutral-600 p-1  rounded-full text-neutral-100">
         <MinusIcon />
       </button>

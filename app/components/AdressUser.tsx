@@ -36,8 +36,8 @@ export const AddressUser = () => {
         />
       </label>
 
-      <label htmlFor="city">
-        <span className="block text-sm font-semibold mb-1">Ciudad</span>
+      <label htmlFor="city" className="col-span-2 sm:col-span-1">
+        <span className="block text-sm font-semibold mb-1 ">Ciudad</span>
         <input
           type="text"
           id="city"
@@ -47,7 +47,7 @@ export const AddressUser = () => {
         />
       </label>
 
-      <label htmlFor="state">
+      <label htmlFor="state" className="col-span-2 sm:col-span-1">
         <span className="block text-sm font-semibold mb-1">Estado</span>
         <input
           type="text"

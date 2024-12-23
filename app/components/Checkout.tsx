@@ -12,7 +12,7 @@ export const Checkout = () => {
           {/* Encabezado */}
           <header className="flex items-center justify-between pb-6 border-b border-gray-300">
             <h1 className="text-2xl font-bold text-gray-800">Tus productos</h1>
-            <button className="flex items-center gap-2 text-red-600 hover:text-red-800 transition-colors">
+            <button className="flex items-center gap-2 cursor-pointer text-red-600 hover:text-red-800 transition-colors">
               <TrashIcon />
               <span className="font-medium">Vaciar</span>
             </button>

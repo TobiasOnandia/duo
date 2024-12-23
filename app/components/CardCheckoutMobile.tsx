@@ -15,7 +15,10 @@ export const CardCheckoutMobile = () => {
                 <div className="flex items-center justify-between">
                 <h2 className="text-lg font-semibold">Gorra</h2>
                 <button className="flex items-center ml-4 text-sm cursor-pointer text-red-600 hover:text-red-800">
-                  Eliminar <TrashIcon  />
+                  <span className="hidden sm:block">
+                    Eliminar 
+                  </span>
+                  <TrashIcon  />
                 </button>
                 </div>
                 
@@ -40,7 +43,21 @@ export const CardCheckoutMobile = () => {
           </section>
         </div>
 
-       
+        <section className="flex flex-col shadow-md border border-primary rounded p-4 mt-4">
+            <p className="text-lg flex justify-between items-center w-full">
+              Subtotal <span>$100</span>
+            </p>
+            <p className="text-lg flex justify-between items-center py-2 w-full">
+              Envío <span>$1000</span>
+            </p>
+            <p className="text-lg flex justify-between border-t-2 border-dashed py-2 w-full">
+              Total <span className="font-bold">$2500</span>
+            </p>
+            <button className="bg-black text-white w-full cursor-pointer py-2 rounded mt-4 hover:bg-gray-800 transition duration-200">
+              Comprar Ahora
+            </button>
+          </section>
+        
       </div>
     )
 }

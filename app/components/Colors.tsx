@@ -8,7 +8,7 @@ export const Colors = () => {
                   {["black", "blue", "green"].map((color) => (
                     <button
                       key={color}
-                      className={`w-8 h-8 rounded border-2 cursor-pointer ${
+                      className={`w-8 forced-colors:block h-8 rounded border-2 cursor-pointer ${
                         selectedColor === color ? "border-primary" : "border-transparent"
                       }`}
                       style={{ backgroundColor: color }}

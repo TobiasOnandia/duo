@@ -1,9 +1,7 @@
 'use client'
 
-import { useState } from 'react'
 import helmet from "@/public/gorra.jpeg"
 import Image from "next/image"
-import { AddIcon, MinusIcon } from './Icons'
 import {  Recommend } from './Recommend'
 import { Link } from 'next-view-transitions'
 import { Sizes } from './Sizes'

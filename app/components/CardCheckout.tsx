@@ -1,6 +1,8 @@
-import { AddIcon, MinusIcon, TrashIcon } from "./Icons";
+'use client'
+import { TrashIcon } from "./Icons";
 import Image from "next/image";
 import Helmet from "@/public/gorra.jpeg";
+import { Stock } from "./Stock";
 
 export const CardCheckout = () => {
   return (
@@ -25,15 +27,7 @@ export const CardCheckout = () => {
             </p>
           </header>
           <section className="flex flex-row items-center gap-4">
-            <div className="flex items-center rounded border border-gray-300 bg-gray-100 shadow-sm py-1 ">
-              <button className="px-2 cursor-pointer  text-gray-700 hover:text-gray-900 transition-colors">
-                <MinusIcon />
-              </button>
-              <span className="mx-2 font-semibold text-gray-800">2</span>
-              <button className="px-2  cursor-pointer text-gray-700 hover:text-gray-900 transition-colors">
-                <AddIcon />
-              </button>
-            </div>
+        <Stock />
             <button className="sm:flex hidden  cursor-pointer  items-center gap-2 text-gray-500 hover:text-red-500 transition-colors text-sm">
               <TrashIcon />
               <span>Eliminar</span>

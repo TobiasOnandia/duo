@@ -1,4 +1,5 @@
-import Link from "next/link";
+
+import { Link } from "next-view-transitions";
 import { ShopIcon, UserIcon } from "./Icons";
 
 export const Header = () => {

@@ -3,6 +3,7 @@ import { Montserrat, Poppins } from "next/font/google";
 import "./globals.css";
 import { Header } from "./components/Header";
 import { Footer } from "./components/Footer";
+import { ViewTransitions } from "next-view-transitions";
 
 const geistSans = Montserrat({
   subsets: ["latin"],
@@ -26,7 +27,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <ViewTransitions>
+    <html lang="es">
       <body
         className={`${geistSans} ${geistMono} antialiased min-h-screen flex flex-col `}
       >
@@ -35,5 +37,6 @@ export default function RootLayout({
         <Footer />
       </body>
     </html>
+    </ViewTransitions>
   );
 }

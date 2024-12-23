@@ -1,6 +1,6 @@
 import Image, { StaticImageData } from "next/image";
 import helmet from "@/public/gorra.jpeg";
-import Link from "next/link";
+import { Link } from "next-view-transitions";
 
 interface ProductProps {
   name: string;

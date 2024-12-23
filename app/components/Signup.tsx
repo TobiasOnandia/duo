@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { GoogleIcon } from './Icons';
-import Link from 'next/link';
+import { Link } from 'next-view-transitions';
 
 export const Signup = () => {
   const [email, setEmail] = useState('');

@@ -5,7 +5,7 @@ import helmet from "@/public/gorra.jpeg"
 import Image from "next/image"
 import { AddIcon, MinusIcon } from './Icons'
 import {  Recommend } from './Recommend'
-import Link from 'next/link'
+import { Link } from 'next-view-transitions'
 
 
 export  function Details() {

@@ -8,7 +8,7 @@ export const Stock = () => {
   });
 
   return (
-    <section className="flex items-center w-fit rounded border border-gray-300 bg-gray-100 shadow-sm py-1 ">
+    <section className="flex items-center mb-4 w-fit rounded border border-gray-300 bg-gray-100 shadow-sm py-1 ">
       <button
         onClick={decrement}
         className="px-2 cursor-pointer  text-gray-700 hover:text-gray-900 transition-colors"

@@ -1,56 +1,22 @@
-import Image, { StaticImageData } from "next/image";
-import helmet from "@/public/gorra.jpeg";
-import { Link } from "next-view-transitions";
+'use client'
 
-interface ProductProps {
-  name: string;
-  price: number;
-  description: string;
-  image: StaticImageData;
+import { Card } from "./Card";
+import { useFetch } from "../hooks/useFecth";
 
-}
+export const Product =  () => {
 
-const ProductCard = ({ name, price, description, image }: ProductProps) => (
-  <article className="w-full bg-white rounded-lg border border-gray-300 shadow-lg hover:shadow-xl transition-shadow">
-    <figure className="relative w-full aspect-[4/3]">
-      <Image src={image} alt={name} fill className="rounded-t-lg object-cover" />
-    </figure>
-
-    <div className="flex flex-col gap-4 px-4 py-4">
-      <header className="flex items-center justify-between">
-        <h4 className="text-xl font-semibold">{name}</h4>
-        <p className="text-lg font-semibold">${price}</p>
-      </header>
-      <p className="line-clamp-2 text-gray-600">{description}</p>
-      <footer className="flex items-center justify-between gap-2">
-        <Link href={"/item"} className="px-4 text-center py-2 rounded w-full transition-transform border border-gray-300 bg-gray-100 cursor-pointer hover:bg-gray-200">
-          Ver detalle
-        </Link>
-        <Link href={"/checkout"} className="px-4 text-center py-2 rounded w-full cursor-pointer transition-colors bg-neutral-600 text-white hover:bg-neutral-700">
-          Comprar
-        </Link>
-      </footer>
-    </div>
-  </article>
-);
-
-export const Product = () => {
-  const products = [
-    { name: "Gorra", price: 100, description: "Lorem ipsum dolor sit amet iwerjiwerjiwejriwejriwejriwejriwejriwejriwejriwejriwejriwej", image: helmet },
-    { name: "Gorra Negra", price: 120, description: "Edición limitada iwerjiwerjiwejriwejriwejriwejriwejriwejriwejriwejriwejriwej", image: helmet },
-    { name: "Gorra Azul", price: 110, description: "Cómoda y elegante iwerjiwerjiwejriwejriwejriwejriwejriwejriwejriwejriwejriwej", image: helmet },
-    { name: "Gorra Verde", price: 115, description: "Perfecta para el verano iwerjiwerjiwejriwejriwejriwejriwejriwejriwejriwejriwejriwej", image: helmet },
-  ];
+  const { data } = useFetch('https://dummyjson.com/products');
 
   return (
     <section className="grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] w-full h-full gap-8">
-      {products.map((product, index) => (
-        <ProductCard
-          key={index}
-          name={product.name}
+      {data?.products?.map((product, index) => (
+        <Card
+          key={product.id}
+          name={product.title}
           price={product.price}
           description={product.description}
-          image={product.image}
+          image={product.thumbnail}
+          id={product.id}
         />
       ))}
     </section>

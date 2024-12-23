@@ -16,9 +16,9 @@ export const Categories = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <section className="mt-2 flex items-center justify-between">
+    <section className="mt-2 flex flex-col-reverse sm:flex-row gap-2 sm:items-center  justify-between">
       {/* Desktop Categories */}
-      <article className="hidden xl:flex items-center gap-4">
+      <article className="hidden 2xl:flex items-center gap-4">
         {categories.map((category, index) => (
           <label
             key={index}
@@ -38,7 +38,7 @@ export const Categories = () => {
       </article>
 
       {/* Mobile Categories */}
-      <section className="xl:hidden block relative">
+      <section className="2xl:hidden block relative">
         <button
           className="flex items-center gap-2 text-lg px-4 py-2 border border-gray-300 rounded-full hover:bg-accent hover:text-background transition-colors"
           onClick={() => setIsOpen(!isOpen)}
@@ -72,7 +72,7 @@ export const Categories = () => {
       </section>
 
       {/* Search Input */}
-      <label htmlFor="search" className="relative flex items-center ml-4">
+      <label htmlFor="search" className="relative flex items-center ">
         <span className="absolute left-3 text-gray-500">
           <SearchIcon />
         </span>

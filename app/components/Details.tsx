@@ -14,14 +14,13 @@ export  function Details() {
 
   return (
     <main className="container mx-auto px-4 py-8 mt-16">
- <div className="flex container gap-8">
+ <div className="flex flex-col xl:flex-row container gap-8">
   {/* Imagenes laterales */}
-
-    <section className="flex flex-col container h-full w-[345px] gap-4 justify-between space-y-4 md:space-y-0">
+    <section className="relative flex xl:flex-col flex-row container h-full  xl:w-[345px] gap-4 justify-between space-y-4 md:space-y-0">
     {[...Array(4)].map((_, i) => (
       <figure
         key={i}
-        className="aspect-square relative cursor-pointer overflow-hidden rounded-lg bg-gray-100 flex-grow"
+        className="aspect-square w-full h-full relative cursor-pointer overflow-hidden rounded-lg bg-gray-100 flex-grow"
       >
         <Image
           src={helmet}
@@ -35,8 +34,8 @@ export  function Details() {
   </section>
 
   {/* Imagen principal */}
-  <section className=" h-full  w-full ">
-    <figure className="aspect-square relative  overflow-hidden rounded-lg bg-gray-100">
+  <section className="relative h-full w-full ">
+    <figure className="aspect-square relative   overflow-hidden rounded-lg bg-gray-100">
       <Image
         src={helmet}
         alt="Boa Fleece Jacket main view"
@@ -46,6 +45,8 @@ export  function Details() {
       />
     </figure>
   </section>
+
+    
 
 
   {/* Información del producto */}
@@ -115,7 +116,7 @@ export  function Details() {
     </div>
     </div>
     {/* Botones */}
-    <div className="flex gap-4">
+    <div className="flex sm:flex-row flex-col gap-4">
       <button className="flex-1 bg-neutral-500 text-neutral-100 py-2 rounded cursor-pointer hover:scale-105 transition-transform">
         Agregar al carrito
       </button>
@@ -125,8 +126,6 @@ export  function Details() {
     </div>
     
   </section>
-
-
 </div>
 
 

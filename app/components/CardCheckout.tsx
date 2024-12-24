@@ -1,15 +1,18 @@
 'use client'
 import { TrashIcon } from "./Icons";
 import Image from "next/image";
-import Helmet from "@/public/gorra.jpeg";
 import { Stock } from "./Stock";
+import { ProductType } from "./types/types.product";
 
-export const CardCheckout = () => {
+export const CardCheckout = ({ item }:{item: ProductType}) => {
+  const { title, thumbnail, price, } = item
+
+
   return (
       <section className="relative flex   items-start sm:items-center gap-4 p-4 bg-white shadow-md rounded-lg border border-gray-200 hover:shadow-lg transition-shadow my-4">
         <figure className="relative sm:w-24 sm:h-24 h-32 w-32 aspect-square">
           <Image
-            src={Helmet}
+            src={thumbnail}
             fill
             className="rounded-lg object-cover"
             alt="gorra"
@@ -18,16 +21,16 @@ export const CardCheckout = () => {
 
         <article className="flex flex-col sm:flex-row justify-between w-full gap-4">
           <header className="flex flex-col w-fit ">
-            <h2 className="text-lg font-semibold text-gray-800">Gorra</h2>
+            <h2 className="text-lg font-semibold text-gray-800">{title}</h2>
             <p className="text-gray-500 text-sm">
               <span>Green</span> | <span>M</span>
             </p>
             <p className="text-lg font-semibold text-gray-800 sm:hidden block">
-              $100
+              ${price}
             </p>
           </header>
-          <section className="flex flex-row items-center gap-4">
-        <Stock />
+          <section className="flex flex-row justify-center items-center  gap-4">
+          <Stock />
             <button className="sm:flex hidden  cursor-pointer  items-center gap-2 text-gray-500 hover:text-red-500 transition-colors text-sm">
               <TrashIcon />
               <span>Eliminar</span>
@@ -35,7 +38,7 @@ export const CardCheckout = () => {
           </section>
 
           <p className="text-lg font-semibold text-gray-800 sm:self-center sm:block hidden">
-            $100
+            ${price}
           </p>
         </article>
         <button className="flex sm:hidden  cursor-pointer  items-center gap-2 text-gray-500 hover:text-red-500 transition-colors text-sm">

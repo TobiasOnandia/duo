@@ -1,20 +1,35 @@
 "use client";
-
-import helmet from "@/public/gorra.jpeg";
 import Image from "next/image";
 import { Recommend } from "./Recommend";
-import { Link } from "next-view-transitions";
+import { Link, useTransitionRouter } from "next-view-transitions";
 import { Sizes } from "./Sizes";
 import { Colors } from "./Colors";
 import { Description } from "./Description";
 import { Stock } from "./Stock";
 import { useFetch } from "../hooks/useFecth";
 import short from "@/public/short.jpeg"
+import { toast } from "sonner";
+import { ProductType } from "./types/types.product";
+import { useStore } from "../store/Store.products";
 
 export function Details(params: { id: string }) {
-    const { data } = useFetch(`https://dummyjson.com/products/${params.id}`);
-  
-    console.log(data)
+  const { data } : { data: ProductType | null } = useFetch(`https://dummyjson.com/products/${params.id}`);
+
+  const addProducts = useStore((state ) => state.addProduct);
+  const storeProducts: ProductType[] = useStore((state ) => state.products);
+  const router = useTransitionRouter()
+
+
+  const handleBuy = () => {
+      router.push('/checkout')
+      if(data !== null) {
+        addProducts(data)
+        return
+      }
+  }
+
+  console.log(storeProducts)
+
 
   return (
     <main className="container mx-auto px-4 py-8 mt-16">
@@ -66,15 +81,24 @@ export function Details(params: { id: string }) {
           </div>
           {/* Botones */}
           <div className="flex sm:flex-row flex-col gap-4">
-            <button className="flex-1 bg-neutral-500 text-neutral-100 py-2 rounded cursor-pointer hover:scale-105 transition-transform">
+            <button
+            onClick={()=>{
+              toast.success("Producto agregado al carrito")
+              if (data) {
+                addProducts(data);
+              } else {
+                toast.error("Error al agregar el producto");
+              }
+            }}
+            className="flex-1 bg-neutral-500 text-neutral-100 py-2 rounded cursor-pointer hover:scale-105 transition-transform">
               Agregar al carrito
             </button>
-            <Link
-              href={"/checkout"}
+            <button
+              onClick={handleBuy}
               className="flex-1 bg-neutral-800 text-neutral-100 py-2 text-center rounded cursor-pointer hover:scale-105 transition-transform"
             >
               Comprar
-            </Link>
+            </button>
           </div>
         </section>
       </div>

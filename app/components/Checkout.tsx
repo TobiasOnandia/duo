@@ -1,10 +1,12 @@
+'use client'
+import { useStore } from "../store/Store.products";
 import { CardCheckout } from "./CardCheckout";
 import { TrashIcon } from "./Icons";
 import { OrderSummary } from "./OrderSummary";
 import { Recommend } from "./Recommend";
 
 export const Checkout = () => {
-
+  const products = useStore(state => state.products)
 
   
   return (
@@ -32,9 +34,16 @@ export const Checkout = () => {
           </section>
 
           {/* Lista de productos */}
-          <div className="overflow-y-auto max-h-[400px] scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100">
-            <CardCheckout />
-          </div>
+          {
+            products.map(item =>{
+              return(
+                <div key={item.id} className="overflow-y-auto max-h-[400px] scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100">
+                  <CardCheckout item={item}/>
+                </div>
+              )
+            })
+          }
+      
         </div>
 
         {/* Resumen del pedido */}

@@ -16,7 +16,7 @@ export function Details(params: { id: string }) {
   const { data } : { data: ProductType | null } = useFetch(`https://dummyjson.com/products/${params.id}`);
 
   const addProducts = useStore((state ) => state.addProduct);
-  const storeProducts: ProductType[] = useStore((state ) => state.products);
+  const storeProducts = useStore((state ) => state.products);
   const router = useTransitionRouter()
 
 
@@ -28,7 +28,13 @@ export function Details(params: { id: string }) {
       }
   }
 
-  console.log(storeProducts)
+  const handleAdd = () => {
+    if(data !== null && storeProducts.find(item => item.id === data.id)) {
+      addProducts(data)
+      toast.success("Producto agregado al carrito")
+      return
+    }
+  }
 
 
   return (
@@ -82,14 +88,7 @@ export function Details(params: { id: string }) {
           {/* Botones */}
           <div className="flex sm:flex-row flex-col gap-4">
             <button
-            onClick={()=>{
-              toast.success("Producto agregado al carrito")
-              if (data) {
-                addProducts(data);
-              } else {
-                toast.error("Error al agregar el producto");
-              }
-            }}
+            onClick={handleAdd}
             className="flex-1 bg-neutral-500 text-neutral-100 py-2 rounded cursor-pointer hover:scale-105 transition-transform">
               Agregar al carrito
             </button>

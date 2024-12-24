@@ -3,10 +3,17 @@ import { TrashIcon } from "./Icons";
 import Image from "next/image";
 import { Stock } from "./Stock";
 import { ProductType } from "./types/types.product";
+import { useStore } from "../store/Store.products";
+import { toast } from "sonner";
 
 export const CardCheckout = ({ item }:{item: ProductType}) => {
-  const { title, thumbnail, price, } = item
+  const { title, thumbnail, price, id } = item
+  const deleteProduct = useStore(state => state.deleteProduct)
 
+  const handleDelete = () => {
+    deleteProduct(id)
+    toast.success('Se elimino correctamente el producto')
+  }
 
   return (
       <section className="relative flex   items-start sm:items-center gap-4 p-4 bg-white shadow-md rounded-lg border border-gray-200 hover:shadow-lg transition-shadow my-4">
@@ -31,7 +38,9 @@ export const CardCheckout = ({ item }:{item: ProductType}) => {
           </header>
           <section className="flex flex-row justify-center items-center  gap-4">
           <Stock />
-            <button className="sm:flex hidden  cursor-pointer  items-center gap-2 text-gray-500 hover:text-red-500 transition-colors text-sm">
+            <button
+            onClick={handleDelete}
+            className="sm:flex hidden  cursor-pointer  items-center gap-2 text-gray-500 hover:text-red-500 transition-colors text-sm">
               <TrashIcon />
               <span>Eliminar</span>
             </button>
@@ -41,7 +50,9 @@ export const CardCheckout = ({ item }:{item: ProductType}) => {
             ${price}
           </p>
         </article>
-        <button className="flex sm:hidden  cursor-pointer  items-center gap-2 text-gray-500 hover:text-red-500 transition-colors text-sm">
+        <button
+          onClick={handleDelete}
+        className="flex sm:hidden  cursor-pointer  items-center gap-2 text-gray-500 hover:text-red-500 transition-colors text-sm">
           <TrashIcon />
           <span className="max-[463px]:hidden block">Eliminar</span>
         </button>

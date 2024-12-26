@@ -3,14 +3,26 @@
 import { Card } from "./Card";
 import { useFetch } from "../hooks/useFecth";
 import { ProductType } from "./types/types.product";
+import { useSearchParams } from "next/navigation";
 
-export const Product =  () => {
+export const Product = () => {
+  const { data }: { data: { products: ProductType[] } | null } = useFetch('https://dummyjson.com/products');
+  const params = useSearchParams();
 
-  const { data } : { data:  ProductType[] | null } = useFetch('https://dummyjson.com/products');
+  const search = params.get('search') || '';
+  const category = params.get('category') || '';
+
+  const filteredByCategories = category
+    ? data?.products.filter((item: ProductType) => item.category.toLowerCase() === category.toLowerCase())
+    : data?.products;
+
+  const filteredBySearch = search
+    ? filteredByCategories?.filter((item: ProductType) => item.title.toLowerCase().includes(search.toLowerCase()))
+    : filteredByCategories;
 
   return (
-    <section className="grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] w-full h-full gap-8">
-      {data?.products?.map((product: ProductType, index: number) => (
+    <section className="grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))]  w-full h-full gap-8">
+      {filteredBySearch?.map((product: ProductType) => (
         <Card
           key={product.id}
           name={product.title}
@@ -19,7 +31,7 @@ export const Product =  () => {
           image={product.thumbnail}
           id={product.id}
         />
-      ))}
+      )) || <p>No products found</p>}
     </section>
   );
 };

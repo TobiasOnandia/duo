@@ -37,7 +37,7 @@ export const CardCheckout = ({ item }:{item: ProductType}) => {
             </p>
           </header>
           <section className="flex flex-row justify-center items-center  gap-4">
-          <Stock />
+          <Stock id={id} />
             <button
             onClick={handleDelete}
             className="sm:flex hidden  cursor-pointer  items-center gap-2 text-gray-500 hover:text-red-500 transition-colors text-sm">

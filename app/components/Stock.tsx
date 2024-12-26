@@ -1,11 +1,13 @@
 import { useCounter } from "@uidotdev/usehooks";
 import { AddIcon, MinusIcon } from "./Icons";
 
-export const Stock = () => {
+export const Stock = ({ id }: {id : number}) => {
   const [count, { increment, decrement }] = useCounter(1, {
     min: 1,
     max: 10,
   });
+
+
 
   return (
     <section className="flex items-center w-fit  rounded border border-gray-300 bg-gray-100 shadow-sm py-1 ">

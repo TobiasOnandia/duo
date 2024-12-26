@@ -11,8 +11,8 @@ interface ProductProps {
 }
 
 export const Card = ({ name, price, description, image, id }: ProductProps) => (
-  <article className="w-full bg-white rounded-lg border flex flex-col justify-between border-gray-300 shadow-lg hover:shadow-xl transition-shadow">
-    <figure className="relative w-full aspect-[4/3]">
+  <article className="w-full bg-white rounded-lg border max-w-md flex flex-col justify-between border-gray-300 shadow-lg hover:shadow-xl transition-shadow">
+    <figure className="relative w-full  aspect-[4/3]">
       <Image
         src={image}
         alt={name}

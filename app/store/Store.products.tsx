@@ -5,17 +5,20 @@ export interface StoreTypes {
   products: ProductType[];
   stock: { [key: number]: number };
   price: { [key: number]: number };
+  sizes: { [key: number]: string[] };
   addProduct: (product: ProductType) => void;
   deleteAllProduct: () => void;
   deleteProduct: (id: number) => void;
   calculateStock: (productId: number, stock: number) => void;
   calculatePrice: (productId: number, price: number) => void;
+  selectedSizes: (productId: number, sizes: string[]) => void;
 }
 
 export const useStore = create<StoreTypes>((set) => ({
   products: [],
   price: {},
   stock: {} as { [key: number]: number },
+  sizes: {} as { [key: number]: string[] },
   addProduct: (product: ProductType) =>
     set((state) => ({
       products: [...state.products, product],
@@ -30,7 +33,9 @@ export const useStore = create<StoreTypes>((set) => ({
     return { stock: { ...state.stock, [productId]: stock } }
   }),
   calculatePrice: (productId: number, price: number) => set((state) => {
-    return { price: { ...state.price, [productId]: price * state.stock[productId] } }
+    return { price: { ...state.price, [productId]: Math.round(price * state.stock[productId]) } }
   }),
-
+  selectedSizes: (productId: number, sizes: string[]) => set((state) => {
+    return { sizes: { ...state.sizes, [productId]: sizes } }
+  }),
 }));

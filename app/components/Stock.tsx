@@ -8,25 +8,31 @@ interface StockProps {
 }
 
 export const Stock: React.FC<StockProps> = ({ productId, productPrice }) => {
-  const stock = useStore(state => state.stock[productId] || 1);
-  const [count, { increment, decrement }] = useCounter(stock, {
+  const initialStock = useStore(state => state.stock[productId] || 1);
+  const [count, { increment, decrement }] = useCounter(initialStock, {
     min: 1,
     max: 10,
   });
+
   const calculateStock = useStore(state => state.calculateStock);
   const calculatePrice = useStore(state => state.calculatePrice);
 
   const handleIncrement = () => {
-    increment();
-    calculateStock(productId, count);
-    calculatePrice(productId, productPrice);
+    if (count < 10) {
+      increment();
+      const newStock = count + 1;
+      calculateStock(productId, newStock);
+      calculatePrice(productId, productPrice);
+    }
   };
 
   const handleDecrement = () => {
-    decrement();
-    calculateStock(productId, count);
-    calculatePrice(productId, productPrice);
-
+    if (count > 1) {
+      decrement();
+      const newStock = count - 1;
+      calculateStock(productId, newStock);
+      calculatePrice(productId, productPrice);
+    }
   };
 
   return (
@@ -37,7 +43,7 @@ export const Stock: React.FC<StockProps> = ({ productId, productPrice }) => {
       >
         <MinusIcon />
       </button>
-      <span className="mx-2 font-semibold text-gray-800">{stock}</span>
+      <span className="mx-2 font-semibold text-gray-800">{count}</span>
       <button
         onClick={handleIncrement}
         className="px-2 cursor-pointer text-gray-700 hover:text-gray-900 transition-colors"

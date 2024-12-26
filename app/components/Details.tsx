@@ -92,7 +92,7 @@ export function Details({ id }: { id: string }) {
             <h3 className="font-medium">Colores disponibles</h3>
             <Colors />
             <h3 className="font-medium">Tamaño</h3>
-            <Sizes />
+            <Sizes productId={Number(id)} />
             <h4 className="font-medium">Stock</h4>
             <Stock productId={productData.id} productPrice={productData.price} />
           </div>

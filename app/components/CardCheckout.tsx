@@ -8,10 +8,11 @@ import { toast } from "sonner";
 
 export const CardCheckout = ({ item }: { item: ProductType }) => {
   const { title, thumbnail, id, price } = item
-  const priceProduct = useStore(state => state.price[id])
+  const priceProduct = useStore(state => state.price[id]) || 0
   const deleteProduct = useStore(state => state.deleteProduct)
   const sizes = useStore(state => state.sizes[id])
 
+  console.log(sizes)
   const handleDelete = () => {
     deleteProduct(id)
     toast.success('Se elimino correctamente el producto')

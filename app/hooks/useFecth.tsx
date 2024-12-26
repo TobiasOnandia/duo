@@ -1,10 +1,9 @@
-
-
 import { useState, useEffect } from "react";
+import { ProductType } from "../components/types/types.product";
 
 export const useFetch = (url: string) => {
-  const [data, setData] = useState(null);
-  const [error, setError] = useState(null);
+  const [data, setData] = useState<ProductType | ProductType[] | null>(null);
+  const [error, setError] = useState<Error | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -16,8 +15,8 @@ export const useFetch = (url: string) => {
         }
         const json = await response.json();
         setData(json);
-      } catch (err) {
-        setError(err.message);
+      } catch (err: unknown) {
+        setError(err as Error);
       } finally {
         setLoading(false);
       }

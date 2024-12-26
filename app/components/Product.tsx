@@ -6,14 +6,14 @@ import { ProductType } from "./types/types.product";
 import { useSearchParams } from "next/navigation";
 
 export const Product = () => {
-  const { data }: { data: { products: ProductType[] } | null } = useFetch('https://dummyjson.com/products');
+  const { data } = useFetch('https://dummyjson.com/products');
   const params = useSearchParams();
 
   const search = params.get('search') || '';
   const category = params.get('category') || '';
 
   const filteredByCategories = category
-    ? data?.products.filter((item: ProductType) => item.category.toLowerCase() === category.toLowerCase())
+    ? data?.products.filter((item) => item.category.toLowerCase() === category.toLowerCase())
     : data?.products;
 
   const filteredBySearch = search
@@ -28,10 +28,10 @@ export const Product = () => {
           name={product.title}
           price={product.price}
           description={product.description}
-          image={product.thumbnail}
+          image={`${product.thumbnail}`}
           id={product.id}
         />
-      )) || <p>No products found</p>}
+      )) || <p>Productos no encontrados</p>}
     </section>
   );
 };

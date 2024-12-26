@@ -1,13 +1,12 @@
 import { Link } from "next-view-transitions";
-import { StaticImageData } from "next/image";
 import Image from "next/image";
 
 interface ProductProps {
   name: string;
   price: number;
   description: string;
-  image: StaticImageData;
-  id: string
+  image: string;
+  id: number;
 }
 
 export const Card = ({ name, price, description, image, id }: ProductProps) => (

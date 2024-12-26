@@ -5,7 +5,7 @@ import { CategoriesMobile } from "./mobile/Category.mobile";
 import { useFetch } from "../hooks/useFecth";
 
 export const Categories = () => {
-  const { data, error } = useFetch('https://dummyjson.com/products');
+  const { data } = useFetch('https://dummyjson.com/products');
   const search = useSearch()
 
 
@@ -14,8 +14,8 @@ export const Categories = () => {
       {/* Desktop Categories */}
       <article className="hidden 2xl:flex items-center gap-4">
         {[
-              ...new Set(data?.products.map((product) => product.category)),
-            ].map((category, index) =>  (
+          ...new Set(Array.isArray(data) ? data.map((product) => product.category) : []),
+        ].map((category, index) => (
           <label
             key={index}
             htmlFor={category}
@@ -35,9 +35,9 @@ export const Categories = () => {
       </article>
 
       {/* Mobile Categories */}
-        <CategoriesMobile />
+      <CategoriesMobile />
 
-     <Search />
+      <Search />
     </section>
   );
 };

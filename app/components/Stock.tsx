@@ -1,23 +1,32 @@
 import { useCounter } from "@uidotdev/usehooks";
 import { AddIcon, MinusIcon } from "./Icons";
+import { useStore } from "../store/Store.products";
 
 interface StockProps {
-  productId: number; // Recibe el ID del producto como prop
+  productId: number;
+  productPrice: number;
 }
 
-export const Stock: React.FC<StockProps> = ({ productId }) => {
-  const [count, { increment, decrement }] = useCounter(1, {
+export const Stock: React.FC<StockProps> = ({ productId, productPrice }) => {
+  const stock = useStore(state => state.stock[productId] || 1);
+  const [count, { increment, decrement }] = useCounter(stock, {
     min: 1,
     max: 10,
   });
-
+  const calculateStock = useStore(state => state.calculateStock);
+  const calculatePrice = useStore(state => state.calculatePrice);
 
   const handleIncrement = () => {
     increment();
+    calculateStock(productId, count);
+    calculatePrice(productId, productPrice);
   };
 
   const handleDecrement = () => {
     decrement();
+    calculateStock(productId, count);
+    calculatePrice(productId, productPrice);
+
   };
 
   return (
@@ -28,7 +37,7 @@ export const Stock: React.FC<StockProps> = ({ productId }) => {
       >
         <MinusIcon />
       </button>
-      <span className="mx-2 font-semibold text-gray-800">{count}</span>
+      <span className="mx-2 font-semibold text-gray-800">{stock}</span>
       <button
         onClick={handleIncrement}
         className="px-2 cursor-pointer text-gray-700 hover:text-gray-900 transition-colors"

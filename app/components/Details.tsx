@@ -15,8 +15,10 @@ import { useFetch } from "../hooks/useFecth";
 export function Details({ id }: { id: string }) {
   const { data, loading } = useFetch(`https://dummyjson.com/products/${id}`);
   const addProducts = useStore((state) => state.addProduct);
+  const calculatePrice = useStore((state) => state.calculatePrice);
   const storeProducts = useStore((state) => state.products);
   const router = useTransitionRouter();
+
 
   const handleBuy = () => {
     if (data && !loading) {
@@ -25,6 +27,7 @@ export function Details({ id }: { id: string }) {
       const isProductInCart = storeProducts.some(product => product.id === (data as ProductType).id);
       if (!isProductInCart) {
         addProducts(data as ProductType);
+        calculatePrice((data as ProductType).id, (data as ProductType).price);
       }
     }
   }
@@ -36,6 +39,7 @@ export function Details({ id }: { id: string }) {
         toast.error("Este producto ya está en el carrito");
       } else {
         addProducts(data as ProductType);
+        calculatePrice((data as ProductType).id, (data as ProductType).price);
         toast.success("Producto agregado al carrito");
       }
     }
@@ -90,7 +94,7 @@ export function Details({ id }: { id: string }) {
             <h3 className="font-medium">Tamaño</h3>
             <Sizes />
             <h4 className="font-medium">Stock</h4>
-            <Stock productId={productData.id} />
+            <Stock productId={productData.id} productPrice={productData.price} />
           </div>
 
           {/* Botones */}

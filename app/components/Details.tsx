@@ -90,7 +90,7 @@ export function Details({ id }: { id: string }) {
           <div className="flex flex-col gap-4">
             <Description />
             <h3 className="font-medium">Colores disponibles</h3>
-            <Colors />
+            <Colors productId={Number(id)}/>
             <h3 className="font-medium">Tamaño</h3>
             <Sizes productId={Number(id)} />
             <h4 className="font-medium">Stock</h4>

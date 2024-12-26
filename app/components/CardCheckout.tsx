@@ -10,7 +10,8 @@ export const CardCheckout = ({ item }: { item: ProductType }) => {
   const { title, thumbnail, id, price } = item
   const priceProduct = useStore(state => state.price[id]) || 0
   const deleteProduct = useStore(state => state.deleteProduct)
-  const sizes = useStore(state => state.sizes[id])
+  const sizes = useStore(state => state.sizes[id]) || 'M'
+  const colors = useStore(state => state.colors[id]) || 'Rojo'
 
   console.log(sizes)
   const handleDelete = () => {
@@ -33,7 +34,7 @@ export const CardCheckout = ({ item }: { item: ProductType }) => {
         <header className="flex flex-col w-fit ">
           <h2 className="text-lg font-semibold text-gray-800">{title}</h2>
           <p className="text-gray-500 text-sm">
-            <span>Green</span> | <span>{sizes}</span>
+            <span>{colors}</span> | <span>{sizes}</span>
           </p>
           <p className="text-lg font-semibold text-gray-800 sm:hidden block">
             ${priceProduct}

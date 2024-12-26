@@ -1,21 +1,21 @@
-import { useState } from "react"
+import { useStore } from "../store/Store.products";
 
-export const Colors = () => {
-  const [selectedColor, setSelectedColor] = useState('black')
+export const Colors = ({ productId }: { productId: number }) => {
+  const colors = useStore((state) => state.colors[productId]) || 'red';
+  const selectedColors = useStore((state) => state.selectedColors || 'red');
 
-    return (
-              <section className="flex gap-2">
-                  {["black", "blue", "green"].map((color) => (
-                    <button
-                      key={color}
-                      className={`w-8 forced-colors:block h-8 rounded border-2 cursor-pointer ${
-                        selectedColor === color ? "border-primary" : "border-transparent"
-                      }`}
-                      style={{ backgroundColor: color }}
-                      onClick={() => setSelectedColor(color)}
-                      aria-label={`Select ${color} color`}
-                    />
-                  ))}
-                </section>
-    )
-}
+  return (
+    <section className="flex gap-2">
+      {["black", "blue", "green"].map((color) => (
+        <button
+          key={color}
+          className={`w-8 forced-colors:block h-8 rounded border-2 cursor-pointer ${colors[0] === color ? "border-primary" : "border-transparent"
+            }`}
+          style={{ backgroundColor: color }}
+          onClick={() => selectedColors(productId, [color])}
+          aria-label={`Select ${color} color`}
+        />
+      ))}
+    </section>
+  );
+};

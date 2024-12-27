@@ -8,30 +8,33 @@ interface StockProps {
 }
 
 export const Stock: React.FC<StockProps> = ({ productId, productPrice }) => {
-  const initialStock = useStore(state => state.stock[productId] || 1);
+  // Obtiene el stock inicial desde el estado global
+  const initialStock = useStore((state) => state.stock[productId] || 1);
+
+  // Hook para manejar el contador localmente
   const [count, { increment, decrement }] = useCounter(initialStock, {
     min: 1,
     max: 10,
   });
 
-  const calculateStock = useStore(state => state.calculateStock);
-  const calculatePrice = useStore(state => state.calculatePrice);
+  // Acceso a la función global para actualizar stock y precio
+  const updateStockAndPrice = useStore((state) => state.updateStockAndPrice);
 
+  // Incrementar el contador y actualizar el estado global
   const handleIncrement = () => {
     if (count < 10) {
-      increment();
       const newStock = count + 1;
-      calculateStock(productId, newStock);
-      calculatePrice(productId, productPrice);
+      increment();
+      updateStockAndPrice(productId, newStock, productPrice);
     }
   };
 
+  // Decrementar el contador y actualizar el estado global
   const handleDecrement = () => {
     if (count > 1) {
-      decrement();
       const newStock = count - 1;
-      calculateStock(productId, newStock);
-      calculatePrice(productId, productPrice);
+      decrement();
+      updateStockAndPrice(productId, newStock, productPrice);
     }
   };
 

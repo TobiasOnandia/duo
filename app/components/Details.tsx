@@ -15,7 +15,7 @@ import { useFetch } from "../hooks/useFecth";
 export function Details({ id }: { id: string }) {
   const { data, loading } = useFetch(`https://dummyjson.com/products/${id}`);
   const addProducts = useStore((state) => state.addProduct);
-  const calculatePrice = useStore((state) => state.calculatePrice);
+
   const storeProducts = useStore((state) => state.products);
   const router = useTransitionRouter();
 
@@ -27,7 +27,6 @@ export function Details({ id }: { id: string }) {
       const isProductInCart = storeProducts.some(product => product.id === (data as ProductType).id);
       if (!isProductInCart) {
         addProducts(data as ProductType);
-        calculatePrice((data as ProductType).id, (data as ProductType).price);
       }
     }
   }
@@ -39,7 +38,6 @@ export function Details({ id }: { id: string }) {
         toast.error("Este producto ya está en el carrito");
       } else {
         addProducts(data as ProductType);
-        calculatePrice((data as ProductType).id, (data as ProductType).price);
         toast.success("Producto agregado al carrito");
       }
     }
@@ -90,7 +88,7 @@ export function Details({ id }: { id: string }) {
           <div className="flex flex-col gap-4">
             <Description />
             <h3 className="font-medium">Colores disponibles</h3>
-            <Colors productId={Number(id)}/>
+            <Colors productId={Number(id)} />
             <h3 className="font-medium">Tamaño</h3>
             <Sizes productId={Number(id)} />
             <h4 className="font-medium">Stock</h4>

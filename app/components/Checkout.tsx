@@ -7,7 +7,7 @@ import { Recommend } from "./Recommend";
 
 export const Checkout = () => {
   const products = useStore(state => state.products)
-  const deleteAllProduct = useStore(state => state.deleteAllProduct)
+  const deleteAllProduct = useStore(state => state.deleteAllProducts)
 
 
   return (

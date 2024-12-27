@@ -8,40 +8,65 @@ export interface StoreTypes {
   sizes: { [key: number]: string[] };
   colors: { [key: number]: string[] };
   addProduct: (product: ProductType) => void;
-  deleteAllProduct: () => void;
+  deleteAllProducts: () => void;
   deleteProduct: (id: number) => void;
-  calculateStock: (productId: number, stock: number) => void;
-  calculatePrice: (productId: number, price: number) => void;
-  selectedSizes: (productId: number, sizes: string[]) => void;
-  selectedColors: (productId: number, colors: string[]) => void;
+  updateStockAndPrice: (productId: number, newStock: number, productPrice: number) => void;
+  updateSizes: (productId: number, sizes: string[]) => void;
+  updateColors: (productId: number, colors: string[]) => void;
 }
 
 export const useStore = create<StoreTypes>((set) => ({
   products: [],
+  stock: {},
   price: {},
-  stock: {} as { [key: number]: number },
-  sizes: {} as { [key: number]: string[] },
-  colors: {} as { [key: number]: string[] },
+  sizes: {},
+  colors: {},
+
   addProduct: (product: ProductType) =>
     set((state) => ({
       products: [...state.products, product],
+      stock: { ...state.stock, [product.id]: 1 },
+      price: { ...state.price, [product.id]: Math.round(product.price) },
     })),
-  deleteAllProduct: () => set(() => ({ products: [], stock: {}, price: {} })),
+
+  deleteAllProducts: () =>
+    set(() => ({
+      products: [],
+      stock: {},
+      price: {},
+      sizes: {},
+      colors: {},
+    })),
+
   deleteProduct: (productId: number) =>
     set((state) => {
-      const newProducts = state.products.filter((product) => product.id !== productId);
-      return { products: newProducts };
+      const { [productId]: _, ...remainingStock } = state.stock;
+      const { [productId]: __, ...remainingPrice } = state.price;
+      const { [productId]: ___, ...remainingSizes } = state.sizes;
+      const { [productId]: ____, ...remainingColors } = state.colors;
+
+      return {
+        products: state.products.filter((product) => product.id !== productId),
+        stock: remainingStock,
+        price: remainingPrice,
+        sizes: remainingSizes,
+        colors: remainingColors,
+      };
     }),
-  calculateStock: (productId: number, stock: number) => set((state) => {
-    return { stock: { ...state.stock, [productId]: stock } }
-  }),
-  calculatePrice: (productId: number, price: number) => set((state) => {
-    return { price: { ...state.price, [productId]: Math.round(price * state.stock[productId]) } }
-  }),
-  selectedSizes: (productId: number, sizes: string[]) => set((state) => {
-    return { sizes: { ...state.sizes, [productId]: sizes } }
-  }),
-  selectedColors: (productId: number, colors: string[]) => set((state) => {
-    return { colors: { ...state.colors, [productId]: colors } }
-  }),
+
+  updateStockAndPrice: (productId: number, newStock: number, productPrice: number) =>
+    set((state) => ({
+      stock: { ...state.stock, [productId]: newStock },
+      price: { ...state.price, [productId]: Math.round(newStock * productPrice) },
+    })),
+
+  updateSizes: (productId: number, sizes: string[]) =>
+    set((state) => ({
+      sizes: { ...state.sizes, [productId]: sizes },
+    })),
+
+  updateColors: (productId: number, colors: string[]) =>
+    set((state) => ({
+      colors: { ...state.colors, [productId]: colors },
+    })),
 }));

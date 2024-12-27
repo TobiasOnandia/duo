@@ -2,7 +2,7 @@ import { useStore } from "../store/Store.products"
 
 export const Sizes = ({ productId }: { productId: number }) => {
   const sizes = useStore(state => state.sizes[productId]) || 'M'
-  const selectedSizes = useStore(state => state.selectedSizes || 'M')
+  const selectedSizes = useStore(state => state.updateSizes || 'M')
 
   return (
     <section className="flex gap-2">

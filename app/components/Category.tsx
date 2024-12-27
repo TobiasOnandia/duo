@@ -1,7 +1,6 @@
 'use client';
 import { Search } from "../lib/Search";
 import { useSearch } from "../hooks/useSearch";
-import { CategoriesMobile } from "./mobile/Category.mobile";
 import { useFetch } from "../hooks/useFecth";
 import { ProductsType } from "./types/types.product";
 
@@ -36,7 +35,6 @@ export const Categories = () => {
       </article>
 
       {/* Mobile Categories */}
-      <CategoriesMobile />
 
       <Search />
     </section>

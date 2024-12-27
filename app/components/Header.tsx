@@ -3,6 +3,7 @@
 import { Link } from "next-view-transitions";
 import { ShopIcon, UserIcon } from "./Icons";
 import { useStore } from "../store/Store.products";
+import { CategoriesMobile } from "./mobile/Category.mobile";
 
 export const Header = () => {
   const products = useStore((state) => state.products);
@@ -16,7 +17,7 @@ export const Header = () => {
       </h1>
 
       <nav>
-        <ul className="flex items-center gap-4">
+        <ul className="flex items-center gap-2">
           <li>
             <Link href={"/checkout"} aria-label="Ir a la tienda" className="flex items-center p-2 hover:bg-gray-200 relative rounded transition-colors">
               <span className="absolute -top-1 -right-1 bg-blue-600 text-white text-[10px] font-medium rounded-full flex items-center justify-center w-5 h-5 border-2 border-white shadow-lg">
@@ -29,6 +30,9 @@ export const Header = () => {
             <Link href={"/login"} aria-label="Perfil de usuario" className="flex items-center p-2 hover:bg-gray-200 rounded transition-colors">
               <UserIcon />
             </Link>
+          </li>
+          <li className="sm:hidden  ">
+            <CategoriesMobile />
           </li>
         </ul>
       </nav>

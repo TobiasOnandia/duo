@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ArrowBottom } from "../Icons";
+import { ArrowBottom, MenuIcon } from "../Icons";
 import { useSearch } from "@/app/hooks/useSearch";
 import { useFetch } from "@/app/hooks/useFecth";
 import { ProductsType } from "../types/types.product";
@@ -13,14 +13,13 @@ export const CategoriesMobile = () => {
   return (
     <section className="2xl:hidden block relative">
       <button
-        className="flex items-center cursor-pointer gap-2 text-lg px-4 py-2 border border-gray-300 rounded-full hover:bg-accent hover:text-background transition-colors"
+        className=" cursor-pointer flex items-center p-2 hover:bg-gray-200 rounded transition-colors "
         onClick={() => setIsOpen(!isOpen)}
       >
-        Categorías
-        <ArrowBottom />
+        <MenuIcon />
       </button>
       {isOpen && (
-        <section className="absolute bg-white w-[250px] flex flex-col z-10 p-4 rounded-lg top-12 left-0 shadow-lg">
+        <section className="absolute bg-white flex flex-col z-10 p-4 rounded-lg top-12 right-0 shadow-lg">
           <ul className="flex flex-col gap-2">
             {[
               ...new Set((data as ProductsType)?.products.map((product) => product.category)),

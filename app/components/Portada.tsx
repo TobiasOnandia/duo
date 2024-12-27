@@ -1,12 +1,15 @@
 'use client'
 
+import { Suspense } from "react";
 import { useSearch } from "../hooks/useSearch";
 import { SearchIcon } from "./Icons";
 
 export function HeroSection() {
   const search = useSearch()
   return (
-    <div className="relative h-[calc(100vh-4rem)] md:h-[calc(100vh-8rem)] bg-gray-100">
+    <Suspense fallback={<div>Loading...</div>}> 
+
+<div className="relative h-[calc(100vh-4rem)] md:h-[calc(100vh-8rem)] bg-gray-100">
       <div className="absolute inset-0 bg-cover bg-center portada">
       </div>
       <div className="relative h-full flex flex-col items-center justify-center px-4 pt-16 text-center">
@@ -26,8 +29,8 @@ export function HeroSection() {
               onChange={(event) => {
                 search(event.target.value, 'search');
               }}
-
-            />
+              
+              />
             <button className="p-2 bg-gray-200 rounded-r-md hover:bg-gray-300 transition-colors">
               <SearchIcon />
             </button>
@@ -35,5 +38,6 @@ export function HeroSection() {
         </div>
       </div>
     </div>
+              </Suspense>
   );
 }

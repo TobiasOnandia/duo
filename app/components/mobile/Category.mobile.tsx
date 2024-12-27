@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { Suspense, useState } from "react";
 import { MenuIcon } from "../Icons";
 import { useSearch } from "@/app/hooks/useSearch";
 import { useFetch } from "@/app/hooks/useFecth";
@@ -11,6 +11,7 @@ export const CategoriesMobile = () => {
   const search = useSearch();
 
   return (
+    <Suspense fallback={<div>Loading...</div>}>
     <section className="2xl:hidden block relative">
       <button
         className=" cursor-pointer flex items-center p-2 hover:bg-gray-200 rounded transition-colors "
@@ -45,5 +46,6 @@ export const CategoriesMobile = () => {
         </section>
       )}
     </section>
+    </Suspense>
   );
 };

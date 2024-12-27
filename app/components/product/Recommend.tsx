@@ -3,10 +3,13 @@ import Image from "next/legacy/image"
 import { useFetch } from "@hooks/useFecth"
 import { Link } from "next-view-transitions"
 import { ProductsType } from "@/app/types/typesProduct"
+import { RecommendSkeleton } from "@components/skeleton/RecommendSkeleton"
 
 
 export const Recommend = () => {
-  const { data } = useFetch('https://dummyjson.com/products?limit=4&skip=10')
+  const { data, loading } = useFetch('https://dummyjson.com/products?limit=4&skip=10')
+
+  if (loading) return <RecommendSkeleton />
 
   return (
     <footer className="mt-12 container  mx-auto">

@@ -12,6 +12,7 @@ import { ProductType } from "@/app/types/typesProduct";
 import { useFetch } from "@hooks/useFecth";
 import { ProductDetailSkeleton } from "@components/skeleton/DetailsSkeleton";
 import { ButtonBuy } from "@lib/ButtonBuy";
+import { RecommendSkeleton } from "../skeleton/RecommendSkeleton";
 
 export function Details({ id }: { id: string }) {
   const { data, loading } = useFetch(`https://dummyjson.com/products/${id}`);
@@ -31,7 +32,12 @@ export function Details({ id }: { id: string }) {
     }
   }
 
-  if (loading) return <ProductDetailSkeleton />;
+  if (loading) return (
+    <div>
+      <ProductDetailSkeleton />
+      <RecommendSkeleton />
+    </div>
+  );
   if (!data) return <div>No se encontraron datos.</div>;
 
   return (

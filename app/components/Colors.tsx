@@ -2,7 +2,7 @@ import { useStore } from "../store/Store.products";
 
 export const Colors = ({ productId }: { productId: number }) => {
   const colors = useStore((state) => state.colors[productId]) || 'red';
-  const selectedColors = useStore((state) => state.selectedColors || 'red');
+  const selectedColors = useStore((state) => state.updateColors || 'red');
 
   return (
     <section className="flex gap-2">

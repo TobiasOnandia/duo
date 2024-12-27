@@ -2,8 +2,7 @@
 
 import { useState } from 'react';
 import { GoogleIcon } from './Icons';
-import { Link } from 'next-view-transitions';
-
+import Link from 'next/link';
 export const Signup = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -102,10 +101,10 @@ export const Signup = () => {
 
         <div className="mt-4">
           <p className="text-sm text-gray-600">
-            <Link href="/login" >
+            <Link href="/login" className="text-gray-600 hover:text-neutral-800">
             ¿Ya tienes una cuenta?{' '}
             <span className="text-neutral-800 hover:underline">
-              Inicia sesión aquí
+                Inicia sesión aquí
             </span>
             </Link>
           </p>

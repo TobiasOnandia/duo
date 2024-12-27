@@ -12,9 +12,9 @@ export const Payment = () => {
           <PaymentOptions />
           <AddressUser />
         </div>
-        
-       <CardCheckoutMobile />
-       
+
+        <CardCheckoutMobile />
+
       </section>
     </main>
   );

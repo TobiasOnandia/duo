@@ -1,7 +1,12 @@
+'use client'
+
+import { useSearch, SearchWrapper } from "../hooks/useSearch";
 import { SearchIcon } from "./Icons";
 
-export function HeroSection() {
-  return (
+function HeroContent() {
+const search = useSearch();
+return (
+
     <div className="relative h-[calc(100vh-4rem)] md:h-[calc(100vh-8rem)] bg-gray-100">
       <div className="absolute inset-0 bg-cover bg-center portada">
       </div>
@@ -19,16 +24,25 @@ export function HeroSection() {
               placeholder="Buscar en Stuffsus"
               className="flex-1 border-0 focus:ring-0 focus:outline-none text-sm md:text-base p-2 rounded-l-md"
               aria-label="Buscar en Stuffsus"
+              onChange={(event) => {
+                search(event.target.value, 'search');
+              }}
+
             />
             <button className="p-2 bg-gray-200 rounded-r-md hover:bg-gray-300 transition-colors">
-              <SearchIcon  />
+              <SearchIcon />
             </button>
           </div>
         </div>
-        <p className="text-white mt-4 text-sm md:text-lg">
-          Todo lo que necesitas en un solo lugar
-        </p>
       </div>
     </div>
-  );
+);
+}
+
+export function HeroSection() {
+return (
+    <SearchWrapper>
+    <HeroContent />
+    </SearchWrapper>
+);
 }

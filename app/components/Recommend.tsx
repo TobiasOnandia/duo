@@ -8,6 +8,7 @@ import { ProductsType } from "./types/types.product"
 export const Recommend = () => {
   const { data } = useFetch('https://dummyjson.com/products?limit=4&skip=10')
 
+
   return (
     <footer className="mt-12 container  mx-auto">
       <h2 className="text-2xl font-bold mb-6">Otros usuarios tambien vieron</h2>

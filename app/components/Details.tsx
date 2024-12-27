@@ -11,6 +11,7 @@ import { toast } from "sonner";
 import { useStore } from "../store/Store.products";
 import { ProductType } from "./types/types.product";
 import { useFetch } from "../hooks/useFecth";
+import { ProductDetailSkeleton } from "./skeleton/DetailsSkeleton";
 
 export function Details({ id }: { id: string }) {
   const { data, loading } = useFetch(`https://dummyjson.com/products/${id}`);
@@ -43,7 +44,7 @@ export function Details({ id }: { id: string }) {
     }
   }
 
-  if (loading) return <div>Cargando...</div>;
+  if (loading) return <ProductDetailSkeleton />;
   if (!data) return <div>No se encontraron datos.</div>;
 
 

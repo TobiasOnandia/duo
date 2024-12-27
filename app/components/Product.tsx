@@ -12,6 +12,7 @@ export const Product = () => {
   const search = params.get('search') || '';
   const category = params.get('category') || '';
 
+
   const filteredByCategories = category
     ? (data as ProductsType)?.products.filter((item) => item.category.toLowerCase() === category.toLowerCase())
     : (data as ProductsType)?.products;
@@ -31,7 +32,7 @@ export const Product = () => {
           image={`${product.thumbnail}`}
           id={product.id}
         />
-      )) || <p>Productos no encontrados</p>}
+      ))}
     </section>
   );
 };

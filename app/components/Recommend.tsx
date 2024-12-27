@@ -19,8 +19,9 @@ export const Recommend = () => {
                   src={product.thumbnail || '/placeholder.svg'}
                   alt={product.title || 'Imagen predeterminada'}
                   className="object-cover group-hover:scale-105 transition-transform"
-                  fill
-                />
+                  width={400}
+                  height={400}
+          />
 
               </figure>
               <div className="p-4">

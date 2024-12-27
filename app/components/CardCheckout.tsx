@@ -24,7 +24,8 @@ export const CardCheckout = ({ item }: { item: ProductType }) => {
       <figure className="relative sm:w-24 sm:h-24 h-32 w-32 aspect-square">
         <Image
           src={thumbnail}
-          fill
+          width={400}
+          height={400}
           className="rounded-lg object-cover"
           alt="gorra"
         />

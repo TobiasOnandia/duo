@@ -63,7 +63,7 @@ export function Details({ id }: { id: string }) {
                 src={productData.thumbnail || short}
                 alt={`Image ${i + 1}`}
                 className="object-cover"
-                fill
+                layout="fill"
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               />
             </figure>
@@ -77,7 +77,7 @@ export function Details({ id }: { id: string }) {
               src={productData.images[0] || short}
               alt="Main view"
               className="object-cover"
-              fill
+              layout="fill"
               priority
             />
           </figure>

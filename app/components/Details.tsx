@@ -1,5 +1,5 @@
 'use client'
-import Image from "next/image";
+import Image from "next/legacy/image";
 import { Recommend } from "./Recommend";
 import { useTransitionRouter } from "next-view-transitions";
 import { Sizes } from "./Sizes";

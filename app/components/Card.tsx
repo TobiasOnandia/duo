@@ -1,5 +1,5 @@
 import { Link } from "next-view-transitions";
-import Image from "next/image";
+import Image from "next/legacy/image";
 
 interface ProductProps {
   name: string;

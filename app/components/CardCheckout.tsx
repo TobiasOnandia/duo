@@ -1,6 +1,6 @@
 'use client'
 import { TrashIcon } from "./Icons";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import { Stock } from "./Stock";
 import { ProductType } from "./types/types.product";
 import { useStore } from "../store/Store.products";

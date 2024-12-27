@@ -23,7 +23,7 @@ export const CategoriesMobile = () => {
         <section className="absolute bg-white w-[250px] flex flex-col z-10 p-4 rounded-lg top-12 left-0 shadow-lg">
           <ul className="flex flex-col gap-2">
             {[
-              ...new Set((data as ProductType[]).map((product) => product.category)),
+              ...new Set((data as ProductType[])?.products.map((product) => product.category)),
             ].map((category, index) => (
               <li key={index}>
                 <label

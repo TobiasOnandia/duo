@@ -7,14 +7,16 @@ import { ButtonBuy } from "@lib/ButtonBuy";
 
 export function DetailsActions({ data }: { data: ProductType }) {
   const addProducts = useStore((state) => state.addProduct);
+  const stock = useStore((state) => state.stock[data.id])
   const storeProducts = useStore((state) => state.products);
+
 
   const handleAdd = () => {
     const isProductInCart = storeProducts.some(product => product.id === data.id);
     if (isProductInCart) {
       toast.error("Este producto ya está en el carrito");
     } else {
-      addProducts(data);
+      addProducts(data, stock);
       toast.success("Producto agregado al carrito");
     }
   };

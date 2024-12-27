@@ -8,7 +8,7 @@ export interface StoreTypes {
   price: { [key: number]: number };
   sizes: { [key: number]: string[] };
   colors: { [key: number]: string[] };
-  addProduct: (product: ProductType) => void;
+  addProduct: (product: ProductType, quantity: number) => void;
   deleteAllProducts: () => void;
   deleteProduct: (id: number) => void;
   updateStockAndPrice: (productId: number, newStock: number, productPrice: number) => void;
@@ -23,10 +23,10 @@ export const useStore = create<StoreTypes>((set) => ({
   sizes: {},
   colors: {},
 
-  addProduct: (product: ProductType) =>
+  addProduct: (product: ProductType, quantity: number) =>
     set((state) => ({
       products: [...state.products, product],
-      stock: { ...state.stock, [product.id]: 1 },
+      stock: { ...state.stock, [product.id]: quantity },
       price: { ...state.price, [product.id]: Math.round(product.price) },
     })),
 

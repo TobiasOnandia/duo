@@ -4,6 +4,7 @@ import { ProductType } from "../types/typesProduct";
 
 export const ButtonBuy = ({ data }: { data: ProductType }) => {
     const addProducts = useStore((state) => state.addProduct);
+    const stock = useStore((state) => state.stock[data.id]);
     const router = useTransitionRouter();
 
     const storeProducts = useStore((state) => state.products);
@@ -11,7 +12,7 @@ export const ButtonBuy = ({ data }: { data: ProductType }) => {
         router.push('/checkout');
         const isProductInCart = storeProducts.some(product => product.id === data.id);
         if (!isProductInCart) {
-            addProducts(data);
+            addProducts(data, stock);
         }
     }
 

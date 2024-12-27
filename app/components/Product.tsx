@@ -2,7 +2,7 @@
 
 import { Card } from "./Card";
 import { useFetch } from "../hooks/useFecth";
-import { ProductType } from "./types/types.product";
+import { ProductsType, ProductType } from "./types/types.product";
 import { useSearchParams } from "next/navigation";
 
 export const Product = () => {
@@ -13,8 +13,8 @@ export const Product = () => {
   const category = params.get('category') || '';
 
   const filteredByCategories = category
-    ? data?.products.filter((item) => item.category.toLowerCase() === category.toLowerCase())
-    : data?.products;
+    ? (data as ProductsType)?.products.filter((item) => item.category.toLowerCase() === category.toLowerCase())
+    : (data as ProductsType)?.products;
 
   const filteredBySearch = search
     ? filteredByCategories?.filter((item: ProductType) => item.title.toLowerCase().includes(search.toLowerCase()))

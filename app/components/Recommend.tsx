@@ -2,6 +2,7 @@
 import Image from "next/legacy/image"
 import { useFetch } from "../hooks/useFecth"
 import { Link } from "next-view-transitions"
+import { ProductsType } from "./types/types.product"
 
 
 export const Recommend = () => {
@@ -11,7 +12,7 @@ export const Recommend = () => {
     <footer className="mt-12 container  mx-auto">
       <h2 className="text-2xl font-bold mb-6">Otros usuarios tambien vieron</h2>
       <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 cursor-pointer">
-        {data?.products.map((product) => (
+        {(data as ProductsType)?.products.map((product) => (
           <Link key={product.id} href={`/item/${product.id}`}>
             <article className="group relative">
               <figure className="aspect-square relative overflow-hidden rounded-lg">
@@ -21,7 +22,7 @@ export const Recommend = () => {
                   className="object-cover group-hover:scale-105 transition-transform"
                   width={400}
                   height={400}
-          />
+                />
 
               </figure>
               <div className="p-4">

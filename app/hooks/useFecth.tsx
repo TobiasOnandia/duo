@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
-import { ProductType } from "../components/types/types.product";
+import { ProductsType, ProductType } from "../components/types/types.product";
 
 export const useFetch = (url: string) => {
-  const [data, setData] = useState<ProductType | ProductType[] | null>(null);
+  const [data, setData] = useState<ProductType | ProductsType | null>(null);
   const [error, setError] = useState<Error | null>(null);
   const [loading, setLoading] = useState(true);
 

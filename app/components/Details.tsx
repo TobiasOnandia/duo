@@ -46,8 +46,6 @@ export function Details({ id }: { id: string }) {
   if (loading) return <div>Cargando...</div>;
   if (!data) return <div>No se encontraron datos.</div>;
 
-  // Verificar si data es un array o un objeto
-  const productData = Array.isArray(data) ? data[0] : data;
 
   return (
     <main className="container mx-auto px-4 py-8 mt-16">
@@ -60,7 +58,7 @@ export function Details({ id }: { id: string }) {
               className="aspect-square w-full h-full max-w-3xs relative cursor-pointer overflow-hidden rounded-lg bg-gray-100 flex-grow"
             >
               <Image
-                src={productData.thumbnail || short}
+                src={(data as ProductType).thumbnail || short}
                 alt={`Image ${i + 1}`}
                 className="object-cover"
                 layout="fill"
@@ -74,7 +72,7 @@ export function Details({ id }: { id: string }) {
         <section className="relative h-full w-full">
           <figure className="aspect-square relative overflow-hidden rounded-lg bg-gray-100">
             <Image
-              src={productData.images[0] || short}
+              src={(data as ProductType).images[0] || short}
               alt="Main view"
               className="object-cover"
               layout="fill"
@@ -92,7 +90,7 @@ export function Details({ id }: { id: string }) {
             <h3 className="font-medium">Tamaño</h3>
             <Sizes productId={Number(id)} />
             <h4 className="font-medium">Stock</h4>
-            <Stock productId={productData.id} productPrice={productData.price} />
+            <Stock productId={(data as ProductType).id} productPrice={(data as ProductType).price} />
           </div>
 
           {/* Botones */}

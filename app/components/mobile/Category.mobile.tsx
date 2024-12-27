@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ArrowBottom, MenuIcon } from "../Icons";
+import { MenuIcon } from "../Icons";
 import { useSearch } from "@/app/hooks/useSearch";
 import { useFetch } from "@/app/hooks/useFecth";
 import { ProductsType } from "../types/types.product";

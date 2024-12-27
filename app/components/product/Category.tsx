@@ -4,6 +4,7 @@ import { useSearch, SearchWrapper } from "@hooks/useSearch";
 import { useFetch } from "@hooks/useFecth";
 import { ProductsType } from "@/app/types/typesProduct";
 import { Suspense } from "react";
+import { CategorySkeleton } from "../skeleton/CategorySkeleton";
 
 function CategoryContent({ data }: { data: ProductsType | null | undefined }) {
   const search = useSearch()
@@ -11,7 +12,6 @@ function CategoryContent({ data }: { data: ProductsType | null | undefined }) {
     <Suspense fallback={<div>Loading...</div>}>
 
       <section className="mt-2 flex flex-col-reverse sm:flex-row gap-2 sm:items-center  justify-between">
-        {/* Desktop Categories */}
         <article className="hidden 2xl:flex items-center gap-4">
           {data?.products?.map((product) => product.category)
             .filter((value, index, self) => self.indexOf(value) === index)
@@ -44,7 +44,10 @@ function CategoryContent({ data }: { data: ProductsType | null | undefined }) {
 }
 
 export const Categories = () => {
-  const { data } = useFetch('https://dummyjson.com/products');
+  const { data, loading } = useFetch('https://dummyjson.com/products');
+
+  if (loading) return <CategorySkeleton />
+
   return (
     <SearchWrapper>
       <CategoryContent data={data as ProductsType | null} />

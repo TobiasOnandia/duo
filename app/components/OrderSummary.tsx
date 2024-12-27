@@ -1,13 +1,11 @@
-import { Link } from "next-view-transitions";
+import Link from "next/link";
 import { useStore } from "../store/Store.products";
 
 export const OrderSummary = () => {
 
   const price = useStore(state => state.price);
 
-  console.log(price)
-
-  const subTotal = Object.values(price).reduce((acc, curr) => acc + curr, 0) || 0;
+const subTotal = Object.values(price).reduce((acc, curr) => acc + curr, 0) || 0;
   const shippingCost = 1000;
 
 

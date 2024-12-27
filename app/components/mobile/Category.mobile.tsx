@@ -1,17 +1,14 @@
-import { Suspense, useState } from "react";
+'use client'
+import { useState } from "react";
 import { MenuIcon } from "../Icons";
-import { useSearch } from "@/app/hooks/useSearch";
+import { useSearch, SearchWrapper } from "@/app/hooks/useSearch";
 import { useFetch } from "@/app/hooks/useFecth";
 import { ProductsType } from "../types/types.product";
 
-export const CategoriesMobile = () => {
-  const { data } = useFetch("https://dummyjson.com/products");
-  const [isOpen, setIsOpen] = useState(false);
+function CategoryContent({ data, isOpen, setIsOpen }: { data: ProductsType, isOpen: boolean, setIsOpen: (open: boolean) => void }) {
+const search = useSearch();
 
-  const search = useSearch();
-
-  return (
-    <Suspense fallback={<div>Loading...</div>}>
+return (
     <section className="2xl:hidden block relative">
       <button
         className=" cursor-pointer flex items-center p-2 hover:bg-gray-200 rounded transition-colors "
@@ -46,6 +43,16 @@ export const CategoriesMobile = () => {
         </section>
       )}
     </section>
-    </Suspense>
-  );
+);
+}
+
+export const CategoriesMobile = () => {
+const { data } = useFetch("https://dummyjson.com/products");
+const [isOpen, setIsOpen] = useState(false);
+
+return (
+    <SearchWrapper>
+    <CategoryContent data={data as ProductsType} isOpen={isOpen} setIsOpen={setIsOpen} />
+    </SearchWrapper>
+);
 };

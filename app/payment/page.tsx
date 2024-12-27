@@ -2,12 +2,11 @@ import { Suspense } from "react";
 import { Payment } from "../components/Payment";
 
 export default function Page() {
-    return(
+    return (
         <>
-        <Suspense fallback={<div>Loading...</div>}>
-
-        <Payment />
-        </Suspense>
+            <Suspense fallback={<div>Loading...</div>}>
+                <Payment />
+            </Suspense>
         </>
     )
 }

@@ -1,24 +1,22 @@
 'use client';
 import { Search } from "../lib/Search";
-import { useSearch } from "../hooks/useSearch";
+import { useSearch, SearchWrapper } from "../hooks/useSearch";
 import { useFetch } from "../hooks/useFecth";
 import { ProductsType } from "./types/types.product";
 import { Suspense } from "react";
 
-export const Categories = () => {
-  const { data } = useFetch('https://dummyjson.com/products');
-  const search = useSearch()
-
-
-  return (
+function CategoryContent({ data }: { data: ProductsType | null | undefined }) {
+const search = useSearch()
+return (
     <Suspense fallback={<div>Loading...</div>}>
 
       <section className="mt-2 flex flex-col-reverse sm:flex-row gap-2 sm:items-center  justify-between">
         {/* Desktop Categories */}
         <article className="hidden 2xl:flex items-center gap-4">
-          {[
-            ...new Set((data as ProductsType)?.products.map((product) => product.category)),
-          ].map((category, index) => (
+        {data?.products?.map((product) => product.category)
+        .filter((value, index, self) => self.indexOf(value) === index)
+        .map((category, index) => (
+        
             <label
               key={index}
               htmlFor={category}
@@ -42,5 +40,14 @@ export const Categories = () => {
         <Search />
       </section>
     </Suspense>
-  );
+);
+}
+
+export const Categories = () => {
+const { data } = useFetch('https://dummyjson.com/products');
+return (
+    <SearchWrapper>
+    <CategoryContent data={data as ProductsType | null} />
+    </SearchWrapper>
+);
 };

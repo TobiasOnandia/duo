@@ -1,6 +1,6 @@
-import { useStore } from "../store/Store.products"
-import { OrderSummary } from "./OrderSummary"
-import { CardCheckout } from "./CardCheckout"
+import { useStore } from "@store/Store.products"
+import { OrderSummary } from "@components/checkout/OrderSummary"
+import { CardCheckout } from "@components/checkout/CardCheckout"
 
 export const CardCheckoutMobile = () => {
 

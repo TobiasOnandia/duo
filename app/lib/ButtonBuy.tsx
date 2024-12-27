@@ -1,6 +1,6 @@
 import { useTransitionRouter } from "next-view-transitions";
 import { useStore } from "../store/Store.products";
-import { ProductType } from "../components/types/types.product";
+import { ProductType } from "../types/typesProduct";
 
 export const ButtonBuy = ({ data }: { data: ProductType }) => {
     const addProducts = useStore((state) => state.addProduct);

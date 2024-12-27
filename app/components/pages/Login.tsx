@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react';
-import { GoogleIcon } from './Icons';
+import { GoogleIcon } from '@components/common/Icons';
 import { Link } from 'next-view-transitions';
 
 export const Login = () => {
@@ -30,7 +30,7 @@ export const Login = () => {
       <div className="flex flex-col items-center bg-white p-9 rounded shadow-lg border border-primary">
         <h1 className="text-3xl font-bold mb-4">Iniciar Sesión</h1>
         {error && <p className="text-red-500 mb-4">{error}</p>}
-        
+
         <form onSubmit={handleSubmit} className="w-full max-w-sm space-y-4">
           <fieldset>
             <label htmlFor="email" className="block text-sm font-medium text-gray-700">
@@ -92,15 +92,15 @@ export const Login = () => {
           <button
             onClick={handleGoogleLogin}
             className="flex items-center gap-2 justify-center cursor-pointer w-full py-2 bg-white border border-gray-300 rounded-md shadow-sm hover:shadow-md hover:bg-gray-100 transition-all"
-            >
-             <GoogleIcon />
+          >
+            <GoogleIcon />
             <span className="text-sm font-medium text-gray-700 ">Iniciar sesión con Google</span>
           </button>
         </div>
 
         <div className="mt-4">
           <p className="text-sm text-gray-600">
-          <Link href="/signup" >¿No tienes una cuenta? <span className="text-neutral-800 cursor-pointer hover:underline"> Regístrate aquí </span></Link>
+            <Link href="/signup" >¿No tienes una cuenta? <span className="text-neutral-800 cursor-pointer hover:underline"> Regístrate aquí </span></Link>
           </p>
         </div>
       </div>

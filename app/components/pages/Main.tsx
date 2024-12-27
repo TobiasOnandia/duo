@@ -1,5 +1,5 @@
-import { Categories } from "./Category";
-import { Product } from "./Product";
+import { Categories } from "@components/product/Category";
+import { Product } from "@components/product/Product";
 
 export const Main = () => {
   return (
@@ -10,7 +10,7 @@ export const Main = () => {
       <Categories />
 
       <section className="flex h-full gap-4 py-4  ">
-          <Product />
+        <Product />
       </section>
 
 

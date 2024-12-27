@@ -1,6 +1,6 @@
 import { useCounter } from "@uidotdev/usehooks";
-import { AddIcon, MinusIcon } from "./Icons";
-import { useStore } from "../store/Store.products";
+import { AddIcon, MinusIcon } from "@components/common/Icons";
+import { useStore } from "@store/Store.products";
 
 interface StockProps {
   productId: number;

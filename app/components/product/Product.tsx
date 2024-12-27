@@ -1,11 +1,11 @@
 'use client'
 
-import { Card } from "./Card";
-import { useFetch } from "../hooks/useFecth";
-import { ProductsType, ProductType } from "./types/types.product";
+import { Card } from "@components/product/Card";
+import { useFetch } from "@hooks/useFecth";
+import { ProductsType, ProductType } from "@/app/types/typesProduct";
 import { useSearchParams } from "next/navigation";
 import { Suspense } from "react";
-import { CardSkeleton } from "./skeleton/CardSkeleton";
+import { CardSkeleton } from "@components/skeleton/CardSkeleton";
 
 export const Product = () => {
   const { data } = useFetch('https://dummyjson.com/products');

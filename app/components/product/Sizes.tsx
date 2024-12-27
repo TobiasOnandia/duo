@@ -1,4 +1,4 @@
-import { useStore } from "../store/Store.products"
+import { useStore } from "@store/Store.products"
 
 export const Sizes = ({ productId }: { productId: number }) => {
   const sizes = useStore(state => state.sizes[productId]) || 'M'

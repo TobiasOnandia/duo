@@ -1,9 +1,9 @@
 'use client'
-import { useStore } from "../store/Store.products";
-import { CardCheckout } from "./CardCheckout";
-import { TrashIcon } from "./Icons";
-import { OrderSummary } from "./OrderSummary";
-import { Recommend } from "./Recommend";
+import { useStore } from "@store/Store.products";
+import { CardCheckout } from "@components/checkout/CardCheckout";
+import { TrashIcon } from "@components/common/Icons";
+import { OrderSummary } from "@components/checkout/OrderSummary";
+import { Recommend } from "@components/product/Recommend";
 
 export const Checkout = () => {
   const products = useStore(state => state.products)

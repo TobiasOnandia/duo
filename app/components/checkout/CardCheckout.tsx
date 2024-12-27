@@ -1,9 +1,9 @@
 'use client'
-import { TrashIcon } from "./Icons";
+import { TrashIcon } from "../common/Icons";
 import Image from "next/legacy/image";
 import { Stock } from "./Stock";
-import { ProductType } from "./types/types.product";
-import { useStore } from "../store/Store.products";
+import { ProductType } from "../../types/typesProduct";
+import { useStore } from "../../store/Store.products";
 import { toast } from "sonner";
 
 export const CardCheckout = ({ item }: { item: ProductType }) => {

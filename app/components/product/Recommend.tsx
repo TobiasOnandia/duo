@@ -1,8 +1,8 @@
 'use client'
 import Image from "next/legacy/image"
-import { useFetch } from "../hooks/useFecth"
+import { useFetch } from "@hooks/useFecth"
 import { Link } from "next-view-transitions"
-import { ProductsType } from "./types/types.product"
+import { ProductsType } from "@/app/types/typesProduct"
 
 
 export const Recommend = () => {

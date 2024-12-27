@@ -1,11 +1,11 @@
 'use client'
 
-import { useSearch, SearchWrapper } from "../hooks/useSearch";
-import { SearchIcon } from "./Icons";
+import { useSearch, SearchWrapper } from "@hooks/useSearch";
+import { SearchIcon } from "@components/common/Icons";
 
 function HeroContent() {
-const search = useSearch();
-return (
+  const search = useSearch();
+  return (
 
     <div className="relative h-[calc(100vh-4rem)] md:h-[calc(100vh-8rem)] bg-gray-100">
       <div className="absolute inset-0 bg-cover bg-center portada">
@@ -36,13 +36,13 @@ return (
         </div>
       </div>
     </div>
-);
+  );
 }
 
 export function HeroSection() {
-return (
+  return (
     <SearchWrapper>
-    <HeroContent />
+      <HeroContent />
     </SearchWrapper>
-);
+  );
 }

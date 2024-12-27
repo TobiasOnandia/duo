@@ -1,17 +1,17 @@
 'use client'
 import Image from "next/legacy/image";
-import { Recommend } from "./Recommend";
-import { Sizes } from "./Sizes";
-import { Colors } from "./Colors";
-import { Description } from "./Description";
-import { Stock } from "./Stock";
+import { Recommend } from "@components/product/Recommend";
+import { Sizes } from "@components/product/Sizes";
+import { Colors } from "@components/product/Colors";
+import { Description } from "@components/product/Description";
+import { Stock } from "@components/product/Stock";
 import short from "@/public/short.jpeg";
 import { toast } from "sonner";
-import { useStore } from "../store/Store.products";
-import { ProductType } from "./types/types.product";
-import { useFetch } from "../hooks/useFecth";
-import { ProductDetailSkeleton } from "./skeleton/DetailsSkeleton";
-import { ButtonBuy } from "../lib/ButtonBuy";
+import { useStore } from "@store/Store.products";
+import { ProductType } from "@/app/types/typesProduct";
+import { useFetch } from "@hooks/useFecth";
+import { ProductDetailSkeleton } from "@components/skeleton/DetailsSkeleton";
+import { ButtonBuy } from "@lib/ButtonBuy";
 
 export function Details({ id }: { id: string }) {
   const { data, loading } = useFetch(`https://dummyjson.com/products/${id}`);
@@ -33,7 +33,6 @@ export function Details({ id }: { id: string }) {
 
   if (loading) return <ProductDetailSkeleton />;
   if (!data) return <div>No se encontraron datos.</div>;
-
 
   return (
     <main className="container mx-auto px-4 py-8 mt-16">

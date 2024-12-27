@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { GoogleIcon } from './Icons';
+import { GoogleIcon } from '@components/common/Icons';
 import Link from 'next/link';
 export const Signup = () => {
   const [email, setEmail] = useState('');
@@ -95,17 +95,17 @@ export const Signup = () => {
           onClick={handleGoogleSignup}
           className="flex items-center justify-center gap-2 w-full py-2 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-100 transition-colors"
         >
-        <GoogleIcon />
+          <GoogleIcon />
           Registrarse con Google
         </button>
 
         <div className="mt-4">
           <p className="text-sm text-gray-600">
             <Link href="/login" className="text-gray-600 hover:text-neutral-800">
-            ¿Ya tienes una cuenta?{' '}
-            <span className="text-neutral-800 hover:underline">
+              ¿Ya tienes una cuenta?{' '}
+              <span className="text-neutral-800 hover:underline">
                 Inicia sesión aquí
-            </span>
+              </span>
             </Link>
           </p>
         </div>

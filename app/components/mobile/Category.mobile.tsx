@@ -1,14 +1,14 @@
 'use client'
 import { useState } from "react";
-import { MenuIcon } from "../Icons";
+import { MenuIcon } from "@components/common/Icons";
 import { useSearch, SearchWrapper } from "@/app/hooks/useSearch";
 import { useFetch } from "@/app/hooks/useFecth";
-import { ProductsType } from "../types/types.product";
+import { ProductsType } from "@/app/types/typesProduct";
 
 function CategoryContent({ data, isOpen, setIsOpen }: { data: ProductsType, isOpen: boolean, setIsOpen: (open: boolean) => void }) {
-const search = useSearch();
+  const search = useSearch();
 
-return (
+  return (
     <section className="2xl:hidden block relative">
       <button
         className=" cursor-pointer flex items-center p-2 hover:bg-gray-200 rounded transition-colors "
@@ -43,16 +43,16 @@ return (
         </section>
       )}
     </section>
-);
+  );
 }
 
 export const CategoriesMobile = () => {
-const { data } = useFetch("https://dummyjson.com/products");
-const [isOpen, setIsOpen] = useState(false);
+  const { data } = useFetch("https://dummyjson.com/products");
+  const [isOpen, setIsOpen] = useState(false);
 
-return (
+  return (
     <SearchWrapper>
-    <CategoryContent data={data as ProductsType} isOpen={isOpen} setIsOpen={setIsOpen} />
+      <CategoryContent data={data as ProductsType} isOpen={isOpen} setIsOpen={setIsOpen} />
     </SearchWrapper>
-);
+  );
 };

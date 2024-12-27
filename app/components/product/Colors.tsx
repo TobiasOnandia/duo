@@ -1,4 +1,4 @@
-import { useStore } from "../store/Store.products";
+import { useStore } from "@store/Store.products";
 
 export const Colors = ({ productId }: { productId: number }) => {
   const colors = useStore((state) => state.colors[productId]) || 'red';

@@ -1,7 +1,7 @@
 "use client";
-import { AddressUser } from "./AdressUser";
-import { PaymentOptions } from "./PaymentOptions";
-import { CardCheckoutMobile } from "./CardCheckoutMobile";
+import { AddressUser } from "@components/checkout/AdressUser";
+import { PaymentOptions } from "@components/checkout/PaymentOptions";
+import { CardCheckoutMobile } from "@components/checkout/CardCheckoutMobile";
 
 export const Payment = () => {
   return (

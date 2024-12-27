@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { create } from "zustand";
-import { ProductType } from "../components/types/types.product";
+import { ProductType } from "../types/typesProduct";
 
 export interface StoreTypes {
   products: ProductType[];

@@ -2,14 +2,15 @@ import Image from "next/legacy/image"
 import helmet from "@/public/gorra.jpeg"
 import short from "@/public/short.jpeg"
 import tshirt from "@/public/tshirt.jpeg"
-
 const categories = [
   { name: "Pantalones", color: "bg-blue-500", image: short },
   { name: "Gorras", color: "bg-red-500", image: helmet },
   { name: "Remeras", color: "bg-pink-500", image: tshirt },
 ]
 
-export const Bento = () => {
+export const Bento = async () => {
+
+
   return (
     <section className="grid grid-cols-1 sm:grid-cols-2  bg-[#f8f8f8] p-6 rounded-3xl border border-gray-200 shadow-lg md:grid-cols-3 gap-6 mt-14 w-[95%] md:w-4/5 mx-auto">
       {categories.map((category, index) => (

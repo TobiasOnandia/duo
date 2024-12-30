@@ -5,11 +5,13 @@ import { GoogleIcon } from '@components/common/Icons';
 import Link from 'next/link';
 import { toast } from 'sonner';
 import { supabase } from '@/app/lib/supabaseClient';
+import { useTransitionRouter } from 'next-view-transitions';
 export const Signup = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState('');
+  const router = useTransitionRouter();
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
@@ -46,10 +48,8 @@ export const Signup = () => {
       return;
     }
 
-
-  };
-
-  const handleGoogleSignup = async () => {
+    toast.success('Cuenta creada exitosamente.');
+    router.push('/');
 
   };
 
@@ -159,7 +159,6 @@ export const Signup = () => {
 
         {/* Google Signup */}
         <button
-          onClick={handleGoogleSignup}
           className="flex items-center justify-center gap-2 w-full py-3 bg-white border border-gray-300 rounded-lg shadow-sm hover:bg-gray-100 transition-colors focus:outline-none focus:ring-2 focus:ring-gray-300"
         >
           <GoogleIcon />

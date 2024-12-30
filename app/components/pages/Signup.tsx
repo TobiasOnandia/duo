@@ -40,6 +40,7 @@ export const Signup = () => {
       }
 
       toast.success('Cuenta creada exitosamente.');
+      toast.success('Por favor verifica tu correo electrónico para activar tu cuenta.');
       router.push('/');
       return null;
     },

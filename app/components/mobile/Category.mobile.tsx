@@ -1,6 +1,6 @@
 'use client'
 import { useState } from "react";
-import { MenuIcon } from "@components/common/Icons";
+import { ArrowBottom, MenuIcon } from "@components/common/Icons";
 import { useSearch, SearchWrapper } from "@/app/hooks/useSearch";
 import { useFetch } from "@/app/hooks/useFecth";
 import { ProductsType } from "@/app/types/typesProduct";
@@ -9,38 +9,42 @@ function CategoryContent({ data, isOpen, setIsOpen }: { data: ProductsType, isOp
   const search = useSearch();
 
   return (
-    <section className="2xl:hidden block relative">
+    <section className="relative lg:hidden block">
+      {/* Botón de Categorías */}
       <button
-        className=" cursor-pointer flex items-center p-2 hover:bg-gray-200 rounded transition-colors "
+        className="flex items-center gap-2 px-4 py-2 cursor-pointer hover:bg-gray-200 rounded-full  transition-all"
         onClick={() => setIsOpen(!isOpen)}
       >
-        <MenuIcon />
+        <span className="text-sm font-medium">Categorías</span>
+        <span className="sm:hiden">
+          <ArrowBottom />
+        </span>
       </button>
+
+      {/* Menú flotante */}
       {isOpen && (
-        <section className="absolute bg-white flex flex-col z-10 p-4 rounded-lg top-12 right-0 shadow-lg">
-          <ul className="flex flex-col gap-2">
+        <div
+          className="absolute bg-white w-64 top-10 left-0 p-4 rounded-lg shadow-lg border border-gray-200 z-30 animate-slide-down"
+        >
+          <h3 className="text-lg font-semibold text-gray-800 mb-4 border-b pb-2">Selecciona categoría</h3>
+          <ul className="space-y-3">
             {[
               ...new Set((data as ProductsType)?.products.map((product) => product.category)),
             ].map((category, index) => (
               <li key={index}>
-                <label
-                  htmlFor={category}
-                  className="flex items-center gap-2 cursor-pointer rounded-md text-md px-2 py-1 hover:bg-accent hover:text-background transition-colors"
+                <button
+                  className="flex cursor-pointer items-center justify-between w-full px-3 py-2 rounded-md text-sm font-medium bg-gray-100 hover:bg-accent hover:text-white transition-all"
+                  onClick={() => {
+                    search(category, "category");
+                    setIsOpen(false);
+                  }}
                 >
-                  {category}
-                  <input
-                    type="radio"
-                    name="category"
-                    id={category}
-                    className="hidden"
-                    onChange={() => search(category, "category")}
-                    defaultChecked={index === 0}
-                  />
-                </label>
+                  <span>{category}</span>
+                </button>
               </li>
             ))}
           </ul>
-        </section>
+        </div>
       )}
     </section>
   );

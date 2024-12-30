@@ -5,14 +5,15 @@ import { useFetch } from "@hooks/useFecth";
 import { ProductsType } from "@/app/types/typesProduct";
 import { Suspense } from "react";
 import { CategorySkeleton } from "../skeleton/CategorySkeleton";
+import { CategoriesMobile } from "../mobile/Category.mobile";
 
 function CategoryContent({ data }: { data: ProductsType | null | undefined }) {
   const search = useSearch()
   return (
     <Suspense fallback={<div>Loading...</div>}>
 
-      <section className="mt-2 flex flex-col-reverse sm:flex-row gap-2 sm:items-center  justify-between">
-        <article className="hidden 2xl:flex items-center gap-4">
+      <section className="mt-2 flex sm:flex-row flex-col-reverse gap-2 sm:items-center  justify-between">
+        <article className="hidden lg:flex items-center gap-4">
           {data?.products?.map((product) => product.category)
             .filter((value, index, self) => self.indexOf(value) === index)
             .map((category, index) => (
@@ -36,7 +37,7 @@ function CategoryContent({ data }: { data: ProductsType | null | undefined }) {
         </article>
 
         {/* Mobile Categories */}
-
+        <CategoriesMobile />
         <Search />
       </section>
     </Suspense>

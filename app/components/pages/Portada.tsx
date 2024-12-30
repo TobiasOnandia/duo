@@ -7,7 +7,7 @@ function HeroContent() {
   const search = useSearch();
   return (
 
-    <div className="relative h-[calc(100vh-4rem)] md:h-[calc(100vh-8rem)] bg-gray-100">
+    <div className="relative h-[calc(100vh-4rem)] md:h-[calc(100vh-8rem)] lg:mb-8 bg-gray-100">
       <div className="absolute inset-0 bg-cover bg-center portada">
       </div>
       <div className="relative h-full flex flex-col items-center justify-center px-4 pt-16 text-center">

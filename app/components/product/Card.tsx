@@ -27,7 +27,7 @@ export const Card = ({ name, price, description, image, id }: ProductProps) => (
         <p className="text-lg font-semibold">${price}</p>
       </header>
       <p className="line-clamp-2 text-gray-600">{description}</p>
-      <footer className="flex items-center justify-between gap-2">
+      <footer className="flex items-center flex-col sm:flex-row justify-between gap-2">
         <Link
           href={`/item/${id}`}
           className="px-4 text-center py-2 rounded w-full transition-transform border border-gray-300 bg-gray-100 cursor-pointer hover:bg-gray-200"

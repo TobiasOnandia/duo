@@ -14,7 +14,7 @@ function SearchContent() {
                 name=""
                 id="search"
                 placeholder="Buscar productos..."
-                className="py-2 pl-10 pr-4 border rounded-full border-gray-400 focus:outline-none focus:ring-2 focus:ring-accent transition-all"
+                className="py-2 pl-10  border rounded-full border-gray-400 focus:outline-none focus:ring-2 focus:ring-accent transition-all"
                 onChange={(event) => {
                     search(event.target.value, 'search');
                 }}

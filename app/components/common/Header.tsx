@@ -3,7 +3,7 @@
 import { Link } from "next-view-transitions";
 import { ShopIcon, UserIcon } from "./Icons";
 import { useStore } from "@store/Store.products";
-import { CategoriesMobile } from "@components/mobile/Category.mobile";
+
 
 export const Header = () => {
   const products = useStore((state) => state.products);
@@ -31,9 +31,7 @@ export const Header = () => {
               <UserIcon />
             </Link>
           </li>
-          <li className="sm:hidden  ">
-            <CategoriesMobile />
-          </li>
+
         </ul>
       </nav>
     </header>

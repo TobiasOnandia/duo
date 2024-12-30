@@ -1,7 +1,8 @@
 
-import { Logo } from "@/app/components/header/Logo";
-import { NavItem } from "../header/NavItem.client";
-import { NavItemServer } from "../header/NavItem.server";
+
+import { Logo } from "@components/header/Logo";
+import { NavItem } from "@components/header/NavItem.client";
+import { NavItemServer } from "@components/header/NavItem.server";
 
 export const Header = () => {
 
@@ -12,6 +13,7 @@ export const Header = () => {
       <nav>
         <ul className="flex items-center gap-2">
           <NavItem />
+
           <NavItemServer />
         </ul>
       </nav>

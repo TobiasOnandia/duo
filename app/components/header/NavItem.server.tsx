@@ -4,6 +4,7 @@ import { UserIcon } from "@components/common/Icons";
 import { Link } from "next-view-transitions";
 import { toast } from "sonner";
 import { supabase } from "@lib/supabaseClient";
+import { Suspense } from "react";
 
 
 export const NavItemServer = () => {

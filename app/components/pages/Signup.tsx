@@ -1,65 +1,58 @@
 'use client';
 
-import { useState } from 'react';
+import { useActionState } from 'react';
 import { GoogleIcon } from '@components/common/Icons';
 import Link from 'next/link';
 import { toast } from 'sonner';
 import { supabase } from '@/app/lib/supabaseClient';
 import { useTransitionRouter } from 'next-view-transitions';
+
 export const Signup = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
-  const [error, setError] = useState('');
   const router = useTransitionRouter();
 
-  const handleSubmit = async (event: React.FormEvent) => {
-    event.preventDefault();
-    setError('');
+  const [error, submitAction, isPending] = useActionState(
+    async (previousState, formData) => {
+      const email = formData.get("email");
+      const password = formData.get("password");
+      const confirmPassword = formData.get("confirmPassword");
+      const firstName = formData.get("firstName");
+      const lastName = formData.get("lastName");
 
-    const form = Object.fromEntries(new FormData(event.target as HTMLFormElement));
-
-    console.log(form)
-
-    const email = form.email as string;
-    const password = form.password as string;
-    const confirmPassword = form.confirmPassword as string;
-    const firstName = form.firstName as string;
-    const lastName = form.lastName as string;
-
-    if (password !== confirmPassword) {
-      toast.error('Las contraseñas no coinciden.');
-      return;
-    }
-
-    const { error } = await supabase.auth.signUp({
-      email: email,
-      password: password,
-      options: {
-        data: {
-          first_name: firstName,
-          last_name: lastName,
-        }
+      if (password !== confirmPassword) {
+        toast.error('Las contraseñas no coinciden.');
+        return { error: 'Las contraseñas no coinciden.' };
       }
-    });
 
-    if (error) {
-      toast.error(error.message);
-      return;
-    }
+      const { error: signupError } = await supabase.auth.signUp({
+        email: email,
+        password: password,
+        options: {
+          data: {
+            first_name: firstName,
+            last_name: lastName,
+          }
+        }
+      });
 
-    toast.success('Cuenta creada exitosamente.');
-    router.push('/');
+      if (signupError) {
+        toast.error(signupError.message);
+        return { error: signupError.message };
+      }
 
-  };
+      toast.success('Cuenta creada exitosamente.');
+      router.push('/');
+      return null;
+    },
+    null
+  );
 
   return (
     <main className="h-screen flex items-center justify-center bg-gray-100 py-8 px-4">
       <div className="flex flex-col items-center bg-white p-8 md:p-10 rounded-lg shadow-lg border border-gray-200 w-full max-w-md">
         <h1 className="text-2xl md:text-3xl font-bold mb-6 text-gray-800">Crear Cuenta</h1>
-        {error && <p className="text-red-500 mb-4">{error}</p>}
+        {error && <p className="text-red-500 mb-4">{error.error}</p>}
 
-        <form onSubmit={handleSubmit} className="w-full grid grid-cols-2 gap-2 space-y-5">
+        <form action={submitAction} className="w-full grid grid-cols-2 gap-2 space-y-5">
           {/* First Name */}
           <fieldset>
             <label htmlFor="firstName" className="block text-sm font-medium text-gray-700">
@@ -99,8 +92,6 @@ export const Signup = () => {
               type="email"
               id="email"
               name="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
               required
               className="mt-1 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:border-primary focus:ring-primary focus:ring-opacity-50"
               placeholder="ejemplo@correo.com"
@@ -116,8 +107,6 @@ export const Signup = () => {
               type="password"
               id="password"
               name="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
               required
               className="mt-1 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:border-primary focus:ring-primary focus:ring-opacity-50"
               placeholder="******"
@@ -133,8 +122,6 @@ export const Signup = () => {
               type="password"
               id="confirmPassword"
               name="confirmPassword"
-              value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
               required
               className="mt-1 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:border-primary focus:ring-primary focus:ring-opacity-50"
               placeholder="******"
@@ -159,10 +146,11 @@ export const Signup = () => {
 
         {/* Google Signup */}
         <button
-          className="flex items-center justify-center gap-2 w-full py-3 bg-white border border-gray-300 rounded-lg shadow-sm hover:bg-gray-100 transition-colors focus:outline-none focus:ring-2 focus:ring-gray-300"
+          className="flex items-center justify-center gap-2  w-full py-3 bg-white border border-gray-300 rounded-lg shadow-sm hover:bg-gray-100 transition-colors focus:outline-none focus:ring-2 focus:ring-gray-300"
         >
           <GoogleIcon />
-          Registrarse con Google
+
+          {isPending ? 'Registrarse con Google...' : 'Registrarse con Google'}
         </button>
 
         {/* Login Redirect */}
@@ -176,6 +164,5 @@ export const Signup = () => {
         </div>
       </div>
     </main>
-
   );
 };

@@ -1,37 +1,39 @@
 'use client'
 
-import { useState } from 'react';
+import { useActionState } from 'react';
 import { GoogleIcon } from '@components/common/Icons';
-import { Link } from 'next-view-transitions';
+import { Link, useTransitionRouter } from 'next-view-transitions';
+import { supabase } from '@/app/lib/supabaseClient';
+import { toast } from 'sonner';
 
 export const Login = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setError('');
-    // Lógica para iniciar sesión con correo y contraseña
-  };
+  const router = useTransitionRouter()
 
-  const handleGoogleLogin = async () => {
-    try {
-      setError('');
-      // Lógica para iniciar sesión con Google (e.g., Supabase, Firebase)
-      console.log('Iniciando sesión con Google...');
-    } catch (err) {
-      setError(`Error al iniciar sesión con Google. Por favor, inténtalo nuevamente. ${err}`);
-    }
-  };
+  const [error, submitAction, isPending] = useActionState(
+    async (previousState, formData) => {
+      const { error } = await supabase.auth.signInWithPassword({
+        email: formData.get("email"),
+        password: formData.get("password")
+      });
+
+      console.log(previousState, formData);
+      if (error) {
+        return { error: error.message }; // Captura el mensaje de error
+      }
+      toast.success('Inicio de sesión exitoso')
+      router.push('/')
+      return null; // No hay error
+    },
+    null,
+  );
 
   return (
     <main className="h-screen flex items-center justify-center py-8 ">
       <div className="flex flex-col items-center bg-white p-9 rounded shadow-lg border border-primary">
         <h1 className="text-3xl font-bold mb-4">Iniciar Sesión</h1>
-        {error && <p className="text-red-500 mb-4">{error}</p>}
 
-        <form onSubmit={handleSubmit} className="w-full max-w-sm space-y-4">
+        <form action={submitAction} className="w-full max-w-sm space-y-4">
           <fieldset>
             <label htmlFor="email" className="block text-sm font-medium text-gray-700">
               Correo Electrónico
@@ -39,8 +41,7 @@ export const Login = () => {
             <input
               type="email"
               id="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              name='email'
               required
               className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50"
               placeholder="ejemplo@correo.com"
@@ -54,14 +55,14 @@ export const Login = () => {
             <input
               type="password"
               id="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              name='password'
               required
               className="mt-1 block w-full p-2 border border-neutral-400 rounded-md shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50"
               placeholder="******"
             />
           </fieldset>
 
+          {error?.error && <p className="text-red-500 text-sm">{error.error}</p>}
           <fieldset className="flex items-center justify-between">
             <div className="flex items-center">
               <input
@@ -74,7 +75,7 @@ export const Login = () => {
               </label>
             </div>
             <div className="text-sm">
-              <a href="#" className="font-medium cursor-pointer  text-neutral-800 ml-2 hover:text-primary-dark">
+              <a href="#" className="font-medium cursor-pointer text-neutral-800 ml-2 hover:text-primary-dark">
                 ¿Olvidaste tu contraseña?
               </a>
             </div>
@@ -82,25 +83,25 @@ export const Login = () => {
 
           <button
             type="submit"
-            className="w-full py-2  cursor-pointer  bg-neutral-800 disabled:bg-neutral-300 text-white rounded-md hover:bg-primary-dark transition-colors"
+            disabled={isPending} // Deshabilitar el botón mientras se procesa la acción
+            className="w-full py-2 cursor-pointer bg-neutral-800 disabled:bg-neutral-300 text-white rounded-md hover:bg-primary-dark transition-colors"
           >
-            Iniciar Sesión
+            {isPending ? 'Iniciando sesión...' : 'Iniciar Sesión'}
           </button>
         </form>
 
-        <div className="w-full mt-4 flex items-center  relative justify-center">
+        <div className="w-full mt-4 flex items-center relative justify-center">
           <button
-            onClick={handleGoogleLogin}
             className="flex items-center gap-2 justify-center cursor-pointer w-full py-2 bg-white border border-gray-300 rounded-md shadow-sm hover:shadow-md hover:bg-gray-100 transition-all"
           >
             <GoogleIcon />
-            <span className="text-sm font-medium text-gray-700 ">Iniciar sesión con Google</span>
+            <span className="text-sm font-medium text-gray-700">Iniciar sesión con Google</span>
           </button>
         </div>
 
         <div className="mt-4">
           <p className="text-sm text-gray-600">
-            <Link href="/signup" >¿No tienes una cuenta? <span className="text-neutral-800 cursor-pointer hover:underline"> Regístrate aquí </span></Link>
+            <Link href="/signup">¿No tienes una cuenta? <span className="text-neutral-800 cursor-pointer hover:underline"> Regístrate aquí </span></Link>
           </p>
         </div>
       </div>

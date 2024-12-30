@@ -13,7 +13,8 @@ export const useUser = () => {
                 error,
             } = await supabase.auth.getUser();
 
-            if (error) {
+            if (error !== null && error.status !== 400) {
+                console.error(error)
                 setUser(null);
             } else {
                 setUser(user?.user_metadata || null);

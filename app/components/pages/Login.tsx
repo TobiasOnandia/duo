@@ -11,10 +11,10 @@ export const Login = () => {
   const router = useTransitionRouter()
 
   const [error, submitAction, isPending] = useActionState(
-    async (previousState, formData) => {
+    async (previousState: { error: string } | null, formData: FormData) => {
       const { error } = await supabase.auth.signInWithPassword({
-        email: formData.get("email"),
-        password: formData.get("password")
+        email: formData.get("email") as string,
+        password: formData.get("password") as string
       });
 
       console.log(previousState, formData);

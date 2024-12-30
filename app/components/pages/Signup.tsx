@@ -11,7 +11,7 @@ export const Signup = () => {
   const router = useTransitionRouter();
 
   const [error, submitAction, isPending] = useActionState(
-    async (previousState, formData) => {
+    async (previousState: { error: string } | null, formData: FormData) => {
       const email = formData.get("email");
       const password = formData.get("password");
       const confirmPassword = formData.get("confirmPassword");
@@ -24,8 +24,8 @@ export const Signup = () => {
       }
 
       const { error: signupError } = await supabase.auth.signUp({
-        email: email,
-        password: password,
+        email: email as string,
+        password: password as string,
         options: {
           data: {
             first_name: firstName,

@@ -1,28 +1,30 @@
-
-import { supabase } from "@lib/supabaseClient"
+import { supabase } from "@lib/supabaseClient";
 import { useEffect, useState } from "react";
-import { UserMetadata } from '@supabase/supabase-js';
+import { User } from '@supabase/supabase-js';
 
 export const useUser = () => {
-    const [user, setUser] = useState<UserMetadata | null>(null);
+    const [user, setUser] = useState<User | null>(null);
 
     useEffect(() => {
-        const fetchUser = async () => {
-            const {
-                data: { user },
-                error,
-            } = await supabase.auth.getUser();
+        const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
+            setUser(session?.user || null); // Actualiza el estado del usuario según el evento de autenticación
+        });
 
-            if (error !== null && error.status !== 400) {
-                console.error(error)
-                setUser(null);
+        const fetchUser = async () => {
+            const { data: { user }, error } = await supabase.auth.getUser();
+            if (error) {
+                console.error(error);
             } else {
-                setUser(user?.user_metadata || null);
+                setUser(user); // Establece el usuario inicial si existe
             }
         };
 
-        fetchUser();
+        fetchUser(); // Obtén el usuario inicial
+
+        return () => {
+            subscription?.unsubscribe(); // Limpia la suscripción al desmontar el componente
+        };
     }, []);
 
-    return { metadata: user };
+    return { user };
 };

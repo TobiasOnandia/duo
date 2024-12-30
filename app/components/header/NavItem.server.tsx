@@ -7,7 +7,7 @@ import { supabase } from "@lib/supabaseClient";
 
 
 export const NavItemServer = () => {
-    const { metadata } = useUser()
+    const { user } = useUser()
 
     const handleSignOut = async () => {
         const { error } = await supabase.auth.signOut();
@@ -17,7 +17,7 @@ export const NavItemServer = () => {
     return (
         <li>
             {
-                metadata ? (
+                user ? (
                     <button
                         onClick={handleSignOut}
                         className="flex items-center p-2 hover:bg-gray-200 rounded transition-colors cursor-pointer">

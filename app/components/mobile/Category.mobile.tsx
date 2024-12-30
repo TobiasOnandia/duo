@@ -1,6 +1,6 @@
 'use client'
 import { useState } from "react";
-import { ArrowBottom, MenuIcon } from "@components/common/Icons";
+import { ArrowBottom } from "@components/common/Icons";
 import { useSearch, SearchWrapper } from "@/app/hooks/useSearch";
 import { useFetch } from "@/app/hooks/useFecth";
 import { ProductsType } from "@/app/types/typesProduct";

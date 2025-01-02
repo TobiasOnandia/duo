@@ -63,7 +63,7 @@ export const Signup = () => {
         <h1 className="text-2xl md:text-3xl font-bold mb-6 text-gray-800">Crear Cuenta</h1>
         {error && <p className="text-red-500 mb-4">{error.error}</p>}
 
-        <form action={submitAction} className="w-full grid grid-cols-2 gap-2 space-y-5">
+        <form action={submitAction} className="w-full grid grid-cols-1 sm:grid-cols-2 gap-2 space-y-5">
           {/* First Name */}
           <fieldset>
             <label htmlFor="firstName" className="block text-sm font-medium text-gray-700">

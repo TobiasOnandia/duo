@@ -1,14 +1,14 @@
 import type { Metadata } from "next";
 import { Montserrat, Poppins } from "next/font/google";
 import "./globals.css";
-import { Header } from "./components/Header";
-import { Footer } from "./components/Footer";
+import { Header } from "@components/common/Header";
+import { Footer } from "@components/common/Footer";
 import { ViewTransitions } from "next-view-transitions";
 import { Toaster } from "sonner";
 
 const geistSans = Montserrat({
   subsets: ["latin"],
-  weight: ["200","300","400", "500", "600", "700"],
+  weight: ["200", "300", "400", "500", "600", "700"],
 
 });
 
@@ -29,16 +29,16 @@ export default function RootLayout({
 }>) {
   return (
     <ViewTransitions>
-    <html lang="es">
-      <body
-        className={`${geistSans} ${geistMono} antialiased min-h-screen flex flex-col `}
-      >
-        <Toaster position="top-right" richColors />
-        <Header />
-        {children}
-        <Footer />
-      </body>
-    </html>
+      <html lang="es">
+        <body
+          className={`${geistSans} ${geistMono} antialiased min-h-screen flex flex-col `}
+        >
+          <Toaster position="top-right" richColors />
+          <Header />
+          {children}
+          <Footer />
+        </body>
+      </html>
     </ViewTransitions>
   );
 }

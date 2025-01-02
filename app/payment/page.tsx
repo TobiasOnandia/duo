@@ -1,10 +1,10 @@
 import { Suspense } from "react";
-import { Payment } from "../components/Payment";
+import { Payment } from "@components/checkout/Payment";
 
 export default function Page() {
     return (
         <>
-            <Suspense fallback={<div>Loading...</div>}>
+            <Suspense fallback={<div>ACACACJSAIDJISADJIASd...</div>}>
                 <Payment />
             </Suspense>
         </>

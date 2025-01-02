@@ -1,6 +1,7 @@
 import { Toaster } from "sonner";
-import { Details } from "../../components/Details";
+import { Details } from "@components/product/Details";
 import { Suspense } from "react";
+import { ProductDetailSkeleton } from "@components/skeleton/DetailsSkeleton";
 
 export default async function Page({ params }: {
     params: Promise<{ id: string }>
@@ -9,12 +10,11 @@ export default async function Page({ params }: {
 
     const key = await params.then((res) => res.id)
     return (
-        <Suspense fallback={<div>Loading...</div>}>
-        <>
-        
-            <Toaster position="top-right" richColors />
-            <Details id={key} />
-        </>
+        <Suspense fallback={<ProductDetailSkeleton />}>
+            <>
+                <Toaster position="top-right" richColors />
+                <Details id={key} />
+            </>
         </Suspense>
     )
 }

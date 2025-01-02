@@ -3,7 +3,7 @@ import  { MercadoPagoConfig, Preference } from "mercadopago";
 
 // Configura MercadoPago con tu token de acceso
 const mercadoPago = new  MercadoPagoConfig({
-  accessToken: "APP_USR-6357028690192021-123014-c73f5b1892038188f2ef478ced81536b-2187542332"
+  accessToken: process.env.MP_ACCESS_TOKEN!,
 });
 
 export async function POST() {

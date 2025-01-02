@@ -157,7 +157,7 @@ export const Signup = () => {
 
         {/* Google Signup */}
         <button
-          className="flex items-center justify-center gap-2  w-full py-3 bg-white border border-gray-300 rounded-lg shadow-sm hover:bg-gray-100 transition-colors focus:outline-none focus:ring-2 focus:ring-gray-300"
+          className="flex items-center justify-center cursor-pointer gap-2  w-full py-3 bg-white border border-gray-300 rounded-lg shadow-sm hover:bg-gray-100 transition-colors focus:outline-none focus:ring-2 focus:ring-gray-300"
           onClick={handleLogin}
         >
           <GoogleIcon />

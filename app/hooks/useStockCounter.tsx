@@ -6,10 +6,12 @@ export const useStockCounter = (productId: number, productPrice: number) => {
     // Estado global del stock inicial
     const initialStock = useStore((state) => state.stock[productId]);
 
+    const stock = initialStock === 0 ? 1 : initialStock;
+
 
 
     // Maneja el contador localmente
-    const [count, { increment, decrement }] = useCounter(initialStock, {
+    const [count, { increment, decrement }] = useCounter(stock, {
         min: 0,
         max: 10,
     });

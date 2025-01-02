@@ -6,8 +6,11 @@ import { ProductType } from "@/app/types/typesProduct";
 
 export function ButtonAdd({ data }: { data: ProductType }) {
     const addProducts = useStore((state) => state.addProduct);
-    const stock = useStore((state) => state.stock[data.id]);
+    let stock = useStore((state) => state.stock[data.id]);
     const storeProducts = useStore((state) => state.products);
+
+    if (stock === 0) stock = 1;
+
 
     const handleAdd = () => {
         const isProductInCart = storeProducts.some(product => product.id === data.id);

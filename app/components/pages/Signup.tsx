@@ -9,7 +9,17 @@ import { useTransitionRouter } from 'next-view-transitions';
 
 export const Signup = () => {
   const router = useTransitionRouter();
+  const handleLogin = async () => {
+    const { data, error } = await supabase.auth.signInWithOAuth({
+      provider: 'google',
+    })
 
+    if (error) {
+      console.error('Error registerd in:', error.message)
+    } else {
+      console.log('registed in data:', data)
+    }
+  }
   const [error, submitAction, isPending] = useActionState(
     async (previousState: { error: string } | null, formData: FormData) => {
       const email = formData.get("email");
@@ -148,6 +158,7 @@ export const Signup = () => {
         {/* Google Signup */}
         <button
           className="flex items-center justify-center gap-2  w-full py-3 bg-white border border-gray-300 rounded-lg shadow-sm hover:bg-gray-100 transition-colors focus:outline-none focus:ring-2 focus:ring-gray-300"
+          onClick={handleLogin}
         >
           <GoogleIcon />
 

@@ -10,6 +10,19 @@ export const Login = () => {
 
   const router = useTransitionRouter()
 
+  const handleLogin = async () => {
+    const { data, error } = await supabase.auth.signInWithOAuth({
+      provider: 'google',
+    })
+
+    if (error) {
+      console.error('Error logging in:', error.message)
+    } else {
+      console.log('Logged in data:', data)
+    }
+  }
+
+
   const [error, submitAction, isPending] = useActionState(
     async (previousState: { error: string } | null, formData: FormData) => {
       const { error } = await supabase.auth.signInWithPassword({
@@ -83,7 +96,7 @@ export const Login = () => {
 
           <button
             type="submit"
-            disabled={isPending} // Deshabilitar el botón mientras se procesa la acción
+            disabled={isPending}
             className="w-full py-2 cursor-pointer bg-neutral-800 disabled:bg-neutral-300 text-white rounded-md hover:bg-primary-dark transition-colors"
           >
             {isPending ? 'Iniciando sesión...' : 'Iniciar Sesión'}
@@ -93,6 +106,7 @@ export const Login = () => {
         <div className="w-full mt-4 flex items-center relative justify-center">
           <button
             className="flex items-center gap-2 justify-center cursor-pointer w-full py-2 bg-white border border-gray-300 rounded-md shadow-sm hover:shadow-md hover:bg-gray-100 transition-all"
+            onClick={handleLogin}
           >
             <GoogleIcon />
             <span className="text-sm font-medium text-gray-700">Iniciar sesión con Google</span>

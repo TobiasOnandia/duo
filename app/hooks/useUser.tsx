@@ -12,7 +12,7 @@ export const useUser = () => {
 
         const fetchUser = async () => {
             const { data: { user }, error } = await supabase.auth.getUser();
-            if (error) {
+            if (error && error.status !== 400) {
                 console.error(error);
             } else {
                 setUser(user); // Establece el usuario inicial si existe

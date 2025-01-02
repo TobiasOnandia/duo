@@ -1,7 +1,7 @@
 import { Link } from "next-view-transitions";
 import Image from "next/legacy/image";
-import { DetailsActions } from "../details/DetailsActions";
 import { ProductType } from "@/app/types/typesProduct";
+import { ButtonAdd } from "@/app/lib/ButtonAdd";
 
 
 
@@ -12,7 +12,7 @@ export const Card = ({ data }: { data: ProductType }) => (
         <Image
           src={data.thumbnail}
           alt={data.title}
-          className="rounded-t-lg object-cover hover:scale-110 transition-transform"
+          className="rounded-t-lg object-cover hover:scale-110  transition-transform"
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           layout="fill"
         />
@@ -25,7 +25,15 @@ export const Card = ({ data }: { data: ProductType }) => (
         <p className="text-lg font-semibold">${data.price}</p>
       </header>
       <p className="line-clamp-2 text-gray-600">{data.description}</p>
-      <DetailsActions data={data} />
+      <footer className="flex items-center flex-col sm:flex-row justify-between gap-2">
+        <Link
+          href={`/item/${data.id}`}
+          className="px-4 text-nowrap text-center cursor-pointer hover:scale-105 transition-transform py-2 rounded w-full border border-gray-300 bg-gray-100  hover:bg-gray-200"
+        >
+          Ver detalle
+        </Link>
+        <ButtonAdd data={data} />
+      </footer>
     </div>
   </article>
 );

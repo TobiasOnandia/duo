@@ -10,7 +10,7 @@ export const Header = () => {
 
       <section className="flex items-center gap-4">
         <Link href={"/"} className="hover:underline">Inicio</Link>
-        <Link href={"/"} className="hover:underline">Productos</Link>
+        <Link href={"#productos"} className="hover:underline">Productos</Link>
         <Link href={"/"} className="hover:underline">Nosotros</Link>
       </section>
       <nav>

@@ -8,7 +8,7 @@ export const Main = () => {
         Todos nuestros productos
       </h2>
       <Categories />
-      <section className="flex h-full gap-4 py-4  ">
+      <section id="productos" className="flex h-full gap-4 py-4  ">
         <Product />
       </section>
 

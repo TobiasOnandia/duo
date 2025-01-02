@@ -6,7 +6,6 @@ export const useStockCounter = (productId: number, productPrice: number) => {
     // Estado global del stock inicial
     const initialStock = useStore((state) => state.stock[productId]);
 
-    console.log(initialStock);
 
 
     // Maneja el contador localmente

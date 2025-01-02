@@ -31,15 +31,11 @@ export const Product = () => {
   }
 
   return (
-    <section className="grid place-items-center grid-cols-[repeat(auto-fit,minmax(270px,1fr))] w-full h-full gap-8">
+    <section className="grid place-items-center grid-cols-[repeat(auto-fit,minmax(300px,1fr))] w-full h-full gap-8">
       {filteredProducts.map((product: ProductType) => (
         <Card
           key={product.id}
-          name={product.title}
-          price={product.price}
-          description={product.description}
-          image={product.thumbnail}
-          id={product.id}
+          data={product}
         />
       ))}
     </section>

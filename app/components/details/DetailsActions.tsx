@@ -22,14 +22,14 @@ export function DetailsActions({ data }: { data: ProductType }) {
   };
 
   return (
-    <div className="flex sm:flex-row flex-col gap-4 pt-4">
+    <footer className="flex sm:flex-row  flex-col gap-4 pt-4">
       <button
         onClick={handleAdd}
-        className="flex-1 bg-neutral-500 text-neutral-100 py-2 rounded cursor-pointer hover:scale-105 transition-transform"
+        className="flex-1 text-nowrap px-4 bg-neutral-500 text-neutral-100 py-2 rounded cursor-pointer hover:scale-105 transition-transform"
       >
         Agregar al carrito
       </button>
       <ButtonBuy data={data} />
-    </div>
+    </footer>
   );
 }

@@ -2,10 +2,16 @@ import { useStore } from "@store/Store.products";
 
 export const OrderSummary = () => {
   const price = useStore((state) => state.price);
+  const stock = useStore((state) => state.stock);
+  const shippingCost = 100
 
-  const subTotal =
-    Object.values(price).reduce((acc, curr) => acc + curr, 0) || 0;
-  const shippingCost = 1000;
+  // Calcular el subtotal considerando cantidad y precio
+  const subTotal = Object.keys(price).reduce((acc, productId) => {
+    const productPrice = price[Number(productId)];
+    const productQuantity = stock[Number(productId)] || 0; // Obtener la cantidad del stock
+    return acc + productPrice * productQuantity; // Multiplicar precio por cantidad
+  }, 0);
+
 
   const handleClick = async () => {
     try {

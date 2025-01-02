@@ -9,6 +9,7 @@ export const useStockCounter = (productId: number, productPrice: number) => {
     const stock = initialStock === 0 ? 1 : initialStock;
 
 
+    console.log("stock", stock);
 
     // Maneja el contador localmente
     const [count, { increment, decrement }] = useCounter(stock, {

@@ -15,7 +15,7 @@ function HeroContent() {
           Duo Indumentaria
         </h1>
         <p className="text-white font-semibold text-lg md:text-xl mb-4">
-          Encontra todo lo que necesitas
+          Seguinos y Encontra todo lo que necesitas
         </p>
         <div className="w-full max-w-md md:max-w-2xl">
           <div className="bg-white rounded-lg shadow-lg p-2 md:p-4 flex items-center">

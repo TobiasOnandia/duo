@@ -14,7 +14,7 @@ export const Footer = () => {
               Tu tienda online de confianza. Encuentra los mejores productos al mejor precio.
             </p>
             <p className="text-sm text-gray-400">
-              Dirección: Calle Falsa 123, Ciudad, País.
+              Dirección: Calle 25 de Mayo 466, La Pampa, Argentina.
             </p>
             <p className="text-sm text-gray-400">Teléfono: +123 456 789</p>
             <p className="text-sm text-gray-400">Email: contacto@duo.com</p>
@@ -40,7 +40,7 @@ export const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link href="#" className="text-sm text-white hover:text-gray-400 transition">
+                <Link href="/envios-y-devoluciones" className="text-sm text-white hover:text-gray-400 transition">
                   Envíos y devoluciones
                 </Link>
               </li>

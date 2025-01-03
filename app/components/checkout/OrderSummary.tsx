@@ -25,7 +25,6 @@ export const OrderSummary = () => {
               title: product.title,
               quantity: stock[product.id] || 1,
               unit_price: price[product.id],
-              total: subTotal + shippingCost,
             }))
           ,
           order_id: "1111",

@@ -11,7 +11,6 @@ export interface TypesRequest {
   title: string,
   unit_price: number,
   quantity: number,
-  total: number
 }
 
 export async function POST( req : Request) {

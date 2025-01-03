@@ -11,7 +11,6 @@ export const Main = () => {
       <section id="productos" className="flex h-full gap-4 py-4  ">
         <Product />
       </section>
-
     </main>
   );
 };

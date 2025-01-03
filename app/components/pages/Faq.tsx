@@ -1,6 +1,13 @@
 'use client'
 
+import { useState } from 'react';
+import { ArrowBottom } from '@components/common/Icons';
+
+
 export default function FAQPage() {
+    const [searchTerm, setSearchTerm] = useState('');
+    const [openIndex, setOpenIndex] = useState<number | null>(null);
+
     const faqs = [
         {
             question: "¿Cuáles son los métodos de pago aceptados?",
@@ -52,32 +59,65 @@ export default function FAQPage() {
         }
     ];
 
+    const filteredFaqs = faqs.filter(faq =>
+        faq.question.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        faq.answer.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+
+    const toggleFaq = (index: number) => {
+        setOpenIndex(openIndex === index ? null : index);
+    };
+
     return (
-        <main className="container mx-auto px-4 py-8">
-            <header className="text-center">
-                <h1 className="text-3xl font-bold mb-6">Preguntas Frecuentes</h1>
-                <p className="text-gray-600">Encuentra respuestas a las preguntas más comunes sobre nuestros servicios.</p>
+        <main className="container mx-auto mt-24 rounded-3xl shadow-xl w-[95%] md:3/4  px-4 py-8 min-h-screen bg-gradient-to-b from-gray-50 to-white">
+            <header className="text-center mb-12">
+                <h1 className="text-4xl md:text-5xl font-bold mb-4 text-gray-800">Preguntas Frecuentes</h1>
+                <p className="text-xl text-gray-600 max-w-2xl mx-auto">Encuentra respuestas a las preguntas más comunes sobre nuestros servicios.</p>
             </header>
 
-            <section className="w-full max-w-2xl mx-auto" aria-labelledby="faq-heading">
-                <h2 id="faq-heading" className="sr-only">
-                    Sección de preguntas frecuentes
-                </h2>
-                {faqs.map((faq, index) => (
-                    <details
+            <div className="max-w-3xl mx-auto mb-8 relative">
+                <input
+                    type="text"
+                    placeholder="Buscar preguntas..."
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                    className="w-full p-4 pr-12 text-gray-700 bg-white border border-gray-300 rounded-full shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    aria-label="Buscar preguntas frecuentes"
+                />
+            </div>
+
+            <section className="w-full max-w-3xl mx-auto space-y-4" aria-labelledby="faq-heading">
+                <h2 id="faq-heading" className="sr-only">Sección de preguntas frecuentes</h2>
+                {filteredFaqs.map((faq, index) => (
+                    <div
                         key={index}
-                        className="mb-4 border-b border-gray-300"
-                        role="group"
+                        className="bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300 ease-in-out"
                     >
-                        <summary className="cursor-pointer px-4 py-2 font-medium text-gray-700 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-indigo-500">
-                            {faq.question}
-                        </summary>
-                        <div className="px-4 py-2 text-gray-600">
-                            {faq.answer}
+                        <button
+                            onClick={() => toggleFaq(index)}
+                            className="w-full text-left p-6 focus:outline-none  focus:ring-inset"
+                            aria-expanded={openIndex === index}
+                            aria-controls={`faq-answer-${index}`}
+                        >
+                            <div className="flex justify-between items-center">
+                                <h3 className="text-lg font-semibold text-gray-800">{faq.question}</h3>
+                                <ArrowBottom />
+                            </div>
+                        </button>
+                        <div
+                            id={`faq-answer-${index}`}
+                            className={`px-6 overflow-hidden transition-all duration-300 ease-in-out ${openIndex === index ? 'max-h-96 pb-6' : 'max-h-0'
+                                }`}
+                        >
+                            <p className="text-gray-600">{faq.answer}</p>
                         </div>
-                    </details>
+                    </div>
                 ))}
+                {filteredFaqs.length === 0 && (
+                    <p className="text-center text-gray-600 py-8">No se encontraron resultados para tu búsqueda.</p>
+                )}
             </section>
         </main>
     );
 }
+

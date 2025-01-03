@@ -12,8 +12,8 @@ function CategoryContent({ data }: { data: ProductsType | null | undefined }) {
   return (
     <Suspense fallback={<div>Loading...</div>}>
 
-      <section className="mt-2 flex sm:flex-row flex-col-reverse gap-2 sm:items-center  justify-between">
-        <article className="hidden lg:flex items-center gap-4">
+      <section className="mt-2 flex  gap-2 sm:items-center  justify-between">
+        <article className="hidden lg:flex  items-center gap-4">
           {data?.products?.map((product) => product.category)
             .filter((value, index, self) => self.indexOf(value) === index)
             .map((category, index) => (
@@ -35,10 +35,12 @@ function CategoryContent({ data }: { data: ProductsType | null | undefined }) {
               </label>
             ))}
         </article>
+        <div className="lg:hidden md:block hidden ">
+          <CategoriesMobile />
 
-        {/* Mobile Categories */}
-        <CategoriesMobile />
+        </div>
         <Search />
+
       </section>
     </Suspense>
   );

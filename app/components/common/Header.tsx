@@ -5,6 +5,7 @@ import { NavItemServer } from "@components/header/NavItem.server";
 import { Link } from "next-view-transitions";
 import { useState } from "react";
 import { MenuIcon, X } from "./Icons";
+import { CategoriesMobile } from "../mobile/Category.mobile";
 
 export const Header = () => {
   const [open, setOpen] = useState(false);
@@ -25,11 +26,12 @@ export const Header = () => {
 
       {/* Navigation for mobile */}
       {open && (
-        <nav className="absolute top-14 right-0 left-0 bg-white shadow-lg rounded-b-3xl md:hidden">
+        <nav className="absolute top-14 right-0 left-0  bg-white shadow-lg rounded-b-3xl md:hidden">
           <section className="flex flex-col p-4 gap-4">
             <Link href="/" className="text-gray-600 hover:text-gray-800 font-semibold transition-colors">Inicio</Link>
             <Link href="#productos" className="text-gray-600 hover:text-gray-800 font-semibold transition-colors">Productos</Link>
             <Link href="/" className="text-gray-600 hover:text-gray-800 font-semibold transition-colors">Nosotros</Link>
+            <CategoriesMobile />
           </section>
           <ul className="flex items-center pb-6 px-4">
             <NavItemServer />

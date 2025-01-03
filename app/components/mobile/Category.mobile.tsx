@@ -9,44 +9,43 @@ function CategoryContent({ data, isOpen, setIsOpen }: { data: ProductsType, isOp
   const search = useSearch();
 
   return (
-    <section className="relative lg:hidden block">
+    <nav className="relative">
       {/* Botón de Categorías */}
       <button
-        className="flex items-center gap-2 px-4 py-2 cursor-pointer hover:bg-gray-200 rounded-full  transition-all"
+        className="flex items-center gap-2 py-2 text-gray-600 font-semibold hover:text-black transition-all"
         onClick={() => setIsOpen(!isOpen)}
       >
-        <span className="text-sm font-medium">Categorías</span>
-        <span className="sm:hiden">
+        Categorías
+        <span className={`transition-transform ${isOpen ? "rotate-180" : ""}`}>
           <ArrowBottom />
         </span>
       </button>
 
-      {/* Menú flotante */}
+      {/* Menú desplegable */}
       {isOpen && (
         <div
-          className="absolute bg-white w-64 top-10 left-0 p-4 rounded-lg shadow-lg border border-gray-200 z-30 animate-slide-down"
+          className="absolute bg-white w-64 mt-2 rounded-lg shadow-md border border-gray-200 z-30"
         >
-          <h3 className="text-lg font-semibold text-gray-800 mb-4 border-b pb-2">Selecciona categoría</h3>
-          <ul className="space-y-3">
+          <ul className="divide-y divide-gray-100">
             {[
               ...new Set((data as ProductsType)?.products.map((product) => product.category)),
             ].map((category, index) => (
               <li key={index}>
                 <button
-                  className="flex cursor-pointer items-center justify-between w-full px-3 py-2 rounded-md text-sm font-medium bg-gray-100 hover:bg-accent hover:text-white transition-all"
+                  className="w-full text-left px-4 py-2 text-sm font-medium hover:bg-gray-100 transition-all"
                   onClick={() => {
                     search(category, "category");
                     setIsOpen(false);
                   }}
                 >
-                  <span>{category}</span>
+                  {category}
                 </button>
               </li>
             ))}
           </ul>
         </div>
       )}
-    </section>
+    </nav>
   );
 }
 

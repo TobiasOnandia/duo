@@ -4,6 +4,7 @@ import { useSearch, SearchWrapper } from "@hooks/useSearch";
 import { SearchIcon } from "@components/common/Icons";
 
 function HeroContent() {
+  
   const search = useSearch();
   return (
 

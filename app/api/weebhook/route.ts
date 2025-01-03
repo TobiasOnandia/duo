@@ -34,7 +34,7 @@ export async function POST(request: Request) {
       console.log("Pago aprobado:", payment);
 
       // Revalida la página para reflejar los cambios
-      revalidatePath("/");
+      revalidatePath("/order-completion");
 
       return NextResponse.json({ message: "Pago procesado exitosamente" });
     } else {

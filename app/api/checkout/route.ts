@@ -15,12 +15,7 @@ export interface TypesRequest {
 
 export async function POST( req : Request) {
   const body = await req.json();
-
   const products = body.items
-
-  console.log(products)
-
-
   try {
     const preference = {
       items: products.map((product: TypesRequest ) => ({
@@ -34,14 +29,17 @@ export async function POST( req : Request) {
         direccion: "Calle 123",
         telefono: "123456789",
       },
-      notification_url: "https://z0f1c4j8-3000.brs.devtunnels.ms/"
+      notification_url: "https://z0f1c4j8-3000.brs.devtunnels.ms/",
+      back_urls: {
+        success: "https://z0f1c4j8-3000.brs.devtunnels.ms/order-completion",
+        failure: "https://z0f1c4j8-3000.brs.devtunnels.ms/failure",
+        pending: "https://z0f1c4j8-3000.brs.devtunnels.ms/pending",
+      },
+      auto_return: "approved",
     };
-    
     const response = await new Preference(mercadoPago).create({
       body: preference,
     });
-    
-
 
     return NextResponse.json({ init_point: response.init_point });
   } catch (error) {

@@ -1,3 +1,6 @@
+import { Link } from "next-view-transitions";
+import { IgIcon } from "./Icons";
+
 export const Footer = () => {
   return (
     <footer className="bg-neutral-900 rounded-t-lg mt-8 text-white">
@@ -32,14 +35,14 @@ export const Footer = () => {
                 </a>
               </li>
               <li>
-                <a href="#" className="text-sm text-white hover:text-gray-400 transition">
+                <Link href="/preguntas-frecuentes" className="text-sm text-white hover:text-gray-400 transition">
                   Preguntas frecuentes
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="text-sm text-white hover:text-gray-400 transition">
+                <Link href="#" className="text-sm text-white hover:text-gray-400 transition">
                   Envíos y devoluciones
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
@@ -49,24 +52,25 @@ export const Footer = () => {
             <h4 className="text-lg font-bold">Síguenos</h4>
             <ul className="flex flex-col space-x-4">
               <li>
-                <a
-                  href="#"
+                <Link
+                  href="https://www.facebook.com/profile.php?id=61570252746696"
                   className="text-white hover:text-gray-400 transition"
                   aria-label="Facebook"
+                  target="_blank"
                 >
-                  <i className="fab fa-facebook-f text-2xl"></i>
                   Facebook
-                </a>
+                </Link>
               </li>
-              <li>
-                <a
-                  href="#"
+              <li className="flex items-center gap-2">
+                <Link
+                  href="https://www.instagram.com/duo.indumentariasr/"
                   className="text-white hover:text-gray-400 transition"
                   aria-label="Instagram"
+                  target="_blank"
+
                 >
-                  <i className="fab fa-instagram text-2xl"></i>
                   Instagram
-                </a>
+                </Link>
               </li>
             </ul>
           </div>

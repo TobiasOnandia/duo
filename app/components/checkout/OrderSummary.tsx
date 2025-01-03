@@ -3,6 +3,7 @@ import { useStore } from "@store/Store.products";
 export const OrderSummary = () => {
   const price = useStore((state) => state.price);
   const stock = useStore((state) => state.stock);
+  const products = useStore(state => state.products)
   const shippingCost = 100
 
   // Calcular el subtotal considerando cantidad y precio
@@ -18,19 +19,15 @@ export const OrderSummary = () => {
       const response = await fetch("/api/checkout", {
         method: "POST",
         body: JSON.stringify({
-          items: [{
-            id: "1234",
-            title: "Test",
-            quantity: 1,
-            unit_price: 200
-          },
-          {
-            id: "1235",
-            title: "Test 2",
-            quantity: 1,
-            unit_price: 300
-          }
-          ],
+          items:
+            products.map(product => ({
+              id: product.id,
+              title: product.title,
+              quantity: stock[product.id] || 1,
+              unit_price: price[product.id],
+              total: subTotal + shippingCost,
+            }))
+          ,
           order_id: "1111",
           headers: {
             "Content-Type": "application/json",

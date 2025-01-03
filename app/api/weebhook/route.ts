@@ -13,7 +13,7 @@ export async function POST(request: Request) {
     const body = await request.json();
 
     // Obtenemos el ID del pago desde la notificación
-    const paymentId = body?.data?.id;
+    const paymentId = body?.items?.id;
 
     if (!paymentId) {
       return NextResponse.json(

@@ -6,17 +6,29 @@ const mercadoPago = new  MercadoPagoConfig({
   accessToken: process.env.MP_ACCESS_TOKEN!,
 });
 
-export async function POST() {
+export interface TypesRequest {
+  id: number,
+  title: string,
+  unit_price: number,
+  quantity: number,
+}
+
+export async function POST( req : Request) {
+  const body = await req.json();
+
+  const products = body.items
+
+  console.log(products)
+
+
   try {
     const preference = {
-      items: [
-        {
-          id: "1234",
-          title: "Test",
-          quantity: 1,
-          unit_price: 100,
-        },
-      ],
+      items: products.map((product: TypesRequest ) => ({
+        id: product.id,
+        title: product.title,
+        quantity: product.quantity,
+        unit_price: product.unit_price,
+      })),
       metadata: {
         order_id: "1234",
         direccion: "Calle 123",

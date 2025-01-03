@@ -1,5 +1,4 @@
 import { Link } from "next-view-transitions";
-import { IgIcon } from "./Icons";
 
 export const Footer = () => {
   return (

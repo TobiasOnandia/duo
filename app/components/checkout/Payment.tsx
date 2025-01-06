@@ -9,7 +9,7 @@ export const Payment = () => {
   const stock = useStore((state) => state.stock);
   const price = useStore((state) => state.price);
 
-  const [error, submitAction, isPending] = useActionState(
+  const [error, submitAction] = useActionState(
     async (_previousState: unknown, formData: FormData) => {
       const fullName = formData.get("fullName");
       const email = formData.get("email");
@@ -69,7 +69,6 @@ export const Payment = () => {
     <main className="w-[95%] h-full p-4 rounded-2xl border border-primary mb-10 mt-24 md:w-4/5 mx-auto bg-white shadow-lg">
       <form action={submitAction} className="flex flex-col lg:flex-row">
         <fieldset className="flex-1 lg:mx-4  ">
-          <h2 className="text-lg mb-4 font-bold">Selecciona tu forma de pago</h2>
           <AddressUser />
         </fieldset>
         <CardCheckoutMobile />

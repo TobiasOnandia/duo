@@ -70,4 +70,5 @@ export const useStore = create<StoreTypes>((set) => ({
     set((state) => ({
       colors: { ...state.colors, [productId]: colors },
     })),
+
 }));

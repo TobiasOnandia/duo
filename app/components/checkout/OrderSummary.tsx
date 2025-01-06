@@ -1,10 +1,16 @@
+import { ButtonPayment } from "@lib/ButtonPayment";
 import { useStore } from "@store/Store.products";
+import { Link } from "next-view-transitions";
+import { usePathname } from "next/navigation";
 
 export const OrderSummary = () => {
   const price = useStore((state) => state.price);
   const stock = useStore((state) => state.stock);
-  const products = useStore(state => state.products)
   const shippingCost = 100
+  const pathname = usePathname()
+
+  const isPayment = pathname.includes('/checkout')
+
 
   // Calcular el subtotal considerando cantidad y precio
   const subTotal = Object.keys(price).reduce((acc, productId) => {
@@ -14,37 +20,6 @@ export const OrderSummary = () => {
   }, 0);
 
 
-  const handleClick = async () => {
-    try {
-      const response = await fetch("/api/checkout", {
-        method: "POST",
-        body: JSON.stringify({
-          items:
-            products.map(product => ({
-              id: product.id,
-              title: product.title,
-              quantity: stock[product.id] || 1,
-              unit_price: price[product.id],
-            }))
-          ,
-          order_id: "1111",
-          headers: {
-            "Content-Type": "application/json",
-          }
-        }),
-      });
-
-      if (!response.ok) {
-        throw new Error("Failed to create preference");
-      }
-
-      const { init_point } = await response.json();
-      window.location.href = init_point; // Redirige a la página de pago de MercadoPago
-    } catch (error) {
-      console.error("Error during payment process:", error);
-      alert("Error al iniciar el proceso de pago. Inténtalo de nuevo.");
-    }
-  };
 
   return (
     <section className="rounded-lg border h-fit border-gray-300 p-6 flex flex-[0.3] flex-col gap-6 bg-white shadow-md">
@@ -62,11 +37,16 @@ export const OrderSummary = () => {
           ${subTotal + shippingCost}
         </span>
       </div>
-      <button
-        onClick={handleClick}
-        className="w-full text-center py-3 text-lg cursor-pointer font-bold text-white bg-neutral-900 rounded-lg hover:bg-neutral-700 focus:ring-2 focus:ring-neutral-500 focus:outline-none transition-colors">
-        Comprar Ahora
-      </button>
+
+      {
+        isPayment ? (
+          <Link href={'/payment'}
+            className={`w-full   text-center py-3 text-lg cursor-pointer font-bold disabled:bg-gray-400 disabled:cursor-default text-white bg-neutral-900 rounded-lg hover:bg-neutral-700 focus:ring-2 focus:ring-neutral-500 focus:outline-none transition-colors`}>
+            Comprar Ahora
+          </Link>
+        )
+          : <ButtonPayment />
+      }
     </section>
   );
 };

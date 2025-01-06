@@ -42,7 +42,7 @@ export const Header = () => {
       {/* Desktop Navigation */}
       <section className="hidden md:flex items-center space-x-6">
         <Link href="/" className="text-gray-600 hover:underline transition-colors">Inicio</Link>
-        <Link href="#productos" className="text-gray-600 hover:underline transition-colors">Productos</Link>
+        <Link href="/#productos" className="text-gray-600 hover:underline transition-colors">Productos</Link>
         <Link href="/" className="text-gray-600 hover:underline transition-colors">Nosotros</Link>
       </section>
 

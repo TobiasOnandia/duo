@@ -18,6 +18,7 @@ export async function POST( req : Request) {
   const products = body.items
   const userInfo = body.metadata
   try {
+
     const preference = {
       items: products.map((product: TypesRequest ) => ({
         id: product.id,
@@ -26,7 +27,7 @@ export async function POST( req : Request) {
         unit_price: product.unit_price,
       })),
       metadata: {
-        order_id: "1234",
+        order_id: userInfo.order_id,
         fullName: userInfo.fullName,
         email: userInfo.email,
         address: userInfo.address,
@@ -35,9 +36,9 @@ export async function POST( req : Request) {
         postalCode: userInfo.postalCode,
         phone: userInfo.phone,
       },
-      notification_url: "https://z0f1c4j8-3000.brs.devtunnels.ms/",
+      notification_url: "https://z0f1c4j8-3000.brs.devtunnels.ms/api/notification_url",
       back_urls: {
-        success: "https://z0f1c4j8-3000.brs.devtunnels.ms/order-completion",
+        success: `https://z0f1c4j8-3000.brs.devtunnels.ms/order/${body.order_id}`,
         failure: "https://z0f1c4j8-3000.brs.devtunnels.ms/failure",
         pending: "https://z0f1c4j8-3000.brs.devtunnels.ms/pending",
       },
@@ -46,8 +47,6 @@ export async function POST( req : Request) {
     const response = await new Preference(mercadoPago).create({
       body: preference,
     });
-    console.log(preference)
-
     return NextResponse.json({ init_point: response.init_point });
   } catch (error) {
     console.error("Error creating MercadoPago preference:", error);

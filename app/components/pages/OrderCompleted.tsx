@@ -2,8 +2,9 @@ import { Link } from "next-view-transitions"
 import { PackageIcon, TruckIcon } from "../common/Icons"
 import Image from "next/image"
 import CheckCircle from "@/public/checked.avif"
+import { OrderType } from "@/app/types/DatabaseTypes"
 
-export const OrderCompleted = () => {
+export const OrderCompleted = (orders: OrderType) => {
     return (
         <main className="container mx-auto mt-16 px-4 py-8">
             <div className="max-w-2xl mx-auto bg-white shadow-md rounded-lg overflow-hidden" role="alert">
@@ -18,11 +19,11 @@ export const OrderCompleted = () => {
                     <h2 className="font-semibold mb-2 text-center">Resumen del pedido</h2>
                     <div className="flex justify-between px-4" aria-label="Resumen del pedido">
                         <span>Número de pedido:</span>
-                        <span className="font-medium">#12345</span>
+                        <span className="font-medium"># {orders.order_id}</span>
                     </div>
                     <div className="flex justify-between px-4">
                         <span>Total:</span>
-                        <span className="font-medium">$99.99</span>
+                        <span className="font-medium">$ {orders.total}</span>
                     </div>
                 </section>
                 <section className="px-4 py-4">
@@ -30,9 +31,8 @@ export const OrderCompleted = () => {
                     <div className="flex items-start space-x-2">
                         <TruckIcon aria-hidden="true" />
                         <div>
-                            <p className="font-medium">Juan Pérez</p>
-                            <p>Calle Principal 123</p>
-                            <p>Ciudad, Estado 12345</p>
+                            <p className="font-medium">{orders.address}</p>
+                            <p>{orders.city},{orders.state} {orders.postalCode}</p>
                         </div>
                     </div>
                 </section>

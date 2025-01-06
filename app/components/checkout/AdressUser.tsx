@@ -5,7 +5,7 @@ export const AddressUser = () => {
 
   return (
     <fieldset className="grid grid-cols-1 md:grid-cols-2 border p-4 border-primary rounded-lg gap-4 mt-4">
-      <legend className="mb-4 text-lg font-bold col-span-2">Dirección de entrega</legend>
+      <legend className=" text-lg font-bold col-span-2">Dirección de entrega</legend>
       <label htmlFor="full-name" className="col-span-2">
         <span className="block text-sm font-semibold mb-1">Nombre completo</span>
         <input

@@ -16,6 +16,7 @@ export interface TypesRequest {
 export async function POST( req : Request) {
   const body = await req.json();
   const products = body.items
+  const userInfo = body.metadata
   try {
     const preference = {
       items: products.map((product: TypesRequest ) => ({
@@ -26,8 +27,13 @@ export async function POST( req : Request) {
       })),
       metadata: {
         order_id: "1234",
-        direccion: "Calle 123",
-        telefono: "123456789",
+        fullName: userInfo.fullName,
+        email: userInfo.email,
+        address: userInfo.address,
+        city: userInfo.city,
+        state: userInfo.state,
+        postalCode: userInfo.postalCode,
+        phone: userInfo.phone,
       },
       notification_url: "https://z0f1c4j8-3000.brs.devtunnels.ms/",
       back_urls: {
@@ -40,6 +46,7 @@ export async function POST( req : Request) {
     const response = await new Preference(mercadoPago).create({
       body: preference,
     });
+    console.log(preference)
 
     return NextResponse.json({ init_point: response.init_point });
   } catch (error) {

@@ -4,7 +4,7 @@ import { useSearch, SearchWrapper } from "@hooks/useSearch";
 import { SearchIcon } from "@components/common/Icons";
 
 function HeroContent() {
-  
+
   const search = useSearch();
   return (
 
@@ -15,9 +15,7 @@ function HeroContent() {
         <h1 className="text-[#ffffff] text-4xl md:text-6xl lg:text-8xl font-bold mb-6">
           Duo Indumentaria
         </h1>
-        <p className="text-white font-semibold text-lg md:text-xl mb-4">
-          Seguinos y Encontra todo lo que necesitas
-        </p>
+
         <div className="w-full max-w-md md:max-w-2xl">
           <div className="bg-white rounded-lg shadow-lg p-2 md:p-4 flex items-center">
             <input

@@ -1,10 +1,7 @@
 
 export const AddressUser = () => {
-
-
-
   return (
-    <fieldset className=" flex-1 lg:mx-4 grid grid-cols-1 md:grid-cols-2 border p-4 border-primary rounded-lg gap-4 ">
+    <fieldset className=" flex-1 lg:mx-4 grid grid-cols-1 md:grid-cols-2 border p-4 border-gray-300 rounded-lg gap-4 ">
       <legend className=" text-lg font-bold col-span-2">Dirección de entrega</legend>
       <label htmlFor="full-name" className="col-span-2">
         <span className="block text-sm font-semibold mb-1">Nombre completo</span>

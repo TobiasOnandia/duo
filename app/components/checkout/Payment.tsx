@@ -1,5 +1,4 @@
 "use client";
-import { ButtonPayment } from "@/app/lib/ButtonPayment";
 import { useStore } from "@/app/store/Store.products";
 import { AddressUser } from "@components/checkout/AdressUser";
 import { CardCheckoutMobile } from "@components/checkout/CardCheckoutMobile";
@@ -20,6 +19,9 @@ export const Payment = () => {
       const postalCode = formData.get("postalCode");
       const phone = formData.get("phone");
 
+      if (error) {
+        console.log(error)
+      }
 
       try {
         const response = await fetch("/api/checkout", {
@@ -65,14 +67,13 @@ export const Payment = () => {
 
   return (
     <main className="w-[95%] h-full p-4 rounded-2xl border border-primary mb-10 mt-24 md:w-4/5 mx-auto bg-white shadow-lg">
-      <article className="flex flex-col lg:flex-row">
-        <form action={submitAction} className="flex-1 lg:mx-4  ">
+      <form action={submitAction} className="flex flex-col lg:flex-row">
+        <fieldset className="flex-1 lg:mx-4  ">
           <h2 className="text-lg mb-4 font-bold">Selecciona tu forma de pago</h2>
           <AddressUser />
-        </form>
+        </fieldset>
         <CardCheckoutMobile />
-
-      </article>
+      </form>
     </main>
   );
 };

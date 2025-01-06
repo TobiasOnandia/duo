@@ -7,7 +7,7 @@ export const CardCheckoutMobile = () => {
   const products = useStore((state) => state.products);
 
   return (
-    <div className="flex-[0.8]  py-4">
+    <section className="flex-[0.8]  py-4">
       {
         products.length === 0 && <h3 className="flex items-center justify-center pt-8  text-gray-400">No hay productos en el carrito</h3>
       }
@@ -22,6 +22,6 @@ export const CardCheckoutMobile = () => {
         })
       }
       <OrderSummary />
-    </div>
+    </section>
   )
 }

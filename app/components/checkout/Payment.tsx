@@ -3,6 +3,7 @@ import { useStore } from "@/app/store/Store.products";
 import { AddressUser } from "@components/checkout/AdressUser";
 import { CardCheckoutMobile } from "@components/checkout/CardCheckoutMobile";
 import { useActionState } from "react";
+import { OrderSummary } from "./OrderSummary";
 
 export const Payment = () => {
   const products = useStore(state => state.products)
@@ -67,11 +68,13 @@ export const Payment = () => {
 
   return (
     <main className="w-[95%] h-full p-4 rounded-2xl border border-primary mb-10 mt-24 md:w-4/5 mx-auto bg-white shadow-lg">
+      <h3 className="text-lg font-bold px-4">Tus Productos</h3>
+      <CardCheckoutMobile />
       <form action={submitAction} className="flex flex-col lg:flex-row">
-        <fieldset className="flex-1 lg:mx-4  ">
-          <AddressUser />
-        </fieldset>
-        <CardCheckoutMobile />
+        <AddressUser />
+        <section className="flex-[0.8]  py-4 pr-4">
+          <OrderSummary />
+        </section>
       </form>
     </main>
   );

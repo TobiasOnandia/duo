@@ -74,8 +74,9 @@ export const OrderCompleted = (orders: OrderType) => {
                 onClick={handleClick}
                 className="px-4 py-2 cursor-pointer bg-red-300"
             >
-                Enviar
+                Enviar supabase
             </button>
+
         </main>
     )
 }

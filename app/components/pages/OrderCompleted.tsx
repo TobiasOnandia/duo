@@ -1,10 +1,31 @@
+'use client'
 import { Link } from "next-view-transitions"
 import { PackageIcon, TruckIcon } from "../common/Icons"
 import Image from "next/image"
 import CheckCircle from "@/public/checked.avif"
 import { OrderType } from "@/app/types/DatabaseTypes"
+import { supabase } from "@/app/lib/supabaseClient"
 
 export const OrderCompleted = (orders: OrderType) => {
+
+    const handleClick = async () => {
+        const { error } = await supabase.from('orders').insert({
+            order_id: '123123',
+            fullName: 'tobiasonandia',
+            email: 'tOBIASONANDIA0@GMAIL.COM',
+            address: 'FLORE',
+            city: 'LA PAMPA',
+            state: 'SANTA ROSA',
+            postalCode: '6300',
+            phone: '252305235',
+            total: '12312',
+        });
+
+        if (error) {
+            console.log(error)
+        }
+    }
+
     return (
         <main className="container mx-auto mt-16 px-4 py-8">
             <div className="max-w-2xl mx-auto bg-white shadow-md rounded-lg overflow-hidden" role="alert">
@@ -49,6 +70,12 @@ export const OrderCompleted = (orders: OrderType) => {
                     </button>
                 </footer>
             </div>
+            <button
+                onClick={handleClick}
+                className="px-4 py-2 cursor-pointer bg-red-300"
+            >
+                Enviar
+            </button>
         </main>
     )
 }

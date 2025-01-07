@@ -36,11 +36,11 @@ export async function POST( req : Request) {
         postalCode: userInfo.postalCode,
         phone: userInfo.phone,
       },
-      notification_url: "https://z0f1c4j8-3000.brs.devtunnels.ms/api/notification_url",
+      notification_url: "https://duo-plum.vercel.app/api/notification_url",
       back_urls: {
-        success: `https://z0f1c4j8-3000.brs.devtunnels.ms/order/${body.order_id}`,
-        failure: "https://z0f1c4j8-3000.brs.devtunnels.ms/failure",
-        pending: "https://z0f1c4j8-3000.brs.devtunnels.ms/pending",
+        success: `https://duo-plum.vercel.app/order/${body.order_id}`,
+        failure: "https://duo-plum.vercel.app/failure",
+        pending: "https://duo-plum.vercel.app/pending",
       },
       auto_return: "approved",
     };

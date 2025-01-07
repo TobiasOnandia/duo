@@ -1,6 +1,7 @@
 'use client';
 
 import Image from "next/image";
+import background from "@/public/checked.avif"
 
 export default function AboutMe() {
     return (
@@ -21,7 +22,7 @@ export default function AboutMe() {
                     </p>
                     <a
                         href="#contact"
-                        className="inline-block bg-blue-500 text-white font-semibold py-3 px-6 rounded-full hover:bg-blue-600 transition duration-300 ease-in-out transform hover:scale-105"
+                        className="inline-block bg-gray-500 text-white font-semibold py-3 px-6 rounded-full hover:bg-blue-600 transition duration-300 ease-in-out transform hover:scale-105"
                     >
                         Contáctanos
                     </a>
@@ -31,7 +32,7 @@ export default function AboutMe() {
                 <div className="lg:w-1/2 relative">
                     <div className="aspect-w-4 aspect-h-3 rounded-lg overflow-hidden shadow-2xl">
                         <Image
-                            src="/team-photo.jpg"
+                            src={background}
                             alt="Equipo de Duo Indumentaria"
                             layout="fill"
                             objectFit="cover"

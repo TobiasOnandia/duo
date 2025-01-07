@@ -1,4 +1,4 @@
-import { supabase } from "@/app/lib/supabaseClient";
+import { createClient } from "@lib/supabaseServer";
 import MercadoPagoConfig, { Payment } from "mercadopago";
 import { NextResponse } from "next/server";
 
@@ -9,6 +9,9 @@ const mercadoPago = new  MercadoPagoConfig({
 });
 
 export async function POST(req: Request) {
+
+    const supabase =  await createClient()
+
     try {
         // Extraer parámetros enviados por MercadoPago
         const url = new URL(req.url);

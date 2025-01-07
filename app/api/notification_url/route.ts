@@ -52,18 +52,23 @@ const sendMessage = async (phoneNumber: string, templateParams: string[]) => {
 };
 
 export async function POST(req: Request) {
-
   try {
+    const { data, error } = await supabase.auth.getSession();
+    
+    if (error || !data.session) {
+      return NextResponse.json({ error: "Usuario no autenticado" }, { status: 401 });
+    }
+
+    const userId = data.session.user.id;
+
     // Extraer parámetros enviados por MercadoPago
     const url = new URL(req.url);
-    const paymentId = url.searchParams.get("data.id"); // ID del pago
-    const topic = url.searchParams.get("type"); // Tipo de evento
+    const paymentId = url.searchParams.get("data.id");
+    const topic = url.searchParams.get("type");
 
     console.log("Notificación recibida:", { paymentId, topic });
 
-    // Valida que es un evento de pago
     if (topic === "payment" && paymentId) {
-      // Consulta los detalles del pago usando MercadoPago API
       const paymentDetails = await fetch(
         `https://api.mercadopago.com/v1/payments/${paymentId}`,
         {
@@ -75,10 +80,14 @@ export async function POST(req: Request) {
 
       console.log("Detalles del pago:", paymentDetails);
 
-      // Guarda los datos relevantes en la base de datos
       const payment = await new Payment(mercadoPago).get({ id: paymentId });
 
       if (payment.status === "approved") {
+        // Verifica si el user_id de la metadata coincide con el usuario autenticado
+        if (payment.metadata.user_id !== userId) {
+          return NextResponse.json({ error: "Usuario no autorizado" }, { status: 403 });
+        }
+
         // Inserta el pedido en la base de datos
         const { error } = await supabase.from('orders').insert({
           order_id: payment.metadata.order_id,
@@ -90,13 +99,13 @@ export async function POST(req: Request) {
           postalCode: payment.metadata.postal_code,
           phone: payment.metadata.phone,
           total: payment.transaction_amount,
+          user_id: userId, // Asigna el user_id al pedido
         });
 
         if (error) {
           console.log('Hubo un error con el insert en la base de datos: ', error);
         }
 
-        // Envía el mensaje de WhatsApp
         await sendMessage('+542954526316', [
           'Nombre del cliente',
           'Fecha del turno',

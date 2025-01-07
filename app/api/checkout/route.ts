@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import  { MercadoPagoConfig, Preference } from "mercadopago";
+import { supabase } from "@/app/lib/supabaseClient";
 
 // Configura MercadoPago con tu token de acceso
 const mercadoPago = new  MercadoPagoConfig({
@@ -17,6 +18,13 @@ export async function POST( req : Request) {
   const body = await req.json();
   const products = body.items
   const userInfo = body.metadata
+    const { data, error } = await supabase.auth.getSession();
+    if (error || !data.session) {
+      return NextResponse.json({ error: "Usuario no autenticado" }, { status: 401 });
+    }
+
+    const userId = data.session.user.id;
+
   try {
 
     const preference = {
@@ -35,6 +43,7 @@ export async function POST( req : Request) {
         state: userInfo.state,
         postalCode: userInfo.postalCode,
         phone: userInfo.phone,
+        user_id: userId
       },
       notification_url: "https://z0f1c4j8-3000.brs.devtunnels.ms/api/notification_url",
       back_urls: {

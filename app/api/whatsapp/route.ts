@@ -13,7 +13,7 @@ export async function POST(req: Request) {
     }
 
     // Configuración del mensaje
-    const response = await fetch(`${WHATSAPP_API_URL}/${process.env.WHATSAPP_PHONE_ID}/messages`, {
+    const response = await fetch(`/${process.env.WHATSAPP_PHONE_ID}/messages`, {
       method: "POST",   
       headers: {
         "Content-Type": "application/json",

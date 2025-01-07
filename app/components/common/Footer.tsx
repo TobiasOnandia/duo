@@ -10,7 +10,7 @@ export const Footer = () => {
           <div className="flex flex-col space-y-4 w-full sm:w-1/3">
             <h3 className="text-xl font-bold">Duo</h3>
             <p className="text-sm text-gray-400">
-              Tu tienda online de confianza. Encuentra los mejores productos al mejor precio.
+              Tu tienda online de confianza. Encontra los mejores productos al mejor precio.
             </p>
             <p className="text-sm text-gray-400">
               Dirección: Calle 25 de Mayo 466, La Pampa, Argentina.
@@ -24,9 +24,9 @@ export const Footer = () => {
             <h4 className="text-lg font-bold">Enlaces útiles</h4>
             <ul className="space-y-2">
               <li>
-                <a href="#" className="text-sm text-white hover:text-gray-400 transition">
+                <Link href="#" className="text-sm text-white hover:text-gray-400 transition">
                   Política de privacidad
-                </a>
+                </Link>
               </li>
               <li>
                 <a href="#" className="text-sm text-white hover:text-gray-400 transition">
@@ -48,7 +48,7 @@ export const Footer = () => {
 
           {/* Redes sociales */}
           <div className="flex flex-col space-y-4 w-full sm:w-1/4">
-            <h4 className="text-lg font-bold">Síguenos</h4>
+            <h4 className="text-lg font-bold">Seguinos</h4>
             <ul className="flex flex-col space-x-4">
               <li>
                 <Link

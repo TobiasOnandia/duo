@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@supabase/ssr": "^0.5.2",
     "@supabase/supabase-js": "^2.47.10",
     "@uidotdev/usehooks": "^2.4.1",
     "mercadopago": "^2.1.1",

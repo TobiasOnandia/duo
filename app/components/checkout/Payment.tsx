@@ -5,6 +5,48 @@ import { CardCheckoutMobile } from "@components/checkout/CardCheckoutMobile";
 import { useActionState } from "react";
 import { OrderSummary } from "./OrderSummary";
 
+import { z } from "zod";
+import { toast } from "sonner";
+
+const addressUserSchema = z.object({
+  fullName: z
+    .string()
+    .min(1, "El nombre completo es obligatorio")
+    .regex(/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/, "El nombre completo no puede contener números ni caracteres especiales"),
+
+  email: z.string().email("Debe ser un correo válido"),
+  address: z
+    .string()
+    .min(1, "La dirección es obligatoria")
+    .regex(
+      /^[a-zA-ZáéíóúÁÉÍÓÚñÑ0-9\s,.-]+$/,
+      "La dirección solo puede contener letras, números y algunos caracteres como ',' '.' '-'"
+    ),
+  city: z
+    .string()
+    .min(1, "La ciudad es obligatoria")
+    .regex(/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/, "La ciudad no puede contener números ni caracteres especiales"),
+
+  state: z
+    .string()
+    .min(1, "La provincia es obligatoria")
+    .regex(/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/, "La provincia no puede contener números ni caracteres especiales"),
+
+  postalCode: z
+    .string()
+    .regex(/^\d{4,5}$/, "El código postal debe tener entre 4 y 5 dígitos")
+    .trim(),
+  phone: z
+    .string()
+    .regex(
+      /^\+?[0-9]{10,15}$/,
+      "El teléfono debe ser válido y tener entre 10 y 15 dígitos, con un '+' opcional al inicio"
+    )
+    .trim(),
+});
+
+
+
 export const Payment = () => {
   const products = useStore(state => state.products)
   const stock = useStore((state) => state.stock);
@@ -12,43 +54,33 @@ export const Payment = () => {
 
   const [error, submitAction] = useActionState(
     async (_previousState: unknown, formData: FormData) => {
-      const fullName = formData.get("fullName");
-      const email = formData.get("email");
-      const address = formData.get("address");
-      const city = formData.get("city");
-      const state = formData.get("state");
-      const postalCode = formData.get("postalCode");
-      const phone = formData.get("phone");
-
-      if (error) {
-        console.log(error)
-      }
+      const data = {
+        fullName: formData.get("fullName")?.toString() || "",
+        email: formData.get("email")?.toString() || "",
+        address: formData.get("address")?.toString() || "",
+        city: formData.get("city")?.toString() || "",
+        state: formData.get("state")?.toString() || "",
+        postalCode: formData.get("postalCode")?.toString() || "",
+        phone: formData.get("phone")?.toString() || "",
+      };
 
       try {
+        addressUserSchema.parse(data); // Valida los datos con zod
+
         const response = await fetch("/api/checkout", {
           method: "POST",
           body: JSON.stringify({
-            items:
-              products.map(product => ({
-                id: product.id,
-                title: product.title,
-                quantity: stock[product.id] || 1,
-                unit_price: price[product.id],
-              }))
-            ,
+            items: products.map(product => ({
+              id: product.id,
+              title: product.title,
+              quantity: stock[product.id] || 1,
+              unit_price: price[product.id],
+            })),
             order_id: "1234456",
-            metadata: {
-              fullName: fullName,
-              email: email,
-              address: address,
-              city: city,
-              state: state,
-              postalCode: postalCode,
-              phone: phone
-            },
+            metadata: data,
             headers: {
               "Content-Type": "application/json",
-            }
+            },
           }),
         });
 
@@ -56,11 +88,20 @@ export const Payment = () => {
           throw new Error("Failed to create preference");
         }
 
+        if (error) {
+          console.log(error)
+        }
+
         const { init_point } = await response.json();
-        window.location.href = init_point; // Redirige a la página de pago de MercadoPago
-      } catch (error) {
-        console.error("Error during payment process:", error);
-        alert("Error al iniciar el proceso de pago. Inténtalo de nuevo.");
+        window.location.href = init_point;
+      } catch (err) {
+        if (err instanceof z.ZodError) {
+          err.errors.map(e => toast.error(`${e.message}`))
+
+        } else {
+          toast.error(`Error during payment process: ${err}`);
+          toast.info("Error al iniciar el proceso de pago. Inténtalo de nuevo.");
+        }
       }
     },
     null,

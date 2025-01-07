@@ -17,14 +17,14 @@ function HeroContent() {
         <section className="w-full max-w-md md:max-w-2xl">
           <div className="bg-white rounded-lg shadow-lg p-2 md:p-4 flex items-center">
             <label htmlFor="search-input" className="sr-only">
-              Buscar en Stuffsus
+              Buscar en Duo
             </label>
             <input
               id="search-input"
               type="text"
-              placeholder="Buscar en Stuffsus"
+              placeholder="Buscar en Duo"
               className="flex-1 border-0 focus:ring-0 focus:outline-none text-sm md:text-base p-2 rounded-l-md"
-              aria-label="Buscar en Stuffsus"
+              aria-label="Buscar en Duo"
               onChange={(event) => {
                 search(event.target.value, 'search');
               }}

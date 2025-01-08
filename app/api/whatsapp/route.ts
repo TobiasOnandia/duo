@@ -1,43 +1,46 @@
-import { NextResponse } from "next/server";
+import { NextResponse } from 'next/server';
 
-const WHATSAPP_TOKEN = process.env.WHATSAPP_TOKEN; // Guarda tu token en .env.local
+export async function POST(request: Request) {
+  const body = await request.json();
+  const { phoneNumber, templateParams } = body;
 
-export async function POST(req: Request) {
-  try {
-    const body = await req.json(); // Recibe datos del cliente
-    const { phone, message } = body;
+  const url = `https://graph.facebook.com/v14.0/444271245440118/messages`;
+  const accessToken = 'EAAqKwdkjpU8BO1IBx4l4djYHwiVNzJuv10X85v6OaZAQyrVSgpB8NN01rVSHL60vybMXHjogJ7SfGJiaDfs1NOpIgkZBOtydcvTQhcnNxu4BS3DC2nWj90mPn0gypBVc9YqtpY83z4aoepc7X6lHPYUNEspU9Pq7p4QFfoiEIgt77qJRwZAJUect7key1ZBEi8vsl9y6Rg8xtvd8r6fJaZBfzZCXUiEr3Tyi9sQlQiocwZD';
 
-    // Validar datos
-    if (!phone || !message) {
-      return NextResponse.json({ error: "Número y mensaje son requeridos" }, { status: 400 });
-    }
-
-    // Configuración del mensaje
-    const response = await fetch(`/${process.env.WHATSAPP_PHONE_ID}/messages`, {
-      method: "POST",   
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${WHATSAPP_TOKEN}`,
+  const messageData = {
+    messaging_product: 'whatsapp',
+    to: phoneNumber,
+    type: 'template',
+    template: {
+      name: 'confirmacion_de_turno_reservado',
+      language: {
+        code: 'es',
       },
-      body: JSON.stringify({
-        messaging_product: "whatsapp",
-        to: phone,
-        type: "text",
-        text: { body: message },
-      }),
-    });
+      components: [
+        {
+          type: 'body',
+          parameters: templateParams.map((param: string) => ({
+            type: 'text',
+            text: param,
+          })),
+        },
+      ],
+    },
+  };
 
-    const data = await response.json();
+  const response = await fetch(url, {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(messageData),
+  });
 
-    // Verifica si hay errores
-    if (!response.ok) {
-      console.error("Error al enviar mensaje:", data);
-      return NextResponse.json({ error: data.error.message }, { status: response.status });
-    }
-
-    return NextResponse.json({ message: "Mensaje enviado correctamente", data });
-  } catch (error) {
-    console.error("Error en el servidor:", error);
-    return NextResponse.json({ error: "Error en el servidor" }, { status: 500 });
+  if (!response.ok) {
+    const error = await response.json();
+    return NextResponse.json({ error: error.message }, { status: response.status });
   }
+
+  return NextResponse.json({ success: true });
 }

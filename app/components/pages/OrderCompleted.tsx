@@ -4,31 +4,8 @@ import { PackageIcon, TruckIcon } from "../common/Icons";
 import Image from "next/image";
 import CheckCircle from "@/public/checked.avif";
 import { OrderType } from "@/app/types/DatabaseTypes";
-import { supabase } from "@/app/lib/supabaseClient";
-import { useUser } from "@/app/hooks/useUser";
 
 export const OrderCompleted = (orders: OrderType) => {
-  const { user } = useUser();
-
-  const handleClick = async () => {
-    const { error } = await supabase.from("orders").insert({
-      order_id: "123123",
-      fullName: "tobiasonandia",
-      email: "tOBIASONANDIA0@GMAIL.COM",
-      address: "FLORE",
-      city: "LA PAMPA",
-      state: "SANTA ROSA",
-      postalCode: "6300",
-      phone: "252305235",
-      total: "12312",
-      user_id: user?.id,
-    });
-
-    if (error) {
-      console.log(error);
-    }
-  };
-
   return (
     <main className="container mx-auto mt-16 px-4 py-8">
       <div
@@ -87,10 +64,7 @@ export const OrderCompleted = (orders: OrderType) => {
           </button>
         </footer>
       </div>
-      <button
-        onClick={handleClick}
-        className="px-4 py-2 cursor-pointer bg-red-300"
-      >
+      <button className="px-4 py-2 cursor-pointer bg-red-300">
         Enviar supabase
       </button>
     </main>

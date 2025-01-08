@@ -2,17 +2,16 @@ import { supabase } from "@/app/lib/supabaseClient";
 import { OrderCompleted } from "@components/pages/OrderCompleted";
 
 export default async function Page({
-    params,
+  params,
 }: {
-    params: Promise<{ slug: string }>
+  params: Promise<{ slug: string }>;
 }) {
-    const slug = (await params).slug
+  const slug = (await params).slug;
 
-    const { data: orders } = await supabase.from('orders').select('*').eq('order_id', slug)
-    
+  const { data: orders } = await supabase
+    .from("orders")
+    .select("*")
+    .eq("order_id", slug);
 
-    return (
-
-        <OrderCompleted {...orders![0]} />
-    )
+  return <OrderCompleted {...orders![0]} />;
 }

@@ -1,11 +1,11 @@
-'use client'
+"use client";
 import { Logo } from "@components/header/Logo";
 import { NavItem } from "@components/header/NavItem.client";
 import { NavItemServer } from "@components/header/NavItem.server";
 import { Link } from "next-view-transitions";
 import { useState } from "react";
-import { MenuIcon, X } from "./Icons";
 import { CategoriesMobile } from "../mobile/Category.mobile";
+import { MenuIcon, X } from "./Icons";
 
 export const Header = () => {
   const [open, setOpen] = useState(false);
@@ -15,22 +15,40 @@ export const Header = () => {
       <Logo />
 
       {/* Menu button for mobile */}
-      <div className="flex md:hidden items-center">
+      <div className="flex lg:hidden items-center">
         <ul>
           <NavItem />
         </ul>
-        <button onClick={() => setOpen(!open)} className="flex cursor-pointer items-center justify-center p-2 rounded hover:bg-gray-200 transition-colors">
+        <button
+          onClick={() => setOpen(!open)}
+          className="flex cursor-pointer items-center justify-center p-2 rounded hover:bg-gray-200 transition-colors"
+        >
           {open ? <X /> : <MenuIcon />}
         </button>
       </div>
 
       {/* Navigation for mobile */}
       {open && (
-        <nav className="absolute top-14 right-0 left-0  bg-white shadow-lg rounded-b-3xl md:hidden">
+        <nav className="absolute top-14 right-0 left-0  bg-white shadow-lg rounded-b-3xl lg:hidden">
           <section className="flex flex-col p-4 gap-4">
-            <Link href="/" className="text-gray-600 hover:text-gray-800 font-semibold transition-colors">Inicio</Link>
-            <Link href="#productos" className="text-gray-600 hover:text-gray-800 font-semibold transition-colors">Productos</Link>
-            <Link href="/" className="text-gray-600 hover:text-gray-800 font-semibold transition-colors">Nosotros</Link>
+            <Link
+              href="/"
+              className="text-gray-600 hover:text-gray-800 font-semibold transition-colors"
+            >
+              Inicio
+            </Link>
+            <Link
+              href="#productos"
+              className="text-gray-600 hover:text-gray-800 font-semibold transition-colors"
+            >
+              Productos
+            </Link>
+            <Link
+              href="/"
+              className="text-gray-600 hover:text-gray-800 font-semibold transition-colors"
+            >
+              Nosotros
+            </Link>
             <CategoriesMobile />
           </section>
           <ul className="flex items-center pb-6 px-4">
@@ -40,14 +58,29 @@ export const Header = () => {
       )}
 
       {/* Desktop Navigation */}
-      <section className="hidden md:flex items-center space-x-6">
-        <Link href="/" className="text-gray-600 hover:underline transition-colors">Inicio</Link>
-        <Link href="/#productos" className="text-gray-600 hover:underline transition-colors">Productos</Link>
-        <Link href="/" className="text-gray-600 hover:underline transition-colors">Nosotros</Link>
+      <section className="hidden lg:flex items-center gap-4 justify-center ">
+        <Link
+          href="/"
+          className="text-gray-600 hover:underline transition-colors"
+        >
+          Inicio
+        </Link>
+        <Link
+          href="/#productos"
+          className="text-gray-600 hover:underline transition-colors"
+        >
+          Productos
+        </Link>
+        <Link
+          href="/"
+          className="text-gray-600 hover:underline transition-colors"
+        >
+          Nosotros
+        </Link>
       </section>
 
       {/* Desktop Nav Items */}
-      <nav className="hidden md:flex">
+      <nav className="hidden lg:flex">
         <ul className="flex items-center gap-4">
           <NavItem />
           <NavItemServer />

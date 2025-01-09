@@ -31,7 +31,7 @@ export default function RootLayout({
     <ViewTransitions>
       <html lang="es">
         <body
-          className={`${geistSans} ${geistMono} antialiased min-h-screen flex flex-col `}
+          className={`${geistSans} ${geistMono} antialiase min-h-screen flex flex-col `}
         >
           <Toaster position="top-right" richColors expand={true} />
           <Header />

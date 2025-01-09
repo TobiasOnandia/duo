@@ -6,6 +6,7 @@ import CheckCircle from "@/public/checked.avif";
 import { OrderType } from "@/app/types/DatabaseTypes";
 
 export const OrderCompleted = (orders: OrderType) => {
+
   return (
     <main className="container mx-auto mt-16 px-4 py-8">
       <div
@@ -64,9 +65,6 @@ export const OrderCompleted = (orders: OrderType) => {
           </button>
         </footer>
       </div>
-      <button className="px-4 py-2 cursor-pointer bg-red-300">
-        Enviar supabase
-      </button>
     </main>
   );
 };

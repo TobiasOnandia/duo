@@ -2,8 +2,8 @@ export const sendMessage = async (
   phoneNumber: string,
   templateParams: string[],
 ) => {
-  const url = `https://graph.facebook.com/v14.0/444271245440118/messages`;
-  const accessToken = process.env.WHATSAPP_ACCESS_TOKEN!; // Asegúrate de definir esta variable en tus variables de entorno
+  const url = `https://graph.facebook.com/v14.0/${process.env.WHATSAPP_PHONE_ID}/messages`;
+  const accessToken = process.env.WHATSAPP_TOKEN!; // Asegúrate de definir esta variable en tus variables de entorno
 
   const messageData = {
     messaging_product: "whatsapp",

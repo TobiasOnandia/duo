@@ -11,7 +11,7 @@ export const Header = () => {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="fixed top-0 left-1/2 transform -translate-x-1/2 w-[95%] md:w-4/5 z-50 rounded-b-3xl shadow-md bg-white py-4 px-6 flex items-center justify-between">
+    <header data-testid="header" className="fixed top-0 left-1/2 transform -translate-x-1/2 w-[95%] md:w-4/5 z-50 rounded-b-3xl shadow-md bg-white py-4 px-6 flex items-center justify-between">
       <Logo />
 
       {/* Menu button for mobile */}

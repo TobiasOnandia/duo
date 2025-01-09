@@ -21,8 +21,6 @@ export const handlePaymentNotification = async (paymentId: string) => {
     return { error: "Error al verificar la existencia de la orden" };
   }
 
-  console.log({ 'LadoNotification': payment });
-
   // Si la orden ya existe, evita insertar duplicados
   if (orderData) {
     console.log("Orden ya existe en la base de datos. Ignorando duplicado.");
@@ -70,14 +68,9 @@ export const handlePaymentNotification = async (paymentId: string) => {
     }
 
     // Enviar mensaje de confirmación
-    await sendMessage("+542954526316", [
-      "Nombre del cliente",
-      "Fecha del turno",
-      "Hora del turno",
-      "Nombre del médico",
-      "Sede del médico",
-      "Teléfono de contacto",
-      "Notas adicionales",
+    await sendMessage(`+54${payment.metadata.phone}`, [
+      `${payment.transaction_amount}`,
+      `${payment.payment_method?.type}`
     ]);
 
     // Enviar correo de confirmación

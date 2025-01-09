@@ -7,7 +7,7 @@ export const NavItemServer = () => {
     const { user } = useUser();
 
     return (
-        <li>
+        <li >
             {user ? (
                 <DropDown />
             ) : (

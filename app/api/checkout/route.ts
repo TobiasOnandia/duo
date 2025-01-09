@@ -1,11 +1,8 @@
 import { NextResponse } from "next/server";
-import { MercadoPagoConfig, Preference } from "mercadopago";
+import {  Preference } from "mercadopago";
+import mercadoPago from "@/app/utils/mercadopago";
 
 // Configura MercadoPago con tu token de acceso
-const mercadoPago = new MercadoPagoConfig({
-  accessToken:
-    "APP_USR-6357028690192021-123014-c73f5b1892038188f2ef478ced81536b-2187542332",
-});
 
 export interface TypesRequest {
   id: number;
@@ -18,6 +15,8 @@ export async function POST(req: Request) {
   const body = await req.json();
   const products = body.items;
   const userInfo = body.metadata;
+
+  console.log(userInfo)
 
   const authHeader = req.headers.get("Authorization");
   const token = authHeader?.split("Bearer ")[1];
@@ -54,6 +53,8 @@ export async function POST(req: Request) {
     const response = await new Preference(mercadoPago).create({
       body: preference,
     });
+
+    console.log( 'lado checkout', response)
     return NextResponse.json({ init_point: response.init_point });
   } catch (error) {
     console.error("Error creating MercadoPago preference:", error);

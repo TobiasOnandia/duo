@@ -64,9 +64,6 @@ export const OrderCompleted = (orders: OrderType) => {
           </button>
         </footer>
       </div>
-      <button className="px-4 py-2 cursor-pointer bg-red-300">
-        Enviar supabase
-      </button>
     </main>
   );
 };

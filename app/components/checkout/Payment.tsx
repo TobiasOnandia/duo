@@ -7,6 +7,7 @@ import { OrderSummary } from "./OrderSummary";
 import { z } from "zod";
 import { toast } from "sonner";
 import { supabase } from "@/app/lib/supabaseClient";
+import { nanoid } from "nanoid";
 
 const addressUserSchema = z.object({
   fullName: z
@@ -60,6 +61,7 @@ export const Payment = () => {
   const products = useStore((state) => state.products);
   const stock = useStore((state) => state.stock);
   const price = useStore((state) => state.price);
+  const orderNumber = nanoid(10)
 
   const [error, submitAction] = useActionState(
     async (_previousState: unknown, formData: FormData) => {
@@ -76,7 +78,7 @@ export const Payment = () => {
         postalCode: formData.get("postalCode")?.toString() || "",
         phone: formData.get("phone")?.toString() || "",
         user: user?.user?.id.toString() || "",
-        order_id: "1234456",
+        order_id: orderNumber,
       };
 
       try {
@@ -95,7 +97,7 @@ export const Payment = () => {
               quantity: stock[product.id] || 1,
               unit_price: price[product.id],
             })),
-            order_id: "1234456",
+            order_id: data.order_id,
             metadata: data,
           }),
         });

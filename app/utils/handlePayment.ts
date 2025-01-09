@@ -2,6 +2,8 @@ import { Payment } from "mercadopago";
 import mercadoPago from "@/app/utils/mercadopago";
 import { sendMessage } from "@/app/utils/sendMessage";
 import { getSupabaseWithAuth } from "@lib/supabaseServer";
+import { sendEmail } from "@/app/utils/sendEmails";
+
 
 export const handlePaymentNotification = async (paymentId: string) => {
   const payment = await new Payment(mercadoPago).get({ id: paymentId });
@@ -19,7 +21,7 @@ export const handlePaymentNotification = async (paymentId: string) => {
     return { error: "Error al verificar la existencia de la orden" };
   }
 
-  console.log({ 'LadoNotification':payment})
+  console.log({ 'LadoNotification': payment });
 
   // Si la orden ya existe, evita insertar duplicados
   if (orderData) {
@@ -77,6 +79,21 @@ export const handlePaymentNotification = async (paymentId: string) => {
       "Teléfono de contacto",
       "Notas adicionales",
     ]);
+
+    // Enviar correo de confirmación
+    const emailSubject = "¡Gracias por tu compra!";
+    const emailBody = `
+      <h1>Confirmación de compra</h1>
+      <p>Gracias por tu compra en Duo Indumentaria.</p>
+      <p>Detalles del pedido:</p>
+      <ul>
+        <li>Pedido: #${payment.metadata.order_id}</li>
+        <li>Total: $${payment.transaction_amount}</li>
+        <li>Dirección: ${payment.metadata.address}, ${payment.metadata.city}</li>
+      </ul>
+    `;
+
+    await sendEmail(payment.metadata.email, emailSubject, emailBody);
 
     return { success: "Notificación procesada correctamente" };
   }

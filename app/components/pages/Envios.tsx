@@ -73,8 +73,8 @@ export const Envios = () => {
                     <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900" headers="shipping-number">{shipment.order_id}</td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500" headers="recipient">{shipment.total}</td>
                     <td className="px-6 py-4 whitespace-nowrap">
-                      <span className={`px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full ${getStatusColor(shipment.status || '')}`} aria-label={`Estado: ${shipment.status || 'Desconocido'}`}>
-                        {shipment.status || 'Desconocido'}
+                      <span className={`px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full ${getStatusColor( '')}`} aria-label={`Estado: ${ 'Desconocido'}`}>
+                        { 'Desconocido'}
                       </span>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500" headers="date">{new Date(shipment.created_at).toLocaleDateString()}</td>

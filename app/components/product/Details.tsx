@@ -8,6 +8,7 @@ import { DetailsInfo } from "@components/details/DetailsInfo";
 import { DetailsActions } from "@components/details/DetailsActions";
 import { Recommend } from "@components/product/Recommend";
 import { ProductType } from "@/app/types/typesProduct";
+import { motion } from "motion/react";
 
 export function Details({ id }: { id: string }) {
   const { data, loading } = useFetch(`https://dummyjson.com/products/${id}`);
@@ -18,18 +19,40 @@ export function Details({ id }: { id: string }) {
       <RecommendSkeleton />
     </div>
   );
+
   if (!data) return <div>No se encontraron datos.</div>;
 
   return (
-    <main className="container mx-auto px-4 py-8 mt-16">
-      <div className="flex flex-col xl:flex-row container gap-8">
+    <motion.main
+      initial={{ opacity: 0, y: 50 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8 }}
+      className="container mx-auto px-4 py-8 mt-16"
+    >
+      <motion.div
+        initial={{ opacity: 0, scale: 0.9 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.8, delay: 0.2 }}
+        className="flex flex-col xl:flex-row container gap-8"
+      >
         <DetailsImageGallery data={data as ProductType} />
-        <section className="flex flex-col justify-between">
+        <motion.section
+          initial={{ x: 50, opacity: 0 }}
+          animate={{ x: 0, opacity: 1 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+          className="flex flex-col justify-between"
+        >
           <DetailsInfo data={data as ProductType} />
           <DetailsActions data={data as ProductType} />
-        </section>
-      </div>
-      <Recommend />
-    </main>
+        </motion.section>
+      </motion.div>
+      <motion.div
+        initial={{ opacity: 0, y: 50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, delay: 0.6 }}
+      >
+        <Recommend />
+      </motion.div>
+    </motion.main>
   );
 }

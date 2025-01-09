@@ -29,11 +29,6 @@ export const Footer = () => {
                 </Link>
               </li>
               <li>
-                <a href="#" className="text-sm text-white hover:text-gray-400 transition">
-                  Términos de uso
-                </a>
-              </li>
-              <li>
                 <Link href="/preguntas-frecuentes" className="text-sm text-white hover:text-gray-400 transition">
                   Preguntas frecuentes
                 </Link>

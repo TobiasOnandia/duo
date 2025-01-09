@@ -1,7 +1,7 @@
 export const Privacity = () => {
   return (
     <main className="container mx-auto mt-24 rounded-3xl shadow-2xl w-[95%] md:w-4/5 px-6 py-12 min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
-      <h1 className="text-4xl md:text-5xl font-extrabold mb-8 text-gray-800 text-center ">
+      <h1 className="text-4xl md:text-5xl font-extrabold mb-8 text-gray-800 text-center   ">
         Política de privacidad
       </h1>
 

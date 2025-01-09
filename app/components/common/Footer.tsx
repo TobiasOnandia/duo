@@ -24,7 +24,7 @@ export const Footer = () => {
             <h4 className="text-lg font-bold">Enlaces útiles</h4>
             <ul className="space-y-2">
               <li>
-                <Link href="#" className="text-sm text-white hover:text-gray-400 transition">
+                <Link href="/privacidad" className="text-sm text-white hover:text-gray-400 transition">
                   Política de privacidad
                 </Link>
               </li>
@@ -83,11 +83,6 @@ export const Footer = () => {
             &copy; {new Date().getFullYear()} Duo. Todos los derechos reservados.
           </p>
           <ul className="flex space-x-4 mt-4 sm:mt-0">
-            <li>
-              <a href="#" className="text-sm text-white hover:text-gray-400 transition">
-                Política de cookies
-              </a>
-            </li>
             <li>
               <a href="#" className="text-sm text-white hover:text-gray-400 transition">
                 Mapa del sitio

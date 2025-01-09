@@ -1,7 +1,7 @@
 import { toast } from "sonner";
 import { supabase } from "@lib/supabaseClient";
 import { useEffect, useRef, useState } from "react";
-import { ArrowBottom, LogoutIcon, PackageIcon, UserIcon } from "@components/common/Icons";
+import { ArrowBottom, LogoutIcon, PackageIcon  } from "@components/common/Icons";
 import { useTransitionRouter } from "next-view-transitions";
 import { useUser } from "@/app/hooks/useUser";
 
@@ -58,7 +58,7 @@ export const DropDown = () => {
               setIsOpen(false);
               router.push("/envios");
             }}
-            className="flex items-center cursor-pointer gap-1 w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors"
+            className="flex items-center cursor-pointer gap-1  w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors"
           >
             <PackageIcon />
             <span className="truncate">Mis Envíos</span>

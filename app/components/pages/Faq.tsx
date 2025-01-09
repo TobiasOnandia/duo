@@ -86,7 +86,7 @@ export default function FAQPage() {
                 />
             </div>
 
-            <section className="w-full max-w-3xl mx-auto space-y-4" aria-labelledby="faq-heading">
+            <section className="w-full mx-auto space-y-4" aria-labelledby="faq-heading">
                 <h2 id="faq-heading" className="sr-only">Sección de preguntas frecuentes</h2>
                 {filteredFaqs.map((faq, index) => (
                     <div
@@ -120,4 +120,3 @@ export default function FAQPage() {
         </main>
     );
 }
-

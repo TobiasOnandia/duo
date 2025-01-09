@@ -24,7 +24,7 @@ export default function ShippingAndReturns() {
     };
 
     return (
-        <main className="container w-[95%] md:3/4  mx-auto px-4 py-12 mt-16">
+        <main className="container mx-auto mt-24 rounded-3xl shadow-xl w-[95%] md:3/4  px-4 py-8 min-h-screen bg-gradient-to-b from-gray-50 to-white">
             <h1 className="text-4xl font-bold mb-10 text-center text-gray-800">Envíos y Devoluciones</h1>
 
             <div className="flex flex-col md:flex-row gap-8">
@@ -172,4 +172,3 @@ export default function ShippingAndReturns() {
         </main>
     );
 }
-

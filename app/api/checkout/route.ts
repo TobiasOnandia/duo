@@ -16,8 +16,6 @@ export async function POST(req: Request) {
   const products = body.items;
   const userInfo = body.metadata;
 
-  console.log(userInfo)
-
   const authHeader = req.headers.get("Authorization");
   const token = authHeader?.split("Bearer ")[1];
 
@@ -53,8 +51,6 @@ export async function POST(req: Request) {
     const response = await new Preference(mercadoPago).create({
       body: preference,
     });
-
-    console.log( 'lado checkout', response)
     return NextResponse.json({ init_point: response.init_point });
   } catch (error) {
     console.error("Error creating MercadoPago preference:", error);

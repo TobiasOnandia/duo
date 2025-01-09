@@ -2,7 +2,7 @@ import { Link } from "next-view-transitions";
 
 export const Footer = () => {
   return (
-    <footer className="bg-neutral-900 rounded-t-lg mt-8 text-white">
+    <footer className="bg-neutral-900 h-fit rounded-t-lg mt-8 text-white">
       {/* Parte superior */}
       <div className="max-w-7xl mx-auto px-6 sm:px-12 py-10 ">
         <div className="flex flex-wrap justify-between gap-8">

@@ -88,9 +88,9 @@ export const Login = () => {
               </label>
             </div>
             <div className="text-sm">
-              <a href="#" className="font-medium cursor-pointer text-neutral-800 ml-2 hover:text-primary-dark">
+              <Link href="/recuperar" className="font-medium cursor-pointer text-neutral-800 ml-2 hover:text-primary-dark">
                 ¿Olvidaste tu contraseña?
-              </a>
+              </Link>
             </div>
           </fieldset>
 

@@ -1,7 +1,7 @@
-import { PasswordRecovery } from "@components/pages/PasswordRecovery";
+import { SendRecovery } from "@components/pages/SendRecovery";
 
 export default function Page() {
   return(
-    <PasswordRecovery />
+    <SendRecovery />
   )
 }

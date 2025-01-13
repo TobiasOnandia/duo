@@ -6,7 +6,7 @@ import { ButtonAdd } from "@/app/lib/ButtonAdd";
 
 
 export const Card = ({ data }: { data: ProductType }) => (
-  <article className="w-full h-full bg-white rounded-lg border max-w-md flex flex-col justify-between border-gray-300 shadow-lg hover:shadow-xl transition-shadow">
+  <article data-testid="product" className="w-full h-full bg-white rounded-lg border max-w-md flex flex-col justify-between border-gray-300 shadow-lg hover:shadow-xl transition-shadow">
     <Link href={`/item/${data.id}`} className="" >
       <figure className="relative w-full  aspect-[4/3]">
         <Image

@@ -40,7 +40,7 @@ export const DropDown = () => {
         className="flex items-center gap-2 p-2 rounded transition-colors cursor-pointer hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
       >
         <span className="font-semibold text-gray-700 text-sm sm:text-base truncate">
-          {user?.user_metadata?.full_name}
+          { user?.user_metadata?.full_name ?? `${user?.user_metadata?.first_name} ${user?.user_metadata?.last_name}`}
         </span>
         <span
           className={`h-4 w-4 text-gray-500 transition-transform ${isOpen ? "transform rotate-180" : ""}`}

@@ -10,7 +10,7 @@ export const sendMessage = async (
     to: phoneNumber,
     type: "template",
     template: {
-      name: "confirmacion_de_turno_reservado",
+      name: "pago",
       language: {
         code: "es",
       },

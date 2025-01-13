@@ -7,18 +7,15 @@ import { toast } from "sonner";
 
 export const SendRecovery = () => {
 
-  /**
-   * Step 1: Send the user an email to get a password reset token.
-   * This email contains a link which sends the user back to your application.
-   */
-   const [error, submitAction, isLoading] = useActionState(
-     async (_previousState: unknown, formData: FormData) => {
-       const { error } = await supabase.auth.resetPasswordForEmail(formData.get("email") as string);
-       if (error) return { error: error.message };
-       toast.success("Se ha enviado un correo electrónico!");
-     },
-     null,
-   );
+  const [error, submitAction, isLoading] = useActionState(
+    async (_previousState: unknown, formData: FormData) => {
+      const { error } = await supabase.auth.resetPasswordForEmail(formData.get("email") as string)
+
+      if (error) return { error: error.message };
+      toast.success("Se ha enviado un correo electrónico!");
+    },
+    null,
+  );
 
 
 
@@ -46,16 +43,15 @@ export const SendRecovery = () => {
 
           <button
             type="submit"
-            className={`w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline ${
-              isLoading ? 'opacity-50 cursor-not-allowed' : ''
-            }`}
+            className={`w-full cursor-pointer  bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline ${isLoading ? 'opacity-50 cursor-not-allowed' : ''
+              }`}
             disabled={isLoading}
           >
             {isLoading ? 'Enviando...' : 'Enviar Solicitud'}
           </button>
         </form>
 
-        { isLoading && (
+        {isLoading && (
           <div className="mt-4 text-green-600 flex items-center">
             <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />

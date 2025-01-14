@@ -1,7 +1,7 @@
 import { toast } from "sonner";
 import { supabase } from "@lib/supabaseClient";
 import { useEffect, useRef, useState } from "react";
-import { ArrowBottom, LogoutIcon, PackageIcon  } from "@components/common/Icons";
+import { ArrowBottom, LogoutIcon, PackageIcon } from "@components/common/Icons";
 import { useTransitionRouter } from "next-view-transitions";
 import { useUser } from "@/app/hooks/useUser";
 
@@ -37,10 +37,10 @@ export const DropDown = () => {
     <div className="relative" ref={dropdownRef}>
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center gap-2 p-2 rounded transition-colors cursor-pointer hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
+        className="flex items-center gap-2 lg:p-2 rounded transition-colors  cursor-pointer lg:hover:bg-gray-100 focus:outline-none lg:focus:ring-2 lg:focus:ring-blue-500"
       >
-        <span className="font-semibold text-gray-700 text-sm sm:text-base truncate">
-          { user?.user_metadata?.full_name ?? `${user?.user_metadata?.first_name} ${user?.user_metadata?.last_name}`}
+        <span className="font-semibold text-gray-700 hover:text-neutral-900 text-sm sm:text-base truncate">
+          {user?.user_metadata?.full_name ?? `${user?.user_metadata?.first_name} ${user?.user_metadata?.last_name}`}
         </span>
         <span
           className={`h-4 w-4 text-gray-500 transition-transform ${isOpen ? "transform rotate-180" : ""}`}

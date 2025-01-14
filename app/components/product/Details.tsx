@@ -29,7 +29,7 @@ export function Details({ id }: { id: string }) {
       transition={{ duration: 0.8 }}
       className="container mx-auto px-4 py-8 mt-16"
     >
-      <motion.div
+      <motion.article
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.8, delay: 0.2 }}
@@ -45,14 +45,14 @@ export function Details({ id }: { id: string }) {
           <DetailsInfo data={data as ProductType} />
           <DetailsActions data={data as ProductType} />
         </motion.section>
-      </motion.div>
-      <motion.div
+      </motion.article>
+      <motion.footer
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.6 }}
       >
         <Recommend />
-      </motion.div>
+      </motion.footer>
     </motion.main>
   );
 }

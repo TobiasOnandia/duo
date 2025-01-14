@@ -59,7 +59,7 @@ export const Signup = () => {
   );
 
   return (
-    <main className="min-h-screen flex items-center  justify-center bg-gray-100 py-8 px-4">
+    <main className="min-h-screen flex items-center  justify-center  py-8 px-4 md:mt-16">
       <div className="flex flex-col mt-16 lg:mt-0 items-center bg-white p-6 md:p-10 rounded-lg shadow-lg border border-gray-200 w-full max-w-lg md:max-w-xl lg:max-w-2xl">
         <h1 className="text-2xl md:text-3xl font-bold mb-6 text-gray-800 text-center">
           Crear Cuenta
@@ -174,7 +174,7 @@ export const Signup = () => {
         <div className="mt-4 text-center">
           <p className="text-sm text-gray-600">
             ¿Ya tienes una cuenta?{" "}
-            <Link href="/login" className="text-primary font-medium hover:underline">
+            <Link href="/login" className="text-neutral-800 font-medium hover:underline">
               Inicia sesión aquí
             </Link>
           </p>

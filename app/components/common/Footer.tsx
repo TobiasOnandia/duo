@@ -79,7 +79,7 @@ export const Footer = () => {
           </p>
           <ul className="flex space-x-4 mt-4 sm:mt-0">
             <li>
-              <a href="#" className="text-sm text-white hover:text-gray-400 transition">
+              <a href="https://maps.app.goo.gl/rzJxpLqPqQLi7Y1BA" className="text-sm text-white hover:text-gray-400 transition">
                 Mapa del sitio
               </a>
             </li>

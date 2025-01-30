@@ -2,7 +2,7 @@ import { Payment } from "mercadopago";
 import mercadoPago from "@/app/utils/mercadopago";
 import { sendMessage } from "@/app/utils/sendMessage";
 import { getSupabaseWithAuth } from "@lib/supabaseServer";
-import { sendEmail } from "@/app/utils/sendEmails";
+import { sendEmail } from "./sendEmails";
 
 
 export const handlePaymentNotification = async (paymentId: string) => {
